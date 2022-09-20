@@ -1,0 +1,5 @@
+.profile{
+    margin: 40px auto 0;
+    width: calc(100% - 400px);
+    border: 1px solid white;
+}
