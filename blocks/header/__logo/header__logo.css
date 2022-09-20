@@ -1,0 +1,7 @@
+.header__logo{
+    width: 142px;
+    height: 33px;
+    background: url(../../../images/Logo.png) no-repeat center;
+    object-fit: cover;
+    z-index: 1;
+}
