@@ -1,0 +1,11 @@
+.profile__add-buttom{
+    display: flex;
+    width: 150px;
+    height: 50px;
+    right: 0;
+    align-self: center;
+    
+    justify-content: center;
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
+}
