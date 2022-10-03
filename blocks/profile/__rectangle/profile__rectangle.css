@@ -7,3 +7,9 @@
     height: 24px;
     border: 1px solid white;
 }
+
+@media screen and (max-width: 660px) {
+    .profile__rectangle {
+        margin-top: 22px;
+    }
+}

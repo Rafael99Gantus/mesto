@@ -4,8 +4,13 @@
     height: 50px;
     right: 0;
     align-self: center;
-    
     justify-content: center;
     border: 2px solid #FFFFFF;
     border-radius: 2px;
+}
+
+@media screen and (max-width: 660px) {
+    .profile__add-buttom {
+        width: calc(100% - 38px);
+    }
 }

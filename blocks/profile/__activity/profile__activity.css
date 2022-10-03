@@ -7,3 +7,11 @@
     line-height: 22px;
     color: #FFFFFF;
 }
+
+@media screen and (max-width: 660px) {
+    .profile__activity {
+        text-align: center;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

@@ -2,6 +2,20 @@
     display: flex;
     justify-content: space-between;
     margin: 40px auto 0;
-    width: calc(100% - 400px);
+    max-width: 880px/* calc(100% - 400px) */;
     /* border: 1px solid white; */
+}
+
+@media screen and (max-width: 880px) {
+    .profile {
+        width: 98%;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .profile {
+        width: 98%;
+        flex-direction: column;
+        margin: 38px auto 0;
+    }
 }
