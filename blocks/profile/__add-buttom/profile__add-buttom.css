@@ -9,6 +9,10 @@
     border-radius: 2px;
 }
 
+.profile__add-buttom:hover{
+    opacity: 0.6;
+}
+
 @media screen and (max-width: 660px) {
     .profile__add-buttom {
         width: calc(100% - 38px);

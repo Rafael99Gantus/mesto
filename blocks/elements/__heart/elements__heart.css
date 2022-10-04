@@ -1,0 +1,121 @@
+.elements__heart{
+    margin: 5px 5px 0 0;
+    width: 22px;
+    height: 19px;
+   
+    position: absolute;
+    left: -100vw;
+}
+        .elements__heart:checked + label {
+        color: #fe0000;
+        -webkit-filter: none;
+                filter: none;
+        will-change: font-size;
+        -webkit-animation: heart 1s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+                animation: heart 1s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+      }
+      .elements__heart:checked + label:before, .elements__heart:checked + label:after {
+        -webkit-animation: inherit;
+                animation: inherit;
+        -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+      }
+      .elements__heart:focus + label {
+        text-shadow: 0 0 3px white,  0 1px 1px white, 0 -1px 1px white,  1px 0 1px white, -1px 0 1px white;
+      }
+      
+      [for='first-heart'] {
+        align-self: center;
+        position: relative;
+        color: rgb(0, 0, 0);
+        font-size: 2em;
+        -webkit-filter: grayscale(1);
+                filter: grayscale(1);
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        cursor: pointer;
+      }
+
+      [for='second-heart'] {
+        align-self: center;
+        position: relative;
+        color: rgb(0, 0, 0);
+        font-size: 2em;
+        -webkit-filter: grayscale(1);
+                filter: grayscale(1);
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        cursor: pointer;
+      }
+
+      [for='third-heart'] {
+        align-self: center;
+        position: relative;
+        color: rgb(0, 0, 0);
+        font-size: 2em;
+        -webkit-filter: grayscale(1);
+                filter: grayscale(1);
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        cursor: pointer;
+      }
+
+      [for='for-heart'] {
+        align-self: center;
+        position: relative;
+        color: rgb(0, 0, 0);
+        font-size: 2em;
+        -webkit-filter: grayscale(1);
+                filter: grayscale(1);
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        cursor: pointer;
+      }
+
+      [for='five-heart'] {
+        align-self: center;
+        position: relative;
+        color: rgb(0, 0, 0);
+        font-size: 2em;
+        -webkit-filter: grayscale(1);
+                filter: grayscale(1);
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        cursor: pointer;
+      }
+
+      [for='six-heart'] {
+        align-self: center;
+        position: relative;
+        color: rgb(0, 0, 0);
+        font-size: 2em;
+        -webkit-filter: grayscale(1);
+                filter: grayscale(1);
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        cursor: pointer;
+      }
+      
+      @-webkit-keyframes heart {
+        0%, 17.5% {
+          font-size: 0;
+        }
+      }
+      
+      @keyframes heart {
+        0%, 17.5% {
+          font-size: 0;
+        }
+      }

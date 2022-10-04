@@ -6,3 +6,7 @@
     object-fit: cover;
     /* border: 1px solid red; */
 }
+
+.elements__block:hover{
+    opacity: 0.5;
+}
