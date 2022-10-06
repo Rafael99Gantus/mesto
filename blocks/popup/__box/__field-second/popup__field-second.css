@@ -1,0 +1,12 @@
+.popup__field-second{
+    margin: 0 auto 48px 36px;
+    width: 358px;
+    height: 27px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    border-bottom: 1px solid black;
+}

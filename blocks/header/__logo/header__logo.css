@@ -3,7 +3,6 @@
     height: 33px;
     background: url(../../../images/Logo.svg) no-repeat center;
     object-fit: cover;
-    z-index: 1;
 }
 
 @media screen and (max-width: 660px) {
