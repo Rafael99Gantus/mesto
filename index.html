@@ -1,86 +1,89 @@
 <! DOCTYPE html>
-<html>
+	<html lang="ru">
+
 	<head>
-		<meta name="viewport" content="width=device-width; initial-scale=1">
+		<meta name="viewport" content="width=device-width initial-scale=1">
 		<title> mesto </title>
 		<link href="pages/index.css" rel="stylesheet" type="text/css"/>
+		<script src="pages/index.js"></script>
 	</head>
+
 	<body class="root">
 		<div class="page">
 			<header class="header">
 				<div class="header__logo"></div>
 				<div class="header__line"></div>
 			</header>
-				<section class="profile">
-					<div class="profile__first-block">
-						<img class="profile__avatar" src="images/avatar.png" alt="аватар"></img>
-						<div class="profile__info">
-							<div class="profile__textwithbottom">
-								<p class="profile__name">Жак-Ив Кусто</p>
-								<a href="#popup" id="open_pen" class="profile__rectangle">
-									<img class="profile__vector" src="images/Vector.png" alt="Vector"></img>
-								</a>
-							</div>
-							<div class="profile__text">
-								<p class="profile__activity">Исследователь океана</p>
-							</div>
+			<section class="profile">
+				<div class="profile__first-block">
+					<img class="profile__avatar" src="images/avatar.png" alt="аватар"></img>
+					<div class="profile__info">
+						<div class="profile__textwithbottom">
+							<p class="profile__name">Жак-Ив Кусто</p>
+							<a href="#popup" id="open_pen" class="profile__rectangle popup__link">
+								<img class="profile__vector popup__link" src="images/vector.png" alt="Vector"></img>
+							</a>
+						</div>
+						<div class="profile__text">
+							<p class="profile__activity">Исследователь океана</p>
 						</div>
 					</div>
-					<a href="#" id="open_plus" class="profile__add-buttom">
-						<img class="profile__plus" src="images/plus.png" alt="Plus"></img>
-					</a>
-				</section>
+				</div>
+				<a href="#" id="open_plus" class="profile__add-buttom">
+					<img class="profile__plus" src="images/plus.png" alt="Plus"></img>
+				</a>
+			</section>
 
-				<section class="elements">
-					<div class="elements__element">
-						<img class="elements__image" src="images/Karachaevsk.png" alt="Karachaevsk"></img>
-						<div class="elements__blocks">
-							<p class="elements__paragrath">Карачаевск</p>
-							<input class='elements__heart' id="first-heart" type="checkbox"/>
-							<label for="first-heart" aria-label="like">❤</label>
-						</div>
+			<section class="elements">
+				<div class="elements__element">
+					<img class="elements__image" src="images/Karachaevsk.png" alt="Karachaevsk"></img>
+					<div class="elements__blocks">
+						<p class="elements__paragrath">Карачаевск</p>
+						<input class='elements__heart' id="first-heart" type="checkbox" />
+						<label for="first-heart" aria-label="like">❤</label>
 					</div>
-					<div class="elements__element">
-						<img class="elements__image" src="images/Elbrus.png" alt="Elbrus"></img>
-						<div class="elements__blocks">
-							<p class="elements__paragrath">Гора Эльбрус</p>
-							<input class='elements__heart' id="second-heart" type="checkbox"/>
-							<label for="second-heart" aria-label="like">❤</label>
-						</div>
+				</div>
+				<div class="elements__element">
+					<img class="elements__image" src="images/Elbrus.png" alt="Elbrus"></img>
+					<div class="elements__blocks">
+						<p class="elements__paragrath">Гора Эльбрус</p>
+						<input class='elements__heart' id="second-heart" type="checkbox" />
+						<label for="second-heart" aria-label="like">❤</label>
 					</div>
-					<div class="elements__element">
-						<img class="elements__image" src="images/Dombay.png" alt="Dombay"></img>
-						<div class="elements__blocks">
-							<p class="elements__paragrath">Домбай</p>
-							<input class='elements__heart' id="third-heart" type="checkbox"/>
-							<label for="third-heart" aria-label="like">❤</label>
-						</div>
+				</div>
+				<div class="elements__element">
+					<img class="elements__image" src="images/Dombay.png" alt="Dombay"></img>
+					<div class="elements__blocks">
+						<p class="elements__paragrath">Домбай</p>
+						<input class='elements__heart' id="third-heart" type="checkbox" />
+						<label for="third-heart" aria-label="like">❤</label>
 					</div>
-					<div class="elements__element">
-						<img class="elements__image" src="images/Karachaevsk.png" alt="Karachaevsk"></img>
-						<div class="elements__blocks">
-							<p class="elements__paragrath">Карачаевск</p>
-							<input class='elements__heart' id="for-heart" type="checkbox"/>
-							<label for="for-heart" aria-label="like">❤</label>
-						</div>
+				</div>
+				<div class="elements__element">
+					<img class="elements__image" src="images/Karachaevsk.png" alt="Karachaevsk"></img>
+					<div class="elements__blocks">
+						<p class="elements__paragrath">Карачаевск</p>
+						<input class='elements__heart' id="for-heart" type="checkbox" />
+						<label for="for-heart" aria-label="like">❤</label>
 					</div>
-					<div class="elements__element">
-						<img class="elements__image" src="images/Elbrus.png" alt="Elbrus"></img>
-						<div class="elements__blocks">
-							<p class="elements__paragrath">Гора Эльбрус</p>
-							<input class='elements__heart' id="five-heart" type="checkbox"/>
-							<label for="five-heart" aria-label="like">❤</label>
-						</div>
+				</div>
+				<div class="elements__element">
+					<img class="elements__image" src="images/Elbrus.png" alt="Elbrus"></img>
+					<div class="elements__blocks">
+						<p class="elements__paragrath">Гора Эльбрус</p>
+						<input class='elements__heart' id="five-heart" type="checkbox" />
+						<label for="five-heart" aria-label="like">❤</label>
 					</div>
-					<div class="elements__element">
-						<img class="elements__image" src="images/Dombay.png" alt="Dombay"></img>
-						<div class="elements__blocks">
-							<p class="elements__paragrath">Домбай</p>
-							<input class='elements__heart' id="six-heart" type="checkbox"/>
-							<label for="six-heart" aria-label="like">❤</label>
-						</div>
+				</div>
+				<div class="elements__element">
+					<img class="elements__image" src="images/Dombay.png" alt="Dombay"></img>
+					<div class="elements__blocks">
+						<p class="elements__paragrath">Домбай</p>
+						<input class='elements__heart' id="six-heart" type="checkbox" />
+						<label for="six-heart" aria-label="like">❤</label>
 					</div>
-				</section>
+				</div>
+			</section>
 			<footer class="footer">
 				<p class="footer__line">© 2020 Mesto Russia</p>
 			</footer>
@@ -88,13 +91,19 @@
 		<div id="popup" class="popup">
 			<div class="popup__body">
 				<div class="popup__box">
-					<a href="#" class="popup__closed"></a>
+					<!-- <a href="#" class="popup__closed"></a> -->
+					<div href="#" class="popup__closed">
+						<span class="top"></span>
+						<span class="bot"></span>
+					</div>
+					<!-- <button href="#" class="popup__closed">X</button> -->
 					<h1 class="popup__title">Редактировать профиль</h1>
-					<p class="popup__field-first">Жак-Ив Кусто</p>
-					<p class="popup__field-second">Исследователь океана</p>		
-					<button type="submit" class="popup__button">Сохранить</button>
+					<input class="popup__field-first" type="text" value="Жак-Ив Кусто" font-size="14px"></input>
+					<input class="popup__field-second" type="text" value="Исследователь океана" font-size="14px"></input>
+					<button href="#" type="submit" class="popup__button">Сохранить</button>
 				</div>
 			</div>
 		</div>
 	</body>
-</html>
+
+	</html>

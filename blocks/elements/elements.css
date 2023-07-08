@@ -1,12 +1,11 @@
-.elements{
+.elements {
     display: grid;
     grid-template-columns: repeat(3, 282px);
     grid-template-rows: repeat(2, 362px);
     row-gap: 20px;
     column-gap: 17px;
     margin: 51px auto 0;
-    max-width: 880px/* calc(100% - 400px) */;
-    /* border: 1px solid red; */
+    max-width: 880px;
 }
 
 @media screen and (max-width: 880px) {

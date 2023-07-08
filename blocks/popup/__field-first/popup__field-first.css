@@ -1,5 +1,5 @@
-.popup__field-first{
-    margin: 0 auto 30px 36px;
+.popup__field-first {
+    margin: 0 36px 30px 36px;
     width: 358px;
     height: 27px;
     font-family: 'Inter';
@@ -9,4 +9,16 @@
     line-height: 17px;
     color: #000000;
     border-bottom: 1px solid black;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    outline: none;
+}
+
+@media screen and (max-width: 540px) {
+    .popup__field-first {
+        width: 238px;
+        margin: 0 22px 30px 22px;
+        line-height: 16.94px;
+    }
 }

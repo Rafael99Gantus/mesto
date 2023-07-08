@@ -1,4 +1,4 @@
-.elements__block{
+.elements__block {
     margin: 5px 5px 0 0;
     width: 22px;
     height: 19px;
@@ -7,6 +7,6 @@
     /* border: 1px solid red; */
 }
 
-.elements__block:hover{
+.elements__block:hover {
     opacity: 0.5;
 }

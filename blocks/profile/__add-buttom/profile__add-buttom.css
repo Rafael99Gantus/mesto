@@ -1,4 +1,4 @@
-.profile__add-buttom{
+.profile__add-buttom {
     display: flex;
     width: 150px;
     height: 50px;
@@ -9,7 +9,7 @@
     border-radius: 2px;
 }
 
-.profile__add-buttom:hover{
+.profile__add-buttom:hover {
     opacity: 0.6;
 }
 
