@@ -31,6 +31,7 @@
 @import url(../blocks/popup/__box/__field-second/popup__field-second.css);
 @import url(../blocks/popup/__closed/popup__closed.css);
 @import url(../blocks/popup/__body/popup__body.css);
+@import url(../blocks/popup/__closed/_image/popup__image.css);
 
 /*elements*/
 @import url(../blocks/elements/elements.css);
