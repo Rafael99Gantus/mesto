@@ -3,15 +3,17 @@
 ### Обзор
 
 * Figma
-* Картинки
+* Описание
+* Ссылка на GitHub проект
 
 **Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?type=design&node-id=0-1&mode=design&t=V5TTuTSBZVdUzDvL-0)
 
-**Картинки**
+**Описание**
+В данном проекте реализована адаптивная верстка и работа на языке Java Script, так же, используется оформление по БЭМ методологии.
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+**Ссылка на GitHub проект**
+* [Ссылка на GitHub проект](rafael99gantus.github.io/mesto/)
 
-Удачи!
+Спасибо за внимание !
