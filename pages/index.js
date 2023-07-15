@@ -19,7 +19,7 @@ function field(event) {
 };
 button.addEventListener("click", field);
 
-// Открытие попапа
+// Открытие/закрытие попапа
 
 const timeout = 800;
 
@@ -40,14 +40,11 @@ function popupClose(){
 }
 popupCloseIcon.addEventListener("click", popupClose);
 
-popupCloseIcon.addEventListener('keydown', function (e){
-    if (KeyboardEvent.keyCode === 27){
-        const Close = document.querySelector('.popup');
-        Close.style.visibility = 'hidden';
-        Close.style.opacity = '0';
+document.addEventListener('keydown', function(event) {
+    if (event.code == 'Enter') {
+        field()
     }
-});
-
+  });
 
 // Анимация лайка у первой карточки
 
