@@ -8,9 +8,8 @@
         border: 0;
         background: url('../../../images/heartDisabled.svg') no-repeat center;
         cursor: pointer;
-
 }
 
 .elements__heart:hover {
         opacity: 0.5;
-    }
+}

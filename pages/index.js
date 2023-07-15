@@ -26,31 +26,31 @@ const timeout = 800;
 const popupCloseIcon = document.querySelector('#closed');
 const popupOpenIcon = document.querySelector('#popup');
 
-function popupOpen (){
+function popupOpen() {
     const Open = document.querySelector('.popup');
     Open.style.visibility = 'visible';
     Open.style.opacity = '1';
 };
 popupOpenIcon.addEventListener("click", popupOpen);
 
-function popupClose(){
+function popupClose() {
     const Close = document.querySelector('.popup');
     Close.style.visibility = 'hidden';
     Close.style.opacity = '0';
 }
 popupCloseIcon.addEventListener("click", popupClose);
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.code == 'Enter') {
         field()
     }
-  });
+});
 
 // Анимация лайка у первой карточки
 
 let heartFirst = document.querySelector('#first-heart');
 
-function heartActiveFirst (){
+function heartActiveFirst() {
     heartFirst.style.background = "url('images/heartActive.svg') no-repeat center";
     heartFirst.style.opacity = "1";
 }
@@ -61,7 +61,7 @@ heartFirst.addEventListener('click', heartActiveFirst);
 
 let heartSecond = document.querySelector('#second-heart');
 
-function heartActiveSecond (){
+function heartActiveSecond() {
     heartSecond.style.background = "url('images/heartActive.svg') no-repeat center";
     heartSecond.style.opacity = "1";
 }
@@ -72,7 +72,7 @@ heartSecond.addEventListener('click', heartActiveSecond);
 
 let heartThird = document.querySelector('#third-heart');
 
-function heartActiveThird (){
+function heartActiveThird() {
     heartThird.style.background = "url('images/heartActive.svg') no-repeat center";
     heartThird.style.opacity = "1";
 }
@@ -83,7 +83,7 @@ heartThird.addEventListener('click', heartActiveThird);
 
 let heartFourth = document.querySelector('#fourth-heart');
 
-function heartActiveFourth (){
+function heartActiveFourth() {
     heartFourth.style.background = "url('images/heartActive.svg') no-repeat center";
     heartFourth.style.opacity = "1";
 }
@@ -94,7 +94,7 @@ heartFourth.addEventListener('click', heartActiveFourth);
 
 let heartFifth = document.querySelector('#fifth-heart');
 
-function heartActiveFifth (){
+function heartActiveFifth() {
     heartFifth.style.background = "url('images/heartActive.svg') no-repeat center";
     heartFifth.style.opacity = "1";
 }
@@ -105,7 +105,7 @@ heartFifth.addEventListener('click', heartActiveFifth);
 
 let heartSixth = document.querySelector('#sixth-heart');
 
-function heartActiveSixth (){
+function heartActiveSixth() {
     heartSixth.style.background = "url('images/heartActive.svg') no-repeat center";
     heartSixth.style.opacity = "1";
 }

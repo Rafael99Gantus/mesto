@@ -20,3 +20,9 @@
         grid-template-columns: repeat(1, 282px);
     }
 }
+
+@media screen and (max-width: 320px) {
+    .elements {
+        margin: 36px auto 0;
+    }
+}
