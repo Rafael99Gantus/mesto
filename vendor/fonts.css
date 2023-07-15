@@ -12,7 +12,7 @@
   font-style:  normal;
   font-weight: 500;
   font-display: swap;
-  src: url("../fonts/Inter Desktop/Inter-Medium.ttf") format("ttf"),
+  src: url("../fonts/Inter Desktop/Inter-Medium.ttf") format("ttf");
 }
 
 @font-face {
