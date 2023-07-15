@@ -7,6 +7,9 @@
     justify-content: center;
     border: 2px solid #FFFFFF;
     border-radius: 2px;
+    background-color: black;
+    background: url(../../../images/plus.svg) no-repeat center;
+    cursor: pointer;
 }
 
 .profile__add-buttom:hover {

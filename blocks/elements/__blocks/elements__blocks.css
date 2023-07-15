@@ -1,4 +1,8 @@
 .elements__blocks {
+    width: 19px;
+    height: 24px;
+    overflow: hidden;
+    position: relative;
     display: flex;
     justify-content: space-between;
     width: 246px;

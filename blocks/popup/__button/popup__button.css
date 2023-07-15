@@ -7,7 +7,7 @@
     background: #000000;
     border-radius: 2px;
     z-index: 1;
-    font-family: 'Inter';
+    font-family: 'Regular', 'Medium', 'Black';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -15,7 +15,7 @@
     text-align: center;
     color: #FFFFFF;
     cursor: pointer;
-    margin: 0 auto;
+    margin: 0 auto 37px;
 }
 
 .popup__button:hover {

@@ -12,90 +12,80 @@
 		<header class="header">
 			<div class="header__logo"></div>
 		</header>
+		<main>
 		<section class="profile">
 			<div class="profile__first-block">
 				<img class="profile__avatar" src="images/avatar.png" alt="аватар">
 				<div class="profile__info">
-					<div class="profile__textwithbottom">
-						<p class="profile__name">Жак-Ив Кусто</p>
-						<a href="#popup" id="open_pen" class="profile__rectangle">
-							<img class="profile__vector" src="images/vector.png" alt="Вектор">
-						</a>
+					<div class="profile__block">
+						<h1 class="profile__name">Жак-Ив Кусто</h1>
+						<button id="popup" class="profile__rectangle" type="submit"></button>
 					</div>
-					<div class="profile__text">
 						<p class="profile__activity">Исследователь океана</p>
-					</div>
 				</div>
 			</div>
-			<a href="#" id="open_plus" class="profile__add-buttom">
-				<img class="profile__plus" src="images/plus.png" alt="Плюс">
-			</a>
+			<button id="open_plus" class="profile__add-buttom" type="submit"></button>
 		</section>
 
 		<section class="elements">
-			<div class="elements__element">
+			<article class="elements__element">
 				<img class="elements__image" src="images/Karachaevsk.png" alt="Карачаевск">
 				<div class="elements__blocks">
-					<p class="elements__paragrath">Карачаевск</p>
-					<input class='elements__heart' id="first-heart" type="checkbox" />
-					<label for="first-heart" aria-label="like">❤</label>
+					<h2 class="elements__paragrath">Карачаевск</h2>
+					<button id="first-heart" type="submit" class='elements__heart'></button>
 				</div>
-			</div>
-			<div class="elements__element">
+			</article>
+			<article class="elements__element">
 				<img class="elements__image" src="images/Elbrus.png" alt="Эльбрус">
 				<div class="elements__blocks">
-					<p class="elements__paragrath">Гора Эльбрус</p>
-					<input class='elements__heart' id="second-heart" type="checkbox" />
-					<label for="second-heart" aria-label="like">❤</label>
+					<h2 class="elements__paragrath">Гора Эльбрус</h2>
+					<button id="second-heart" type="submit" class='elements__heart'></button>
 				</div>
-			</div>
-			<div class="elements__element">
+			</article>
+			<article class="elements__element">
 				<img class="elements__image" src="images/Dombay.png" alt="Домбай">
 				<div class="elements__blocks">
-					<p class="elements__paragrath">Домбай</p>
-					<input class='elements__heart' id="third-heart" type="checkbox" />
-					<label for="third-heart" aria-label="like">❤</label>
+					<h2 class="elements__paragrath">Домбай</h2>
+					<button id="third-heart" type="submit" class='elements__heart'></button>
 				</div>
-			</div>
-			<div class="elements__element">
+			</article>
+			<article class="elements__element">
 				<img class="elements__image" src="images/Karachaevsk.png" alt="Карачаевск">
 				<div class="elements__blocks">
-					<p class="elements__paragrath">Карачаевск</p>
-					<input class='elements__heart' id="for-heart" type="checkbox" />
-					<label for="for-heart" aria-label="like">❤</label>
+					<h2 class="elements__paragrath">Карачаевск</h2>
+					<button id="fourth-heart" type="submit" class='elements__heart'></button>
 				</div>
-			</div>
-			<div class="elements__element">
+			</article>
+			<article class="elements__element">
 				<img class="elements__image" src="images/Elbrus.png" alt="Эльбрус">
 				<div class="elements__blocks">
-					<p class="elements__paragrath">Гора Эльбрус</p>
-					<input class='elements__heart' id="five-heart" type="checkbox" />
-					<label for="five-heart" aria-label="like">❤</label>
+					<h2 class="elements__paragrath">Гора Эльбрус</h2>
+					<button id="fifth-heart" type="submit" class='elements__heart'></button>
 				</div>
-			</div>
-			<div class="elements__element">
+			</article>
+			<article class="elements__element">
 				<img class="elements__image" src="images/Dombay.png" alt="Домбай">
 				<div class="elements__blocks">
-					<p class="elements__paragrath">Домбай</p>
-					<input class='elements__heart' id="six-heart" type="checkbox" />
-					<label for="six-heart" aria-label="like">❤</label>
+					<h2 class="elements__paragrath">Домбай</h2>
+					<button id="sixth-heart" type="submit" class='elements__heart'></button>
 				</div>
-			</div>
+			</article>
 		</section>
+		</main>
 		<footer class="footer">
-			<p class="footer__line">© 2020 Mesto Russia</p>
+			<p class="footer__copyright">© 2020 Mesto Russia</p>
 		</footer>
 	</div>
 	<div id="popup" class="popup">
 		<div class="popup__body">
-			<div class="popup__box">
-				<a href="#" class="popup__closed">
-					<img class="popup__image" src="images/plus.png">
-				</a>
-				<h1 class="popup__title">Редактировать профиль</h1>
-				<input class="popup__field-first" type="text" value="Жак-Ив Кусто" font-size="14px">
-				<input class="popup__field-second" type="text" value="Исследователь океана" font-size="14px">
+			<div class="popup__container">
+				<button id='closed' class="popup__closed" type="submit"></button>
+				<h2 class="popup__title">Редактировать профиль</h2>
+				<form name="fullname">
+				<input class="popup__field popup__field_first" type="text" value="Жак-Ив Кусто" name="fullname">
+				<input class="popup__field popup__field_second" type="text" value="Исследователь океана" name="fullname">
 				<button href="#" type="submit" class="popup__button">Сохранить</button>
+			 	</form>
 			</div>
 		</div>
 	</div>

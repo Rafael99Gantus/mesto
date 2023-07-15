@@ -1,31 +1,115 @@
+// Перенос значения полей из попапа
 
-
-
-let fieldFirst = document.querySelector('.popup__field-first');
-let fieldSecond = document.querySelector('.popup__field-second');
-// console.log('.popup__button');
-
-let box = document.querySelector('.popup__box');
-let button = box.querySelector('.popup__button');
+let fullName = document.querySelector('.popup__field_first');
+let work = document.querySelector('.popup__field_second');
+let container = document.querySelector('.popup__container');
+let button = container.querySelector('.popup__button');
 let profileName = document.querySelector('.profile__name');
 let profileActivity = document.querySelector('.profile__activity');
-let popup = document.querySelector('#popup');
+let popup = document.querySelector('.popup');
 
-function field() {
-    let a = fieldFirst.value;
-    console.log(a);
-    profileName.innerText = a;
+function field(event) {
+    event.preventDefault();
+    let nameValue = fullName.value;
+    profileName.innerText = nameValue;
 
-    let b = fieldSecond.value;
-    console.log(b);
-    profileActivity.innerText = b;
-    button.onclick = function() {
-        document.querySelector('popup').hidden = true;
-      };
-};
-button.addEventListener("click", field); 
-
-function closeField () {
+    let workValue = work.value;
+    profileActivity.innerText = workValue;
     popup.style.visibility = 'hidden';
+};
+button.addEventListener("click", field);
+
+// Открытие попапа
+
+const timeout = 800;
+
+const popupCloseIcon = document.querySelector('#closed');
+const popupOpenIcon = document.querySelector('#popup');
+
+function popupOpen (){
+    const Open = document.querySelector('.popup');
+    Open.style.visibility = 'visible';
+    Open.style.opacity = '1';
+};
+popupOpenIcon.addEventListener("click", popupOpen);
+
+function popupClose(){
+    const Close = document.querySelector('.popup');
+    Close.style.visibility = 'hidden';
+    Close.style.opacity = '0';
 }
-button.addEventListener("click", closeField);
+popupCloseIcon.addEventListener("click", popupClose);
+
+popupCloseIcon.addEventListener('keydown', function (e){
+    if (KeyboardEvent.keyCode === 27){
+        const Close = document.querySelector('.popup');
+        Close.style.visibility = 'hidden';
+        Close.style.opacity = '0';
+    }
+});
+
+
+// Анимация лайка у первой карточки
+
+let heartFirst = document.querySelector('#first-heart');
+
+function heartActiveFirst (){
+    heartFirst.style.background = "url('images/heartActive.svg') no-repeat center";
+    heartFirst.style.opacity = "1";
+}
+heartFirst.addEventListener('click', heartActiveFirst);
+
+
+// Анимация лайка у второй карточки
+
+let heartSecond = document.querySelector('#second-heart');
+
+function heartActiveSecond (){
+    heartSecond.style.background = "url('images/heartActive.svg') no-repeat center";
+    heartSecond.style.opacity = "1";
+}
+heartSecond.addEventListener('click', heartActiveSecond);
+
+
+// Анимация лайка у третьей карточки
+
+let heartThird = document.querySelector('#third-heart');
+
+function heartActiveThird (){
+    heartThird.style.background = "url('images/heartActive.svg') no-repeat center";
+    heartThird.style.opacity = "1";
+}
+heartThird.addEventListener('click', heartActiveThird);
+
+
+// Анимация лайка у четвертой карточки
+
+let heartFourth = document.querySelector('#fourth-heart');
+
+function heartActiveFourth (){
+    heartFourth.style.background = "url('images/heartActive.svg') no-repeat center";
+    heartFourth.style.opacity = "1";
+}
+heartFourth.addEventListener('click', heartActiveFourth);
+
+
+// Анимация лайка у пятой карточки
+
+let heartFifth = document.querySelector('#fifth-heart');
+
+function heartActiveFifth (){
+    heartFifth.style.background = "url('images/heartActive.svg') no-repeat center";
+    heartFifth.style.opacity = "1";
+}
+heartFifth.addEventListener('click', heartActiveFifth);
+
+
+// Анимация лайка у шестой карточки
+
+let heartSixth = document.querySelector('#sixth-heart');
+
+function heartActiveSixth (){
+    heartSixth.style.background = "url('images/heartActive.svg') no-repeat center";
+    heartSixth.style.opacity = "1";
+}
+heartSixth.addEventListener('click', heartActiveSixth);
