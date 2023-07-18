@@ -5,6 +5,7 @@
     column-gap: 17px;
     margin: 50px auto 0;
     max-width: 880px;
+    border: 0;
 }
 
 @media screen and (max-width: 880px) {

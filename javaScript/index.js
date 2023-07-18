@@ -12,7 +12,7 @@ function valueTransfer(event) {
     event.preventDefault();
     let nameValue = fullName.value;
     profileName.textContent = nameValue;
-    alert('123')
+    
     let workValue = work.value;
     profileActivity.textContent = workValue;
     popupClose();

@@ -1,9 +1,9 @@
 .elements__blocks {
-    height: 24px;
     overflow: hidden;
     position: relative;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     width: 246px;
     margin: 25px auto 31px;
 }
