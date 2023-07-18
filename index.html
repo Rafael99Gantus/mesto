@@ -15,59 +15,59 @@
 		</header>
 		<main>
 			<section class="profile">
-				<div class="profile__first-block">
+				<div class="profile__wrapper">
 					<img class="profile__avatar" src="images/avatar.png" alt="аватар">
 					<div class="profile__info">
 						<div class="profile__block">
 							<h1 class="profile__name">Жак-Ив Кусто</h1>
-							<button id="popup" class="profile__rectangle" type="submit"></button>
+							<button id="popup" class="profile__rectangle" type="button"></button>
 						</div>
 						<p class="profile__activity">Исследователь океана</p>
 					</div>
 				</div>
-				<button id="open_plus" class="profile__add-buttom" type="submit"></button>
+				<button id="open_plus" class="profile__add-buttom" type="button"></button>
 			</section>
 
 			<section class="elements">
 				<article class="elements__element">
 					<img class="elements__image" src="images/Karachaevsk.png" alt="Карачаевск">
 					<div class="elements__blocks">
-						<h2 class="elements__paragrath">Карачаевск</h2>
-						<button id="first-heart" type="submit" class='elements__heart'></button>
+						<h2 class="elements__name">Карачаевсквввввввввввввввввввввввввввввв</h2>
+						<button id="first-heart" type="button" class='elements__heart'></button>
 					</div>
 				</article>
 				<article class="elements__element">
 					<img class="elements__image" src="images/Elbrus.png" alt="Эльбрус">
 					<div class="elements__blocks">
-						<h2 class="elements__paragrath">Гора Эльбрус</h2>
+						<h2 class="elements__name">Гора Эльбрус</h2>
 						<button id="second-heart" type="submit" class='elements__heart'></button>
 					</div>
 				</article>
 				<article class="elements__element">
 					<img class="elements__image" src="images/Dombay.png" alt="Домбай">
 					<div class="elements__blocks">
-						<h2 class="elements__paragrath">Домбай</h2>
+						<h2 class="elements__name">Домбай</h2>
 						<button id="third-heart" type="submit" class='elements__heart'></button>
 					</div>
 				</article>
 				<article class="elements__element">
 					<img class="elements__image" src="images/Karachaevsk.png" alt="Карачаевск">
 					<div class="elements__blocks">
-						<h2 class="elements__paragrath">Карачаевск</h2>
+						<h2 class="elements__name">Карачаевск</h2>
 						<button id="fourth-heart" type="submit" class='elements__heart'></button>
 					</div>
 				</article>
 				<article class="elements__element">
 					<img class="elements__image" src="images/Elbrus.png" alt="Эльбрус">
 					<div class="elements__blocks">
-						<h2 class="elements__paragrath">Гора Эльбрус</h2>
+						<h2 class="elements__name">Гора Эльбрус</h2>
 						<button id="fifth-heart" type="submit" class='elements__heart'></button>
 					</div>
 				</article>
 				<article class="elements__element">
 					<img class="elements__image" src="images/Dombay.png" alt="Домбай">
 					<div class="elements__blocks">
-						<h2 class="elements__paragrath">Домбай</h2>
+						<h2 class="elements__name">Домбай</h2>
 						<button id="sixth-heart" type="submit" class='elements__heart'></button>
 					</div>
 				</article>
@@ -78,20 +78,20 @@
 		</footer>
 	</div>
 	<div class="popup">
-		<div class="popup__body">
+		
 			<div class="popup__container">
-				<button id='closed' class="popup__closed" type="submit"></button>
+				<button id='closed' class="popup__closed" type="button"></button>
 				<h2 class="popup__title">Редактировать профиль</h2>
 				<form name="fullname">
-					<input class="popup__field popup__field_first" type="text" value="Жак-Ив Кусто" name="fullname">
-					<input class="popup__field popup__field_second" type="text" value="Исследователь океана"
-						name="fullname">
+					<input id='popup__field_first' class="popup__field" type="text" value="Жак-Ив Кусто" name="fullname">
+					<input id='popup__field_second' class="popup__field" type="text" value="Исследователь океана"
+						name="activity">
 					<button type="submit" class="popup__button">Сохранить</button>
 				</form>
 			</div>
-		</div>
+		
 	</div>
-	<script src="pages/index.js" type="text/javascript"></script>
+	<script src="javaScript/index.js" type="text/javascript"></script>
 </body>
 
 </html>

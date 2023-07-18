@@ -1,42 +1,41 @@
 // Перенос значения полей из попапа
 
-let fullName = document.querySelector('.popup__field_first');
-let work = document.querySelector('.popup__field_second');
-let container = document.querySelector('.popup__container');
-let button = container.querySelector('.popup__button');
-let profileName = document.querySelector('.profile__name');
+let fullName = document.querySelector('#popup__field_first');
+let work = document.querySelector('#popup__field_second');
+let button = document.querySelector('.popup__button');
+const profileName = document.querySelector('.profile__name');
 let profileActivity = document.querySelector('.profile__activity');
-let popup = document.querySelector('.popup');
+const popup = document.querySelector('.popup');
+const form = document.querySelector('.fullname');
 
-function field(event) {
+function valueTransfer(event) {
     event.preventDefault();
     let nameValue = fullName.value;
-    profileName.innerText = nameValue;
-
+    profileName.textContent = nameValue;
+    alert('123')
     let workValue = work.value;
-    profileActivity.innerText = workValue;
-    popup.style.visibility = 'hidden';
+    profileActivity.textContent = workValue;
+    popupClose();
 };
-button.addEventListener("click", field);
+button.addEventListener("click", valueTransfer);
 
 // Открытие/закрытие попапа
-
-const timeout = 800;
 
 const popupCloseIcon = document.querySelector('#closed');
 const popupOpenIcon = document.querySelector('#popup');
 
 function popupOpen() {
-    const Open = document.querySelector('.popup');
-    Open.style.visibility = 'visible';
-    Open.style.opacity = '1';
+    const name = fullName.value;
+    profileName.textContent = name;
+    const activity = work.value;
+    profileActivity.textContent = activity;
+
+    popup.classList.add('popup_opened');
 };
 popupOpenIcon.addEventListener("click", popupOpen);
 
 function popupClose() {
-    const Close = document.querySelector('.popup');
-    Close.style.visibility = 'hidden';
-    Close.style.opacity = '0';
+    popup.classList.remove('popup_opened');
 }
 popupCloseIcon.addEventListener("click", popupClose);
 

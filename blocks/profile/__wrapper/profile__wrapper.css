@@ -1,9 +1,9 @@
-.profile__first-block {
+.profile__wrapper {
     display: flex;
 }
 
 @media screen and (max-width: 660px) {
-    .profile__first-block {
+    .profile__wrapper {
         align-items: center;
         flex-direction: column;
     }

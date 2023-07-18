@@ -14,6 +14,6 @@
 В данном проекте реализована адаптивная верстка и работа на языке Java Script, так же, используется оформление по БЭМ методологии.
 
 **Ссылка на GitHub проект**
-* [Ссылка на GitHub проект](https://github.com/Rafael99Gantus/mesto.git)
+* [Ссылка на GitHub проект](https://rafael99gantus.github.io/mesto/)
 
 Спасибо за внимание !
