@@ -6,7 +6,7 @@ let button = document.querySelector('.popup__button');
 const profileName = document.querySelector('.profile__name');
 let profileActivity = document.querySelector('.profile__activity');
 const popup = document.querySelector('.popup');
-const form = document.querySelector('.fullname');
+const form = document.querySelector('#fullname');
 
 function valueTransfer(event) {
     event.preventDefault();
@@ -17,7 +17,7 @@ function valueTransfer(event) {
     profileActivity.textContent = workValue;
     popupClose();
 };
-button.addEventListener("click", valueTransfer);
+form.addEventListener("submit", valueTransfer);
 
 // Открытие/закрытие попапа
 
