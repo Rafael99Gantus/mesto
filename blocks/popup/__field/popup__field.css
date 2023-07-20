@@ -1,7 +1,7 @@
 .popup__field {
     width: 358px;
     height: 27px;
-    font-family: 'Inter', 'Sans Serif';
+    font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
