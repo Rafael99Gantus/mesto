@@ -20,16 +20,17 @@
 					<div class="profile__info">
 						<div class="profile__block">
 							<h1 class="profile__name">Жак-Ив Кусто</h1>
-							<button id="popup" class="profile__rectangle" type="button"></button>
+							<button id="openIconPopupProfile" class="profile__rectangle" type="button"></button>
 						</div>
 						<p class="profile__activity">Исследователь океана</p>
 					</div>
 				</div>
-				<button id="open_plus" class="profile__add-buttom" type="button"></button>
+				<button id="openIconPopupCards" class="profile__add-buttom" type="button"></button>
 			</section>
 
 			<section class="elements">
 				<article class="elements__element">
+					<button id="trash" type="button" class='elements__trash'></button>
 					<img class="elements__image" src="images/Karachaevsk.png" alt="Карачаевск">
 					<div class="elements__blocks">
 						<h2 class="elements__name">Карачаевск</h2>
@@ -37,6 +38,7 @@
 					</div>
 				</article>
 				<article class="elements__element">
+					<button id="trash" type="button" class='elements__trash'></button>
 					<img class="elements__image" src="images/Elbrus.png" alt="Эльбрус">
 					<div class="elements__blocks">
 						<h2 class="elements__name">Гора Эльбрус</h2>
@@ -44,6 +46,7 @@
 					</div>
 				</article>
 				<article class="elements__element">
+					<button id="trash" type="button" class='elements__trash'></button>
 					<img class="elements__image" src="images/Dombay.png" alt="Домбай">
 					<div class="elements__blocks">
 						<h2 class="elements__name">Домбай</h2>
@@ -51,6 +54,7 @@
 					</div>
 				</article>
 				<article class="elements__element">
+					<button id="trash" type="button" class='elements__trash'></button>
 					<img class="elements__image" src="images/Karachaevsk.png" alt="Карачаевск">
 					<div class="elements__blocks">
 						<h2 class="elements__name">Карачаевск</h2>
@@ -58,6 +62,7 @@
 					</div>
 				</article>
 				<article class="elements__element">
+					<button id="trash" type="button" class='elements__trash'></button>
 					<img class="elements__image" src="images/Elbrus.png" alt="Эльбрус">
 					<div class="elements__blocks">
 						<h2 class="elements__name">Гора Эльбрус</h2>
@@ -65,6 +70,7 @@
 					</div>
 				</article>
 				<article class="elements__element">
+					<button id="trash" type="button" class='elements__trash'></button>
 					<img class="elements__image" src="images/Dombay.png" alt="Домбай">
 					<div class="elements__blocks">
 						<h2 class="elements__name">Домбай</h2>
@@ -77,20 +83,34 @@
 			<p class="footer__copyright">© 2020 Mesto Russia</p>
 		</footer>
 	</div>
-	<div class="popup">
+	<div class="popup" id="editProfilePopup">
 
 		<div class="popup__container">
-			<button id='closed' class="popup__closed" type="button"></button>
+			<button id='closedIconPopupProfile' class="popup__closed" type="button"></button>
 			<h2 class="popup__title">Редактировать профиль</h2>
 			<form name="fullname" id="fullname">
-				<input id='popup__field_first' class="popup__field" type="text" value="Жак-Ив Кусто" name="fullname">
-				<input id='popup__field_second' class="popup__field" type="text" value="Исследователь океана"
-					name="activity">
-				<button type="submit" class="popup__button">Сохранить</button>
+				<input id='fieldNamePopupProfile' class="popup__field" type="text" value="Жак-Ив Кусто" name="fullname">
+				<input id='fieldWorkPopupProfile' class="popup__field" type="text" value="Исследователь океана" name="activity">
+				<button type="submit" class="popup__button" id='buttonSaveProfile'>Сохранить</button>
 			</form>
 		</div>
 
 	</div>
+
+	<div class="popup" id="editCardsPopup">
+
+		<div class="popup__container">
+			<button id='closedIconPopupCards' class="popup__closed" type="button"></button>
+			<h2 class="popup__title">Новое место</h2>
+			<form name="fullname" id="cardsEdit">
+				<input id='fieldNamePopupCards' class="popup__field" type="text"  placeholder="Название" name="fullname">
+				<input id='fieldLinkPopupCards' class="popup__field" type="text" placeholder="Ссылка на картинку" name="activity">
+				<button type="submit" class="popup__button" id='buttonSaveCards'>Создать</button>
+			</form>
+		</div>
+
+	</div>
+
 	<script src="javaScript/index.js" type="text/javascript"></script>
 </body>
 
