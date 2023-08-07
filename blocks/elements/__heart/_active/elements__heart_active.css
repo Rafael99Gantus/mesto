@@ -1,0 +1,8 @@
+.elements__heart_active {
+    width: 22px;
+    height: 19px;
+    padding: 0;
+    border: 0;
+    background: url('../../../../images/heartActive.svg') no-repeat center;
+    cursor: pointer;
+}

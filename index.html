@@ -29,7 +29,7 @@
 			</section>
 
 			<section class="elements">
-				<article class="elements__element">
+				<!-- <article class="elements__element" disabled>
 					<button id="trash" type="button" class='elements__trash'></button>
 					<img class="elements__image" src="images/Karachaevsk.png" alt="Карачаевск">
 					<div class="elements__blocks">
@@ -76,7 +76,7 @@
 						<h2 class="elements__name">Домбай</h2>
 						<button id="sixth-heart" type="button" class='elements__heart'></button>
 					</div>
-				</article>
+				</article> -->
 			</section>
 		</main>
 		<footer class="footer">
@@ -110,7 +110,16 @@
 		</div>
 
 	</div>
-
+	<template id="user">
+		<article id='elements__element' class="elements__element">
+			<button id="trash" type="button" class='elements__trash'></button>
+			<img class="elements__image" src="images/Karachaevsk.png" alt="Карачаевск">
+			<div class="elements__blocks">
+				<h2 class="elements__name"> </h2>
+				<button id="first-heart" type="button" class='elements__heart'></button>
+			</div>
+		</article>
+	</template>
 	<script src="javaScript/index.js" type="text/javascript"></script>
 </body>
 

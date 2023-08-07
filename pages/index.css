@@ -38,6 +38,8 @@
 @import url(../blocks/elements/__name/elements__name.css);
 @import url(../blocks/elements/__heart/elements__heart.css);
 @import url(../blocks/elements/__trash/elements__trash.css);
+@import url(../blocks/elements/__heart/_active/elements__heart_active.css);
+@import url(../blocks/elements/__element/_remove/elements__element_remove.css);
 
 
 /*footer*/

@@ -9,6 +9,8 @@
     top: 0;
     left: 0;
     opacity: 0;
-    visibility: hidden;
+    /* visibility: hidden; */
+    pointer-events: none;
     transition: all 0.8s ease os;
+    transition: opacity 1s;
 }
