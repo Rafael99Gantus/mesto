@@ -59,7 +59,6 @@ const openIconPopupCards = document.querySelector('#openIconPopupCards');//Кн�
 //Elements
 const element = document.querySelector('.elements');
 const allElements = document.querySelectorAll('.elements__element');//Все карточки
-const heart = document.querySelector('.elements__heart');
 // const elementsName = document.querySelector('.elements__name');
 
 //PopupCards
@@ -136,23 +135,26 @@ buttonSaveCards.addEventListener('click', function () {
 //Удаление карточки
 const trash = document.querySelector('.elements__trash');//Кнопка удаления
 
-document.querySelectorAll(".elements__element").forEach(function() {
+document.querySelectorAll(".elements__trash").forEach(function(trash) {
   trash.addEventListener("click", function() {
-    const el = document.querySelector('.elements__element');
-    el.remove();
+    trash.parentElement.remove();
   });
-})
+});
 
-// let anchor = document.querySelectorAll(".elements__trash");
-// for( let i = 0; i < anchor.length; i++ ) {
-//   anchor[i].addEventListener("click", function() {
-//     this.remove();
-//   });
-// }
+//Лайки
+const heart = document.querySelector('.elements__heart');//Кнопка лайк
+
+document.querySelectorAll(".elements__heart").forEach(function(heart) {
+  heart.addEventListener("click", function(evt) {
+    evt.target.classList.toggle('elements__heart_active');
+  });
+});
 
 //Открытие попапа картинки
 const elementsImage = document.querySelector('.elements__image');
-
-elementsImage.addEventListener("click", function(){
-
-});
+const imagePopup = document.querySelector('#imagePopup');
+document.querySelectorAll(".elements__element").forEach(function(elementsImage) {
+  elementsImage.addEventListener("click", function() {
+    imagePopup.classList.add('popup_opened')
+  });
+})
