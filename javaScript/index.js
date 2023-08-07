@@ -152,9 +152,16 @@ document.querySelectorAll(".elements__heart").forEach(function(heart) {
 
 //Открытие попапа картинки
 const elementsImage = document.querySelector('.elements__image');
-const imagePopup = document.querySelector('#imagePopup');
-document.querySelectorAll(".elements__element").forEach(function(elementsImage) {
+const popupImage = document.querySelector('.popup__image');
+
+const closedIconPopupImage = document.querySelector('#imagePopup');
+
+document.querySelectorAll(".elements__image").forEach(function(elementsImage) {
   elementsImage.addEventListener("click", function() {
     imagePopup.classList.add('popup_opened')
+    popupImage.src = elementsImage.src
   });
 })
+// closedIconPopupImage.addEventListener("click", function () {
+//   imagePopup.classList.remove('popup_opened');
+// });

@@ -1,9 +1,9 @@
 .popup__container_image{
     position: relative;
+    margin: auto;
     max-width: 75vw;
     max-height: 75vw;
-    background: white;
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
+    align-self: center;
+    
     z-index: 1;
 }
