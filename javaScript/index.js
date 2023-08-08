@@ -176,6 +176,7 @@ document.querySelectorAll(".elements__image").forEach(function (elementsImage) {
     popupImage.src = elementsImage.src
     const popupTitle = document.querySelector('.popup__title_image');
     popupTitle.textContent = elementsName.textContent
+    popupImage.alt = elementsName.textContent
   });
 })
 closedIconPopupImage.addEventListener("click", function () {
