@@ -1,6 +1,6 @@
 .popup__image{
     object-fit: contain;
     max-width: 75vw;
-    height: 75vw;
+    max-height: 75vw;
     margin-top: 90px;
 }

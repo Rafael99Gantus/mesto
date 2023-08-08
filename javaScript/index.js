@@ -133,6 +133,16 @@ buttonSaveCards.addEventListener('click', function () {
   link.value = '';
   massive = document.querySelectorAll(".elements__trash");
   console.log(massive);
+  massive.forEach(function(trash) {
+    trash.addEventListener("click", function() {
+      trash.parentElement.remove();
+    });
+  });
+  document.querySelectorAll(".elements__heart").forEach(function(heart) {
+    heart.addEventListener("click", function(evt) {
+      evt.target.classList.toggle('elements__heart_active');
+    });
+  });
 });
 
 //Удаление карточки
