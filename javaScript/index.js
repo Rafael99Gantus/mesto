@@ -158,7 +158,7 @@ massive.forEach(function(trash) {
 //Лайки
 const heart = document.querySelector('.elements__heart');//Кнопка лайк
 
-massive.forEach(function(heart) {
+document.querySelectorAll(".elements__heart").forEach(function(heart) {
   heart.addEventListener("click", function(evt) {
     evt.target.classList.toggle('elements__heart_active');
   });
