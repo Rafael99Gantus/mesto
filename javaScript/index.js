@@ -143,6 +143,20 @@ buttonSaveCards.addEventListener('click', function () {
       evt.target.classList.toggle('elements__heart_active');
     });
   });
+
+  document.querySelectorAll(".elements__image").forEach(function (elementsImage) {
+    elementsImage.addEventListener("click", function () {
+      imagePopup.classList.add('popup_opened')
+      popupImage.src = elementsImage.src
+      const popupTitle = document.querySelector('.popup__titleImage');
+      popupTitle.textContent = elementsName.textContent
+      popupImage.alt = elementsName.textContent
+    });
+  })
+  closedIconPopupImage.addEventListener("click", function () {
+    imagePopup.classList.remove('popup_opened');
+  });
+  
 });
 
 //Удаление карточки
