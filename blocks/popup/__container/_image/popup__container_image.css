@@ -1,9 +1,10 @@
 .popup__container_image{
     position: relative;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 90px auto 90px;
     max-width: 75vw;
     max-height: 75vw;
-    align-self: center;
-    
     z-index: 1;
 }

@@ -115,6 +115,7 @@ closedIconPopupCards.addEventListener("click", function () {
 });
 
 //Добавление карточки
+let massive = document.querySelectorAll(".elements__trash");
 function addCards(a, b) {
   event.preventDefault()
   const cardsTemplate = document.querySelector('#user').content;
@@ -130,12 +131,15 @@ buttonSaveCards.addEventListener('click', function () {
   editCardsPopup.classList.remove('popup_opened');
   artist.value = '';
   link.value = '';
+  massive = document.querySelectorAll(".elements__trash");
+  console.log(massive);
 });
 
 //Удаление карточки
-const trash = document.querySelector('.elements__trash');//Кнопка удаления
+const trash = document.querySelector('.elements__trash');//Кнопка удалени
 
-document.querySelectorAll(".elements__trash").forEach(function(trash) {
+
+massive.forEach(function(trash) {
   trash.addEventListener("click", function() {
     trash.parentElement.remove();
   });
@@ -162,6 +166,6 @@ document.querySelectorAll(".elements__image").forEach(function(elementsImage) {
     popupImage.src = elementsImage.src
   });
 })
-// closedIconPopupImage.addEventListener("click", function () {
-//   imagePopup.classList.remove('popup_opened');
-// });
+closedIconPopupImage.addEventListener("click", function () {
+  imagePopup.classList.remove('popup_opened');
+});

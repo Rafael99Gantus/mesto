@@ -10,6 +10,5 @@
     left: 0;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.8s ease os;
     transition: opacity 1s;
 }
