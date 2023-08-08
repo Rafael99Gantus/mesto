@@ -59,7 +59,7 @@ const openIconPopupCards = document.querySelector('#openIconPopupCards');//Кн�
 //Elements
 const element = document.querySelector('.elements');
 const allElements = document.querySelectorAll('.elements__element');//Все карточки
-// const elementsName = document.querySelector('.elements__name');
+
 
 //PopupCards
 const editCardsPopup = document.querySelector('#editCardsPopup');//Попап редактирования карточек
@@ -133,13 +133,13 @@ buttonSaveCards.addEventListener('click', function () {
   link.value = '';
   massive = document.querySelectorAll(".elements__trash");
   console.log(massive);
-  massive.forEach(function(trash) {
-    trash.addEventListener("click", function() {
+  massive.forEach(function (trash) {
+    trash.addEventListener("click", function () {
       trash.parentElement.remove();
     });
   });
-  document.querySelectorAll(".elements__heart").forEach(function(heart) {
-    heart.addEventListener("click", function(evt) {
+  document.querySelectorAll(".elements__heart").forEach(function (heart) {
+    heart.addEventListener("click", function (evt) {
       evt.target.classList.toggle('elements__heart_active');
     });
   });
@@ -149,8 +149,8 @@ buttonSaveCards.addEventListener('click', function () {
 const trash = document.querySelector('.elements__trash');//Кнопка удалени
 
 
-massive.forEach(function(trash) {
-  trash.addEventListener("click", function() {
+massive.forEach(function (trash) {
+  trash.addEventListener("click", function () {
     trash.parentElement.remove();
   });
 });
@@ -158,8 +158,8 @@ massive.forEach(function(trash) {
 //Лайки
 const heart = document.querySelector('.elements__heart');//Кнопка лайк
 
-document.querySelectorAll(".elements__heart").forEach(function(heart) {
-  heart.addEventListener("click", function(evt) {
+document.querySelectorAll(".elements__heart").forEach(function (heart) {
+  heart.addEventListener("click", function (evt) {
     evt.target.classList.toggle('elements__heart_active');
   });
 });
@@ -167,13 +167,15 @@ document.querySelectorAll(".elements__heart").forEach(function(heart) {
 //Открытие попапа картинки
 const elementsImage = document.querySelector('.elements__image');
 const popupImage = document.querySelector('.popup__image');
-
+const elementsName = document.querySelector('.elements__name');
 const closedIconPopupImage = document.querySelector('#imagePopup');
 
-document.querySelectorAll(".elements__image").forEach(function(elementsImage) {
-  elementsImage.addEventListener("click", function() {
+document.querySelectorAll(".elements__image").forEach(function (elementsImage) {
+  elementsImage.addEventListener("click", function () {
     imagePopup.classList.add('popup_opened')
     popupImage.src = elementsImage.src
+    const popupTitle = document.querySelector('.popup__title_image');
+    popupTitle.textContent = elementsName.textContent
   });
 })
 closedIconPopupImage.addEventListener("click", function () {
