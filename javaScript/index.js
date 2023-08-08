@@ -174,7 +174,7 @@ document.querySelectorAll(".elements__image").forEach(function (elementsImage) {
   elementsImage.addEventListener("click", function () {
     imagePopup.classList.add('popup_opened')
     popupImage.src = elementsImage.src
-    const popupTitle = document.querySelector('.popup__title_image');
+    const popupTitle = document.querySelector('.popup__titleImage');
     popupTitle.textContent = elementsName.textContent
     popupImage.alt = elementsName.textContent
   });
