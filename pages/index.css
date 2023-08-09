@@ -43,7 +43,7 @@
 @import url(../blocks/elements/__trash/elements__trash.css);
 @import url(../blocks/elements/__heart/_active/elements__heart_active.css);
 @import url(../blocks/elements/__element/_remove/elements__element_remove.css);
-
+@import url(../blocks/elements/__box/elements__box.css);
 
 /*footer*/
 @import url(../blocks/footer/footer.css);

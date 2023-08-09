@@ -2,4 +2,5 @@
     object-fit: contain;
     max-width: 75vw;
     max-height: 75vw;
+    overflow: hidden;
 }

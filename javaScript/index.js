@@ -42,7 +42,12 @@ const work = document.querySelector('#fieldWorkPopupProfile');//Второе п�
 const buttonSaveProfile = document.querySelector('#buttonSaveProfile');//Кнопка "Сохранить"
 
 
-
+function popupProfileOpen(){
+  popupProfile.classList.add('popup_opened');
+}
+function popupProfileClose() {
+  popupProfile.classList.remove('popup_opened');
+}
 // Перенос полей
 
 function valueTransferProfile(event) {
@@ -57,18 +62,13 @@ function valueTransferProfile(event) {
 
 // Открытие/закрытие попапа
 
-function popupProfileOpen() {
+function popupValue() {
   const name = profileName.value;
   fullName.textContent = name;
   const activity = profileActivity.value;
   work.textContent = activity;
-
-  popupProfile.classList.add('popup_opened');
+  popupProfileOpen();
 };
-
-function popupProfileClose() {
-  popupProfile.classList.remove('popup_opened');
-}
 
 // Вызовы
 popupProfileOpenIcon.addEventListener("click", popupProfileOpen);
@@ -101,6 +101,7 @@ initialCards.forEach((function (item) {
   const card = template.querySelector('.elements__element').cloneNode(true);
   card.querySelector('.elements__name').textContent = item.name;
   card.querySelector('.elements__image').src = item.link;
+  
   cardsContainer.prepend(card);
 }));
 
@@ -122,6 +123,7 @@ function addCards(a, b) {
   cardsElement.querySelector('.elements__name').textContent = a;
   cardsElement.querySelector('.elements__image').src = b;
   cardsElement.querySelector('.elements__image').alt = a;
+  
   cardsContainer.prepend(cardsElement);
 };
 formEditCards.addEventListener('submit', function () {

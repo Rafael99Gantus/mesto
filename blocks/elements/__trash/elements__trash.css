@@ -8,6 +8,7 @@
     border: 0;
     background: url('../../../images/Trash.svg') no-repeat center;
     cursor: pointer;
+    z-index: 1;
 }
 
 .elements__trash:hover {
