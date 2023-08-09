@@ -94,6 +94,7 @@ const formCards = document.querySelector('#cardsEdit');// Form
 const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле 
 const linkImage = document.querySelector('#fieldLinkPopupCards');//Второе поле
 const buttonSaveCards = document.querySelector('#buttonSaveCards');//Кнопка "Сохранить"
+// const elementCard = document.querySelector('.elements__element');
 
 //Загрузка карточек
 initialCards.forEach((function (item) {
@@ -155,10 +156,7 @@ formEditCards.addEventListener('submit', function () {
       popupImage.alt = elementsName.textContent
     });
   })
-  closedIconPopupImage.addEventListener("click", function () {
-    imagePopup.classList.remove('popup_opened');
-  });
-  
+  popupProfileClose()
 });
 
 //Удаление карточки
