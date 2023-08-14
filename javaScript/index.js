@@ -41,10 +41,10 @@ const fullName = document.querySelector('#fieldNamePopupProfile');//Первое
 const work = document.querySelector('#fieldWorkPopupProfile');//Второе поле
 const buttonSaveProfile = document.querySelector('#buttonSaveProfile');//Кнопка "Сохранить"
 
-function popupOpen(popup){
+function openPopup(popup){
   popup.classList.add('popup_opened');
 }
-function popupClose(popup) {
+function closedPopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
@@ -57,17 +57,19 @@ function valueTransferProfile(event) {
 
   const workValue = work.value;
   profileActivity.textContent = workValue;
-  popupClose(popupProfile);
+  closedPopup(popupProfile);
 };
 
 // Вызовы
 popupProfileOpenIcon.addEventListener("click", function(){
-  profileName.value = fullName.textContent;
-  profileActivity.value = work.textContent;
-  popupOpen(popupProfile);
+  // profileName.value = fullName.textContent;
+  // profileActivity.value = work.textContent;
+  fullName.value = profileName.textContent;
+  work.value = profileActivity.textContent;
+  openPopup(popupProfile);
 });
 popupProfileClosedIcon.addEventListener("click", function(){
-  popupClose(popupProfile);
+  closedPopup(popupProfile);
 });
 formProfile.addEventListener("submit", valueTransferProfile);
 
@@ -122,7 +124,7 @@ function createCard(name, link) {
   //Открытие попапа изображения на cardImage
   const item = card.querySelector('.elements__image')
   item.addEventListener("click", function () {
-    popupOpen(imagePopup);
+    openPopup(imagePopup);
     popupImage.src = item.src
     const elementsName = document.querySelector('.elements__name');
     const popupTitle = document.querySelector('.popup__titleImage');
@@ -158,16 +160,16 @@ formEditCards.addEventListener('submit', function () {
   addCard(card);
   console.log('Hello');
   formEditCards.reset()
-  popupClose(popupCardsEdit);
+  closedPopup(popupCardsEdit);
 });
 
 closedIconPopupImage.addEventListener("click", function () {
-  popupClose(imagePopup);
+  closedPopup(imagePopup);
 });
 
 popupCardsOpenIcon.addEventListener("click", function () {
-  popupOpen(popupCardsEdit);
+  openPopup(popupCardsEdit);
 });
 popupCardsClosedIcon.addEventListener("click", function () {
-  popupClose(popupCardsEdit);
+  closedPopup(popupCardsEdit);
 });
