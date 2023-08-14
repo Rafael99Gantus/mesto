@@ -120,15 +120,15 @@ function createCard(name, link) {
   trash.addEventListener("click", function () {
     trash.parentElement.remove();
   }); 
-
+  
   //Открытие попапа изображения на cardImage
   const item = card.querySelector('.elements__image')
   item.addEventListener("click", function () {
     openPopup(imagePopup);
     popupImage.src = item.src
-    const elementsName = document.querySelector('.elements__name');
+    const elementsName = card.querySelector('.elements__name');
     const popupTitle = document.querySelector('.popup__titleImage');
-    
+
     popupTitle.textContent = elementsName.textContent;
     popupImage.alt = elementsName.textContent;
   });
