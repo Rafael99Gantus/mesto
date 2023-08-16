@@ -44,7 +44,7 @@ const buttonSaveProfile = document.querySelector('#buttonSaveProfile');//Кно�
 function openPopup(popup){
   popup.classList.add('popup_opened');
 }
-function closedPopup(popup) {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
@@ -57,7 +57,7 @@ function valueTransferProfile(event) {
 
   const workValue = work.value;
   profileActivity.textContent = workValue;
-  closedPopup(popupProfile);
+  closePopup(popupProfile);
 };
 
 // Вызовы
@@ -67,9 +67,17 @@ popupProfileOpenIcon.addEventListener("click", function(){
   fullName.value = profileName.textContent;
   work.value = profileActivity.textContent;
   openPopup(popupProfile);
+  
+  document.addEventListener('keydown', keyHandler)
+
+  function keyHandler(evt){
+    if(evt.key === 'Escape'){
+      closePopup(popupProfile);
+    };
+  };
 });
 popupProfileClosedIcon.addEventListener("click", function(){
-  closedPopup(popupProfile);
+  closePopup(popupProfile);
 });
 formProfile.addEventListener("submit", valueTransferProfile);
 
@@ -132,9 +140,6 @@ function createCard(name, link) {
     popupTitle.textContent = elementsName.textContent;
     popupImage.alt = elementsName.textContent;
   });
-  // далее здесь находим элементы карточки (кнопку лайка, кнопку удаления) и устанавливаем на них соответствующие слушатели. Также устанавливаем слушатель открытия попапа изображения на cardImage
-
-  // в конце функции возвращаем готовую карточку
   return card;
 } 
 
@@ -160,16 +165,40 @@ formEditCards.addEventListener('submit', function () {
   addCard(card);
   console.log('Hello');
   formEditCards.reset()
-  closedPopup(popupCardsEdit);
+  closePopup(popupCardsEdit);
+  changeEditForm(false);
 });
 
 closedIconPopupImage.addEventListener("click", function () {
-  closedPopup(imagePopup);
+  closePopup(imagePopup);
 });
 
 popupCardsOpenIcon.addEventListener("click", function () {
   openPopup(popupCardsEdit);
+  document.addEventListener('keydown', keyHandler)
+
+  function keyHandler(evt){
+    if(evt.which === 27){
+      closePopup(popupCardsEdit);
+    };
+  };
+  // document.addEventListener( 'click', (e) => {
+  //     const withinBoundaries = e.composedPath().includes(popupCardsEdit);
+  //     if ( ! withinBoundaries ) {
+  //       // popupCardsEdit.style.display = 'none';
+  //       console.log('Helo')
+  //     }
+  //   })
+  popupCardsEdit.addEventListener('click', (e) => {
+    closePopup(popupCardsEdit);
+  })
 });
 popupCardsClosedIcon.addEventListener("click", function () {
-  closedPopup(popupCardsEdit);
+  closePopup(popupCardsEdit);
 });
+
+
+//Спринт 6
+
+
+// Закрытие попапов кликом на оверлей
