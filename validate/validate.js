@@ -1,16 +1,3 @@
-// enableValidation({
-//     formSelector: '.popup__form',
-//     inputSelector: '.popup__input',
-//     submitButtonSelector: '.popup__button',
-//     inactiveButtonClass: 'popup__button_disabled',
-//     inputErrorClass: 'popup__input_type_error',
-//     errorClass: 'popup__error_visible'
-//   }); 
-
-
-
-
-
 //Спринт 6
 
 
@@ -22,26 +9,7 @@ const fieldProfileNameError = formProfile.querySelector(`.${fullName.id}-error`)
 const fieldProfileActivError = formProfile.querySelector(`.${work.id}-error`); //span второго поля
 console.log(fieldProfileNameError);
 console.log(fieldProfileActivError);
-  
 
-// const showInputProfileNameError = (element, errorMessage) => {
-//   element.classList.add('popup__field_type_error');
-//   fieldProfileNameError.textContent = errorMessage;
-//   fieldProfileNameError.classList.add('popup__input-error_active');
-// };
-// const hideInputProfileNameError = (element) => {
-//   element.classList.remove('popup__field_type_error');
-//   fieldProfileNameError.classList.remove('popup__input-error_active');
-//   fieldProfileNameError.textContent = '';
-// };
-// const isValidProfileName = () => {
-//   if (!fullName.validity.valid) {
-//     showInputProfileNameError(fullName, fullName.validationMessage);
-//   } else {
-//     hideInputProfileNameError(fullName);
-//   }
-// };
-// fullName.addEventListener('input', isValidProfileName);
 
 
 const isValid = (formElement, inputElement) => {
@@ -74,11 +42,11 @@ const hideInputError = (formElement, inputElement) => {
   errorElement.textContent = '';
 }; 
 
-const setEventListeners = (formElement) => {
+const setEventListeners = (formElement, config) => {
   // Находим все поля внутри формы,
   // сделаем из них массив методом Array.from
-  const inputList = Array.from(formElement.querySelectorAll('.popup__field'));
-
+  const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+  const submitButton = Array.from(formElement.querySelectorAll(config.submitButtonSelector));
   // Обойдём все элементы полученной коллекции
   inputList.forEach((inputElement) => {
     // каждому полю добавим обработчик события input
@@ -86,57 +54,59 @@ const setEventListeners = (formElement) => {
       // Внутри колбэка вызовем isValid,
       // передав ей форму и проверяемый элемент
       isValid(formElement, inputElement)
+      toggleButtonState(submitButton, inputList, config);
     });
   });
 };
-const enableValidation = () => {
-  // Найдём все формы с указанным классом в DOM,
-  // сделаем из них массив методом Array.from
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
-  console.log(formList)
-  // Переберём полученную коллекцию
-  formList.forEach((formElement) => {
-    // Для каждой формы вызовем функцию setEventListeners,
-    // передав ей элемент формы
-    setEventListeners(formElement);
-  });
-};
+
+
+
+  const enableValidation = config => {
+    const formList = document.querySelectorAll(config.formSelector);
+    formList.forEach((formElement) => {
+      setEventListeners(formElement, config);
+    })
+  }
 
 // Вызовем функцию
-enableValidation(); 
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__field',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});
 
 
+// Блокировка кнопки сабмит
+const inputMassive = document.querySelectorAll('.popup__field');
+const hasInvalidInput = (inputList) => {
+  // проходим по этому массиву методом some
+  return inputList.some((inputElement) => {
+    // Если поле не валидно, колбэк вернёт true
+    // Обход массива прекратится и вся функция
+    // hasInvalidInput вернёт true
 
+    return !inputElement.validity.valid;
+  })
+};
 
-
-
-// Блокировка кнопок форм
-function changeNameForm(isFormValid){
-    if (isFormValid > 0){
-      buttonSaveProfile.removeAttribute('disabled');
-      buttonSaveProfile.classList.remove('popup__button_disabled');
-    }else{
-      buttonSaveProfile.setAttribute('disabled', true);
-      buttonSaveProfile.classList.add('popup__button_disabled');
-    }
+function toggleButtonState(submitButton, inputList, config) {
+  if (hasInvalidInput(inputList)) {
+    disableButton(submitButton, config);
   }
-  
-  document.forms.fullname.addEventListener('input', function () {
-    const isValid = fullName.value.length > 0 && work.value.length > 0;
-    changeNameForm(isValid);
-  });
-  
-  function changeEditForm(isFormValid){
-    if (isFormValid > 0){
-      buttonSaveCards.removeAttribute('disabled');
-      buttonSaveCards.classList.remove('popup__button_disabled');
-    }else{
-      buttonSaveCards.setAttribute('disabled', true);
-      buttonSaveCards.classList.add('popup__button_disabled');
-    }
+  else {
+    enableButton(submitButton, config);
   }
-  
-  document.forms.edit.addEventListener('input', function () {
-    const isValid = cardsName.value.length > 0 && linkImage.value.length > 0;
-    changeEditForm(isValid);
-  });
+}
+
+function disableButton (submitButton, config){
+  submitButton.setAttribute('disabled', true); 
+  submitButton.classList.add(config.inactiveButtonClass);
+}
+
+function enableButton (submitButton, config){
+  submitButton.removeAttribute('disabled'); 
+  submitButton.classList.remove(config.inactiveButtonClass);
+}
