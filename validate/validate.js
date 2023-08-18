@@ -12,35 +12,31 @@ console.log(fieldProfileActivError);
 
 
 
-const isValid = (formElement, inputElement) => {
+const isValid = (formElement, inputElement, config) => {
   if (!inputElement.validity.valid) {
-    // showInputError теперь получает параметром форму, в которой
-    // находится проверяемое поле, и само это поле
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, config);
   } else {
-    // hideInputError теперь получает параметром форму, в которой
-    // находится проверяемое поле, и само это поле
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, config);
   }
-}; 
+};
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, config) => {
   // Находим элемент ошибки внутри самой функции
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   // Остальной код такой же
-  inputElement.classList.add('popup__field_type_error');
+  inputElement.classList.add(config.fieldErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input-error_active');
+  errorElement.classList.add(config.inputErrorClass);
 };
 
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, config) => {
   // Находим элемент ошибки
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   // Остальной код такой же
-  inputElement.classList.remove('popup__field_type_error');
-  errorElement.classList.remove('popup__input-error_active');
+  inputElement.classList.remove(config.fieldErrorClass);
+  errorElement.classList.remove(config.inputErrorClass);
   errorElement.textContent = '';
-}; 
+};
 
 const setEventListeners = (formElement, config) => {
   // Находим все поля внутри формы,
@@ -53,7 +49,7 @@ const setEventListeners = (formElement, config) => {
     inputElement.addEventListener('input', () => {
       // Внутри колбэка вызовем isValid,
       // передав ей форму и проверяемый элемент
-      isValid(formElement, inputElement)
+      isValid(formElement, inputElement, config)
       toggleButtonState(submitButton, inputList, config);
     });
   });
@@ -61,12 +57,12 @@ const setEventListeners = (formElement, config) => {
 
 
 
-  const enableValidation = config => {
-    const formList = document.querySelectorAll(config.formSelector);
-    formList.forEach((formElement) => {
-      setEventListeners(formElement, config);
-    })
-  }
+const enableValidation = config => {
+  const formList = document.querySelectorAll(config.formSelector);
+  formList.forEach((formElement) => {
+    setEventListeners(formElement, config);
+  })
+}
 
 // Вызовем функцию
 enableValidation({
@@ -74,6 +70,7 @@ enableValidation({
   inputSelector: '.popup__field',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
+  fieldErrorClass: 'popup__field_type_error',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 });
@@ -101,12 +98,12 @@ function toggleButtonState(submitButton, inputList, config) {
   }
 }
 
-function disableButton (submitButton, config){
-  submitButton.setAttribute('disabled', true); 
+function disableButton(submitButton, config) {
+  submitButton.setAttribute('disabled', true);
   submitButton.classList.add(config.inactiveButtonClass);
 }
 
-function enableButton (submitButton, config){
-  submitButton.removeAttribute('disabled'); 
+function enableButton(submitButton, config) {
+  submitButton.removeAttribute('disabled');
   submitButton.classList.remove(config.inactiveButtonClass);
 }
