@@ -54,6 +54,11 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', keyHandler);
+  popup.removeEventListener("click", (evt) => {
+    if (evt.currentTarget === evt.target) {
+      closePopup(popup)
+    }
+  })
 }
 
 // Перенос полей
