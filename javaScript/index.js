@@ -43,9 +43,17 @@ const buttonSaveProfile = document.querySelector('#buttonSaveProfile');//Кно�
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', keyHandler);
+  // Слушатель закрытия попапа кликом на оверлей
+  popup.addEventListener("click", (evt) => {
+    if (evt.currentTarget === evt.target) {
+      closePopup(popup)
+    }
+  })
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', keyHandler);
 }
 
 // Перенос полей
@@ -66,14 +74,10 @@ popupProfileOpenIcon.addEventListener("click", function () {
   work.value = profileActivity.textContent;
   openPopup(popupProfile);
 
-  document.addEventListener('keydown', keyHandler) // Слушатель закрытия на esc
+  
 
-  // Слушатель закрытия попапа кликом на оверлей
-  popupProfile.addEventListener("click", (evt) => {
-    if (evt.currentTarget === evt.target) {
-      closePopup(popupProfile)
-    }
-  })
+  
+  
 
 });
 popupProfileClosedIcon.addEventListener("click", function () {
@@ -139,14 +143,10 @@ function createCard(name, link) {
 
     popupTitle.textContent = elementsName.textContent;
     popupImage.alt = elementsName.textContent;
-    document.addEventListener('keydown', keyHandler); // Слушатель закрытия на esc
+    
 
     // //Слушатель закрытия попапа кликом на оверлей
-    imagePopup.addEventListener("click", (evt) => {
-      if (evt.currentTarget === evt.target) {
-        closePopup(imagePopup)
-      }
-    })
+    
   });
   return card;
 }
@@ -185,14 +185,10 @@ closedIconPopupImage.addEventListener("click", function () {
 
 popupCardsOpenIcon.addEventListener("click", function () {
   openPopup(popupCardsEdit);
-  document.addEventListener('keydown', keyHandler); // Слушатель закрытия на esc
+  
 
   //Слушатель закрытия попапа кликом на оверлей
-  popupCardsEdit.addEventListener("click", (evt) => {
-    if (evt.currentTarget === evt.target) {
-      closePopup(popupCardsEdit)
-    }
-  })
+  
 });
 popupCardsClosedIcon.addEventListener("click", function () {
   closePopup(popupCardsEdit);

@@ -5,13 +5,6 @@
 // fullName - первое поле
 // work - второе поле
 
-const fieldProfileNameError = formProfile.querySelector(`.${fullName.id}-error`); //span первого поля
-const fieldProfileActivError = formProfile.querySelector(`.${work.id}-error`); //span второго поля
-console.log(fieldProfileNameError);
-console.log(fieldProfileActivError);
-
-
-
 const isValid = (formElement, inputElement, config) => {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage, config);
@@ -77,7 +70,6 @@ enableValidation({
 
 
 // Блокировка кнопки сабмит
-const inputMassive = document.querySelectorAll('.popup__field');
 const hasInvalidInput = (inputList) => {
   // проходим по этому массиву методом some
   return inputList.some((inputElement) => {
@@ -99,11 +91,13 @@ function toggleButtonState(submitButton, inputList, config) {
 }
 
 function disableButton(submitButton, config) {
-  submitButton.setAttribute('disabled', true);
+  //submitButton.setAttribute('disabled', '');
   submitButton.classList.add(config.inactiveButtonClass);
+  submitButton.disabled = true;
 }
 
 function enableButton(submitButton, config) {
-  submitButton.removeAttribute('disabled');
+  //submitButton.removeAttribute('disabled');
   submitButton.classList.remove(config.inactiveButtonClass);
+  submitButton.disabled = false;
 }
