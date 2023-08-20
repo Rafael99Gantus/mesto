@@ -45,22 +45,19 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', keyHandler);
   // Слушатель закрытия попапа кликом на оверлей
-  popup.addEventListener("click", (evt) => {
-    if (evt.currentTarget === evt.target) {
-      closePopup(popup)
-    }
-  })
+  popup.addEventListener("click", closePopupByOverlay);
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', keyHandler);
-  popup.removeEventListener("click", (evt) => {
-    if (evt.currentTarget === evt.target) {
-      closePopup(popup)
-    }
-  })
+  popup.removeEventListener("click", closePopupByOverlay);
 }
 
+function closePopupByOverlay(evt) {
+    if (evt.currentTarget === evt.target) { 
+      closePopup(evt.currentTarget) 
+    } 
+}
 // Перенос полей
 
 function valueTransferProfile(event) {
