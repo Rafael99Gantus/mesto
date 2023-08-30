@@ -1,4 +1,5 @@
 .elements__image {
+    display: block;
     position: relative;
     width: 282px;
     height: 282px;

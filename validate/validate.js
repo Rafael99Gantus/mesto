@@ -5,48 +5,48 @@
 // fullName - первое поле
 // work - второе поле
 
-const isValid = (formElement, inputElement, config) => {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage, config);
-  } else {
-    hideInputError(formElement, inputElement, config);
-  }
-};
+// const isValid = (formElement, inputElement, config) => {
+//   if (!inputElement.validity.valid) {
+//     showInputError(formElement, inputElement, inputElement.validationMessage, config);
+//   } else {
+//     hideInputError(formElement, inputElement, config);
+//   }
+// };
 
-const showInputError = (formElement, inputElement, errorMessage, config) => {
-  // Находим элемент ошибки внутри самой функции
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  // Остальной код такой же
-  inputElement.classList.add(config.fieldErrorClass);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(config.inputErrorClass);
-};
+// const showInputError = (formElement, inputElement, errorMessage, config) => {
+//   // Находим элемент ошибки внутри самой функции
+//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+//   // Остальной код такой же
+//   inputElement.classList.add(config.fieldErrorClass);
+//   errorElement.textContent = errorMessage;
+//   errorElement.classList.add(config.inputErrorClass);
+// };
 
-const hideInputError = (formElement, inputElement, config) => {
-  // Находим элемент ошибки
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  // Остальной код такой же
-  inputElement.classList.remove(config.fieldErrorClass);
-  errorElement.classList.remove(config.inputErrorClass);
-  errorElement.textContent = '';
-};
+// const hideInputError = (formElement, inputElement, config) => {
+//   // Находим элемент ошибки
+//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+//   // Остальной код такой же
+//   inputElement.classList.remove(config.fieldErrorClass);
+//   errorElement.classList.remove(config.inputErrorClass);
+//   errorElement.textContent = '';
+// };
 
-const setEventListeners = (formElement, config) => {
-  // Находим все поля внутри формы,
-  // сделаем из них массив методом Array.from
-  const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
-  const submitButton = Array.from(formElement.querySelectorAll(config.submitButtonSelector));
-  // Обойдём все элементы полученной коллекции
-  inputList.forEach((inputElement) => {
-    // каждому полю добавим обработчик события input
-    inputElement.addEventListener('input', () => {
-      // Внутри колбэка вызовем isValid,
-      // передав ей форму и проверяемый элемент
-      isValid(formElement, inputElement, config)
-      toggleButtonState(submitButton, inputList, config);
-    });
-  });
-};
+// const setEventListeners = (formElement, config) => {
+//   // Находим все поля внутри формы,
+//   // сделаем из них массив методом Array.from
+//   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+//   const submitButton = Array.from(formElement.querySelectorAll(config.submitButtonSelector));
+//   // Обойдём все элементы полученной коллекции
+//   inputList.forEach((inputElement) => {
+//     // каждому полю добавим обработчик события input
+//     inputElement.addEventListener('input', () => {
+//       // Внутри колбэка вызовем isValid,
+//       // передав ей форму и проверяемый элемент
+//       isValid(formElement, inputElement, config)
+//       toggleButtonState(submitButton, inputList, config);
+//     });
+//   });
+// };
 
 
 
@@ -100,4 +100,55 @@ function enableButton(submitButton, config) {
   //submitButton.removeAttribute('disabled');
   submitButton.classList.remove(config.inactiveButtonClass);
   submitButton.disabled = false;
+}
+
+
+class FormValidator{
+  constructor(config, formElement){
+    this._config = config;
+    this._formElement = formElement;
+  }
+
+  setEventListeners(){
+    // Находим все поля внутри формы,
+    // сделаем из них массив методом Array.from
+    const inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
+    const submitButton = Array.from(this._formElement.querySelectorAll(this._config.submitButtonSelector));
+    // Обойдём все элементы полученной коллекции
+    inputList.forEach((inputElement) => {
+      // каждому полю добавим обработчик события input
+      inputElement.addEventListener('input', () => {
+        // Внутри колбэка вызовем isValid,
+        // передав ей форму и проверяемый элемент
+        isValid(this._formElement, inputElement, this._config)
+        toggleButtonState(submitButton, inputList, this._config);
+      });
+    });
+  };
+
+  isValid (){
+    if (!inputElement.validity.valid) {
+      showInputError(this._formElement, inputElement, inputElement.validationMessage, this._config);
+    } else {
+      hideInputError(this._formElement, inputElement, this._config);
+    }
+  };
+
+  showInputError () {
+    // Находим элемент ошибки внутри самой функции
+    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+    // Остальной код такой же
+    inputElement.classList.add(this._config.fieldErrorClass);
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add(this._config.inputErrorClass);
+  };
+  
+  hideInputError () {
+    // Находим элемент ошибки
+    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+    // Остальной код такой же
+    inputElement.classList.remove(this._config.fieldErrorClass);
+    errorElement.classList.remove(this._config.inputErrorClass);
+    errorElement.textContent = '';
+  };
 }
