@@ -153,11 +153,7 @@ function addCard(card) {
 //   const card = createCard(item.name, item.link);
 //   addCard(card);
 // }));
-initialCards.forEach((function (item) {
-  const card = new Card(item.name, item.link);
-  const cardElement = card.generateCard();
-  addCard(cardElement);
-}));
+
 
 //Добавление карточки
 const formEditCards = document.querySelector('#cardsEdit')
@@ -199,17 +195,15 @@ function keyHandler(evt) {
 
 // Спринт 7
 
-
-
-
 class Card {
-  constructor(name, link){
-    this._name = name;
-    this._link = link;
+  constructor(data, templateSelector){
+    this._name = data.name;
+    this._link = data.link;
+    this._templateSelector = templateSelector;
   }
   
   _getTemplate() {
-    const card = document.querySelector('#user').content.querySelector('.elements__element').cloneNode(true);
+    const card = document.querySelector(this._templateSelector).content.querySelector('.elements__element').cloneNode(true);
     return card;
   }
 
@@ -223,7 +217,12 @@ class Card {
   }
 }
 
-
+//Загрузка карточек
+initialCards.forEach((function (item) {
+  const card = new Card(item, '#user');
+  const cardElement = card.generateCard();
+  addCard(cardElement);
+}));
 
 // Лайк
 const heart = card.querySelector('#first-heart');//Кнопка лайка
