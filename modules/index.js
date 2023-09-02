@@ -41,7 +41,7 @@ const fullName = document.querySelector('#fieldNamePopupProfile');//Первое
 const work = document.querySelector('#fieldWorkPopupProfile');//Второе поле
 const buttonSaveProfile = document.querySelector('#buttonSaveProfile');//Кнопка "Сохранить"
 
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', keyHandler);
   // Слушатель закрытия попапа кликом на оверлей
@@ -108,52 +108,10 @@ const popupImage = document.querySelector('.popup__image');
 
 const closedIconPopupImage = document.querySelector('#closedIconPopupImage');
 
-// function createCard(name, link) {
-//   const template = document.querySelector('#user').content;
-//   const card = template.querySelector('.elements__element').cloneNode(true);
-//   card.querySelector('.elements__name').textContent = name;
-//   const cardImage = card.querySelector('.elements__image');
-//   cardImage.src = link;
-//   cardImage.alt = name;
-
-//   // Лайк
-//   const heart = card.querySelector('#first-heart');//Кнопка лайка
-//   heart.addEventListener("click", heartAdd);
-//   function heartAdd() {
-//     heart.classList.toggle('elements__heart_active');
-//   }
-
-//   //Удаление карточки
-//   const trash = card.querySelector('.elements__trash');//Кнопка удаления
-//   trash.addEventListener("click", function () {
-//     trash.parentElement.remove();
-//   });
-
-//   //Открытие попапа изображения на cardImage
-//   const item = card.querySelector('.elements__image')
-//   item.addEventListener("click", function () {
-//     openPopup(imagePopup);
-//     popupImage.src = item.src
-//     const elementsName = card.querySelector('.elements__name');
-//     const popupTitle = document.querySelector('.popup__titleImage');
-
-//     popupTitle.textContent = elementsName.textContent;
-//     popupImage.alt = elementsName.textContent;
-//   });
-//   return card;
-// }
-
 //Функция добавления карточки на страницу
 function addCard(card) {
   cardsContainer.prepend(card);
 }
-
-//Загрузка карточек
-// initialCards.forEach((function (item) {
-//   const card = createCard(item.name, item.link);
-//   addCard(card);
-// }));
-
 
 //Добавление карточки
 const formEditCards = document.querySelector('#cardsEdit')
@@ -193,62 +151,9 @@ function keyHandler(evt) {
   };
 };
 
-// Спринт 7
+// // Спринт 7
 
-class Card {
-  constructor(data, templateSelector) {
-    this._name = data.name;
-    this._link = data.link;
-    this._templateSelector = templateSelector;
-  }
-
-  _getTemplate() {
-    const card = document.querySelector(this._templateSelector).content.querySelector('.elements__element').cloneNode(true);
-    return card;
-  }
-
-  generateCard() {
-    this._element = this._getTemplate();
-    this._setEventListeners();
-
-    this._element.querySelector('.elements__name').textContent = this._name;
-    const cardImage = this._element.querySelector('.elements__image');
-    cardImage.src = this._link;
-    cardImage.alt = this._name;
-    return this._element;
-  }
-  _setEventListeners() {
-    this._element.querySelector('#first-heart').addEventListener('click', () => {
-      this._generateLike();
-    });
-
-    this._element.querySelector('.elements__trash').addEventListener('click', () => {
-      this._generateTrash();
-    });
-
-    this._element.querySelector('.elements__image').addEventListener('click', () => {
-      this._generatePopup();
-    });
-  }
-
-  _generateLike() {
-    this._element.querySelector('#first-heart').classList.toggle('elements__heart_active');
-  }
-
-  _generateTrash() {
-    this._element.querySelector('.elements__trash').parentElement.remove();
-  }
-
-  _generatePopup() {
-    openPopup(imagePopup);
-    popupImage.src = this._element.querySelector('.elements__image').src
-    const elementsName = this._element.querySelector('.elements__name');
-    const popupTitle = document.querySelector('.popup__titleImage');
-
-    popupTitle.textContent = elementsName.textContent;
-    popupImage.alt = elementsName.textContent;
-  }
-}
+import {Card} from './Card.js';
 
 //Загрузка карточек
 initialCards.forEach((function (item) {
@@ -257,28 +162,122 @@ initialCards.forEach((function (item) {
   addCard(cardElement);
 }));
 
-// Лайк
-// const heart = card.querySelector('#first-heart');//Кнопка лайка
-// heart.addEventListener("click", heartAdd);
-// function heartAdd() {
-//   heart.classList.toggle('elements__heart_active');
+
+
+//ВАЛИДАЦИЯ
+
+//Спринт 6
+
+
+// formProfile - первая форма
+// fullName - первое поле
+// work - второе поле
+
+// const isValid = (formElement, inputElement, config) => {
+//   if (!inputElement.validity.valid) {
+//     showInputError(formElement, inputElement, inputElement.validationMessage, config);
+//   } else {
+//     hideInputError(formElement, inputElement, config);
+//   }
+// };
+
+// const showInputError = (formElement, inputElement, errorMessage, config) => {
+//   // Находим элемент ошибки внутри самой функции
+//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+//   // Остальной код такой же
+//   inputElement.classList.add(config.fieldErrorClass);
+//   errorElement.textContent = errorMessage;
+//   errorElement.classList.add(config.inputErrorClass);
+// };
+
+// const hideInputError = (formElement, inputElement, config) => {
+//   // Находим элемент ошибки
+//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+//   // Остальной код такой же
+//   inputElement.classList.remove(config.fieldErrorClass);
+//   errorElement.classList.remove(config.inputErrorClass);
+//   errorElement.textContent = '';
+// };
+
+// const setEventListeners = (formElement, config) => {
+//   // Находим все поля внутри формы,
+//   // сделаем из них массив методом Array.from
+//   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+//   const submitButton = Array.from(formElement.querySelectorAll(config.submitButtonSelector));
+//   // Обойдём все элементы полученной коллекции
+//   inputList.forEach((inputElement) => {
+//     // каждому полю добавим обработчик события input
+//     inputElement.addEventListener('input', () => {
+//       // Внутри колбэка вызовем isValid,
+//       // передав ей форму и проверяемый элемент
+//       isValid(formElement, inputElement, config)
+//       toggleButtonState(submitButton, inputList, config);
+//     });
+//   });
+// };
+
+
+
+// const enableValidation = config => {
+//   const formList = document.querySelectorAll(config.formSelector);
+//   formList.forEach((formElement) => {
+//     setEventListeners(formElement, config);
+//   })
 // }
 
-//Удаление карточки
-// const trash = card.querySelector('.elements__trash');//Кнопка удаления
-// trash.addEventListener("click", function () {
-//   trash.parentElement.remove();
-// });
 
-//Открытие попапа изображения на cardImage
-// const item = card.querySelector('.elements__image')
-// item.addEventListener("click", function () {
-//   openPopup(imagePopup);
-//   popupImage.src = item.src
-//   const elementsName = card.querySelector('.elements__name');
-//   const popupTitle = document.querySelector('.popup__titleImage');
+import {FormValidator} from './FormValidator.js';
 
-//   popupTitle.textContent = elementsName.textContent;
-//   popupImage.alt = elementsName.textContent;
-// });
+const enableValidation = config => {
+  const formList = document.querySelectorAll(config.formSelector);
+  formList.forEach((formElement) => {
+    const valid = new FormValidator(config, formElement);
+    valid.setEventListeners(formElement, config);
+  })
+}
+
+// Вызовем функцию
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__field',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  fieldErrorClass: 'popup__field_type_error',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});
+
+
+// Блокировка кнопки сабмит
+const hasInvalidInput = (inputList) => {
+  // проходим по этому массиву методом some
+  return inputList.some((inputElement) => {
+    // Если поле не валидно, колбэк вернёт true
+    // Обход массива прекратится и вся функция
+    // hasInvalidInput вернёт true
+
+    return !inputElement.validity.valid;
+  })
+};
+
+function toggleButtonState(submitButton, inputList, config) {
+  if (hasInvalidInput(inputList)) {
+    disableButton(submitButton, config);
+  }
+  else {
+    enableButton(submitButton, config);
+  }
+}
+
+function disableButton(submitButton, config) {
+  //submitButton.setAttribute('disabled', '');
+  submitButton.classList.add(config.inactiveButtonClass);
+  submitButton.disabled = true;
+}
+
+function enableButton(submitButton, config) {
+  //submitButton.removeAttribute('disabled');
+  submitButton.classList.remove(config.inactiveButtonClass);
+  submitButton.disabled = false;
+}
 
