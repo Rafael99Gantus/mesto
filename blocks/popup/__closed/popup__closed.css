@@ -9,7 +9,7 @@
     cursor: pointer;
     background-color: rgb(0, 0, 0, 0);
     background-image: url("../../../images/vector.svg");
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .popup__closed:hover {
