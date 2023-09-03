@@ -5,13 +5,11 @@
     position: absolute;
     right: -40px;
     top: -38px;
-    z-index: 0;
     margin: 0 auto;
     cursor: pointer;
-    object-fit: contain;
     background-color: rgb(0, 0, 0, 0);
     background-image: url("../../../images/vector.svg");
-
+    object-fit: contain;
 }
 
 .popup__closed:hover {
