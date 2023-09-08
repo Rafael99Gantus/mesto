@@ -1,3 +1,6 @@
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
+
 //Спринт 4
 
 //Переменные
@@ -27,6 +30,16 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__field',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  fieldErrorClass: 'popup__field_type_error',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
 
 //Profile
 const profileName = document.querySelector('.profile__name');
@@ -153,7 +166,7 @@ function keyHandler(evt) {
 
 // // Спринт 7
 
-import {Card} from './Card.js';
+
 
 //Загрузка карточек
 initialCards.forEach((function (item) {
@@ -164,11 +177,16 @@ initialCards.forEach((function (item) {
 
 
 
+const validName = new FormValidator(popupProfile, config);
+validName.enableValidation();
+
+const validEditCard = new FormValidator(popupCardsEdit, config);
+validEditCard.enableValidation();
+
+
 //ВАЛИДАЦИЯ
 
 //Спринт 6
-
-
 // formProfile - первая форма
 // fullName - первое поле
 // work - второе поле
@@ -226,58 +244,46 @@ initialCards.forEach((function (item) {
 // }
 
 
-import {FormValidator} from './FormValidator.js';
-
-const enableValidation = config => {
-  const formList = document.querySelectorAll(config.formSelector);
-  formList.forEach((formElement) => {
-    const valid = new FormValidator(config, formElement);
-    valid.setEventListeners(formElement, config);
-  })
-}
-
-// Вызовем функцию
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__field',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  fieldErrorClass: 'popup__field_type_error',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-});
 
 
-// Блокировка кнопки сабмит
-const hasInvalidInput = (inputList) => {
-  // проходим по этому массиву методом some
-  return inputList.some((inputElement) => {
-    // Если поле не валидно, колбэк вернёт true
-    // Обход массива прекратится и вся функция
-    // hasInvalidInput вернёт true
+// const enableValidation = config => {
+//   const formList = document.querySelectorAll(config.formSelector);
+//   formList.forEach((formElement) => {
+//     const valid = new FormValidator(config, formElement);
+//     valid.setEventListeners(formElement, config);
+//   })
+// }
 
-    return !inputElement.validity.valid;
-  })
-};
+// // Блокировка кнопки сабмит
+// const hasInvalidInput = (inputList) => {
+//   // проходим по этому массиву методом some
+//   return inputList.some((inputElement) => {
+//     // Если поле не валидно, колбэк вернёт true
+//     // Обход массива прекратится и вся функция
+//     // hasInvalidInput вернёт true
 
-function toggleButtonState(submitButton, inputList, config) {
-  if (hasInvalidInput(inputList)) {
-    disableButton(submitButton, config);
-  }
-  else {
-    enableButton(submitButton, config);
-  }
-}
+//     return !inputElement.validity.valid;
+//   })
+// };
 
-function disableButton(submitButton, config) {
-  //submitButton.setAttribute('disabled', '');
-  submitButton.classList.add(config.inactiveButtonClass);
-  submitButton.disabled = true;
-}
+// export function toggleButtonState(submitButton, inputList, config) {
+//   if (hasInvalidInput(inputList)) {
+//     disableButton(submitButton, config);
+//   }
+//   else {
+//     enableButton(submitButton, config);
+//   }
+// }
 
-function enableButton(submitButton, config) {
-  //submitButton.removeAttribute('disabled');
-  submitButton.classList.remove(config.inactiveButtonClass);
-  submitButton.disabled = false;
-}
+// function disableButton(submitButton, config) {
+//   //submitButton.setAttribute('disabled', '');
+//   submitButton.classList.add(config.inactiveButtonClass);
+//   submitButton.disabled = true;
+// }
+
+// function enableButton(submitButton, config) {
+//   //submitButton.removeAttribute('disabled');
+//   submitButton.classList.remove(config.inactiveButtonClass);
+//   submitButton.disabled = false;
+// }
 
