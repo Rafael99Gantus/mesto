@@ -136,6 +136,9 @@ formEditCards.addEventListener('submit', function () {
   const link = document.querySelector('#fieldLinkPopupCards');
   const card = createCard(artist.value, link.value);
   addCard(card);
+  // const card = new Card(item, '#user');
+  // const cardElement = card.createCard();
+  // addCard(cardElement);
   console.log('Hello');
   formEditCards.reset()
   closePopup(popupCardsEdit);
@@ -183,7 +186,10 @@ validName.enableValidation();
 const validEditCard = new FormValidator(popupCardsEdit, config);
 validEditCard.enableValidation();
 
-
+const createCard = (item) => {
+  const card = new Card(item, '#user');
+  return card.generateCard();
+}
 //ВАЛИДАЦИЯ
 
 //Спринт 6

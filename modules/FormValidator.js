@@ -54,11 +54,11 @@ export class FormValidator{
   
 
 _toggleButtonState(submitButton, inputList) {
-  if (_hasInvalidInput(inputList)) {
-    _disableButton(submitButton);
+  if (this._hasInvalidInput(inputList)) {
+    this._disableButton(submitButton);
   }
   else {
-    _enableButton(submitButton);
+    this._enableButton(submitButton);
   }
 }
 

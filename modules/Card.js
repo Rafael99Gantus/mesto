@@ -22,6 +22,16 @@ export class Card {
     cardImage.alt = this._name;
     return this._element;
   }
+
+  // createCard (name, link) { 
+  //   const template = document.querySelector('#user').content; 
+  //   const card = template.querySelector('.elements__element').cloneNode(true); 
+  //   card.querySelector('.elements__name').textContent = name; 
+  //   const cardImage = card.querySelector('.elements__image'); 
+  //   cardImage.src = link; 
+  //   cardImage.alt = name;
+  // }
+
   _setEventListeners() {
     this._element.querySelector('#first-heart').addEventListener('click', () => {
       this._generateLike();
