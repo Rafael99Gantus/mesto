@@ -1,6 +1,6 @@
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
-
+alert('Здравствуйте, прошу прощения, не запушил актуальную версию проекта, спасибо')
 //Спринт 4
 
 //Переменные
