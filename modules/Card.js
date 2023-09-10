@@ -1,5 +1,10 @@
 // Спринт 7
 import {openPopup} from './index.js';
+const popupImage = document.querySelector('.popup__image');
+const popupTitle = document.querySelector('.popup__titleImage');
+const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле 
+const linkImage = document.querySelector('#fieldLinkPopupCards');//Второе поле
+
 export class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
@@ -14,54 +19,54 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._likeIcon = this._element.querySelector('#first-heart');
+    this._trashIcon = this._element.querySelector('.elements__trash');
+    this._imageCard = this._element.querySelector('.elements__image');
+    this._nameCard = this._element.querySelector('.elements__name');
     this._setEventListeners();
 
-    this._element.querySelector('.elements__name').textContent = this._name;
-    const cardImage = this._element.querySelector('.elements__image');
+    this._nameCard.textContent = this._name;
+    const cardImage = this._imageCard;
     cardImage.src = this._link;
     cardImage.alt = this._name;
     return this._element;
   }
 
-  // createCard (name, link) { 
-  //   const template = document.querySelector('#user').content; 
-  //   const card = template.querySelector('.elements__element').cloneNode(true); 
-  //   card.querySelector('.elements__name').textContent = name; 
-  //   const cardImage = card.querySelector('.elements__image'); 
-  //   cardImage.src = link; 
-  //   cardImage.alt = name;
-  // }
-
   _setEventListeners() {
-    this._element.querySelector('#first-heart').addEventListener('click', () => {
-      this._generateLike();
+    this._likeIcon.addEventListener('click', () => {
+      this._handleLike();
     });
 
-    this._element.querySelector('.elements__trash').addEventListener('click', () => {
-      this._generateTrash();
+    this._trashIcon.addEventListener('click', () => {
+      this._handleTrashButton();
     });
 
-    this._element.querySelector('.elements__image').addEventListener('click', () => {
-      this._generatePopup();
+    this._imageCard.addEventListener('click', () => {
+      this._handleImageClick();
     });
   }
 // Лайк
-  _generateLike() {
-    this._element.querySelector('#first-heart').classList.toggle('elements__heart_active');
+  _handleLike() {
+    this._likeIcon.classList.toggle('elements__heart_active');
   }
 //Удаление карточки
-  _generateTrash() {
-    this._element.querySelector('.elements__trash').parentElement.remove();
+ _handleTrashButton() {
+  this._element.remove();
   }
 //Открытие попапа изображения на cardImage
-  _generatePopup() {
+  _handleImageClick() {
     openPopup(imagePopup);
-    document.querySelector('.popup__image').src = this._element.querySelector('.elements__image').src
-    const elementsName = this._element.querySelector('.elements__name');
-    const popupTitle = document.querySelector('.popup__titleImage');
+    popupImage.src = this._imageCard.src
+    const elementsName = this._nameCard;
 
     popupTitle.textContent = elementsName.textContent;
-    document.querySelector('.popup__image').alt = elementsName.textContent;
+    popupImage.alt = elementsName.textContent;
+  }
+
+  createCard(){
+    this._element.querySelector('.elements__image').src = linkImage.value;
+    this._element.querySelector('.elements__image').alt = linkImage.value;
+    this._element.querySelector('.elements__name').textContent = cardsName.value;
   }
 }
 

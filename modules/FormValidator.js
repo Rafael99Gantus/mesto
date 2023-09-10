@@ -1,3 +1,6 @@
+const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле 
+const linkImage = document.querySelector('#fieldLinkPopupCards');//Второе поле
+
 export class FormValidator{
   constructor(formElement, config){
     this._formElement = formElement;
@@ -78,6 +81,12 @@ _enableButton() {
   //submitButton.removeAttribute('disabled');
   this._submitButton.classList.remove(this._inactiveButtonClass);
   this._submitButton.disabled = false;
+}
+
+_clearField(){
+  cardsName.value = "";
+  linkImage.value = "";
+  this._disableButton();
 }
 
 enableValidation () {

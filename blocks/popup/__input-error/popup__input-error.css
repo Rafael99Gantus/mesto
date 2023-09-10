@@ -2,9 +2,9 @@
     color: red;
     margin-left: 40px;
     margin-right: 40px;
-    display: value;
-    height: 33px;
-    width: 360px;
+    display: inline-block;
+    max-height: 33px;
+    max-width: 80%;
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;
