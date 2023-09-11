@@ -2,8 +2,7 @@
 import {openPopup} from './index.js';
 const popupImage = document.querySelector('.popup__image');
 const popupTitle = document.querySelector('.popup__titleImage');
-const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле 
-const linkImage = document.querySelector('#fieldLinkPopupCards');//Второе поле
+
 
 export class Card {
   constructor(data, templateSelector) {
@@ -63,10 +62,13 @@ export class Card {
     popupImage.alt = elementsName.textContent;
   }
 
-  createCard(){
-    this._element.querySelector('.elements__image').src = linkImage.value;
-    this._element.querySelector('.elements__image').alt = linkImage.value;
-    this._element.querySelector('.elements__name').textContent = cardsName.value;
+  createCard(item){
+    this._element = this._getTemplate();
+
+    this._element.querySelector('.elements__image').src = item.name;
+    this._element.querySelector('.elements__image').alt = item.name;
+    this._element.querySelector('.elements__name').textContent = item.link;
+    return this._element;
   }
 }
 

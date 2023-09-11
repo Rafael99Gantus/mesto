@@ -131,6 +131,7 @@ const formEditCards = document.querySelector('#cardsEdit')
 
 formEditCards.addEventListener('submit', function (event) {
   event.preventDefault();
+
   const card = createCard();
   addCard(card);
   // const card = new Card(item, '#user');
@@ -140,6 +141,12 @@ formEditCards.addEventListener('submit', function (event) {
   closePopup(popupCardsEdit);
   editCardFormValidator._clearField();
 });
+
+// //Фугкция добавления новой карточки
+// function handleCardFormSubmit(event){
+//   event.preventDefault();
+
+// }
 
 closedIconPopupImage.addEventListener("click", function () {
   closePopup(imagePopup);
@@ -182,7 +189,7 @@ const editCardFormValidator = new FormValidator(popupCardsEdit, config);
 editCardFormValidator.enableValidation();
 
 const createCard = () => {
-  const card = new Card(item, '#user');
+  const card = new Card();
   return card.createCard();
 }
 
