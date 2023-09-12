@@ -111,8 +111,7 @@ const cardsContainer = document.querySelector('.elements');
 const popupCardsEdit = document.querySelector('#editCardsPopup');//Попап редактирования карточек
 const popupCardsClosedIcon = document.querySelector('#closedIconPopupCards');//Кнопка "Закрыть попап"
 const formCards = document.querySelector('#cardsEdit');// Form
-const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле 
-const linkImage = document.querySelector('#fieldLinkPopupCards');//Второе поле
+
 const buttonSaveCards = document.querySelector('#buttonSaveCards');//Кнопка "Сохранить"
 
 
@@ -128,24 +127,39 @@ function addCard(card) {
 
 //Добавление карточки
 const formEditCards = document.querySelector('#cardsEdit')
-
+// function createCard(name, link){
+//   const template = document.querySelector('#user').content; 
+//   const card = template.querySelector('.elements__element').cloneNode(true); 
+//   card.querySelector('.elements__name').textContent = name; 
+//   const cardImage = card.querySelector('.elements__image'); 
+//   cardImage.src = link; 
+//   cardImage.alt = name;
+//   return card;
+// }
 formEditCards.addEventListener('submit', function (event) {
-  event.preventDefault();
+  event.preventDefault(); 
+  const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле 
+  const linkImage = document.querySelector('#fieldLinkPopupCards');//Второе поле
+  // const card = createCard(cardsName.value, linkImage.value); 
+  // addCard(card);
 
-  const card = createCard();
-  addCard(card);
-  // const card = new Card(item, '#user');
-  // const cardElement = card.createCard();
-  // addCard(cardElement);
+  // const card = createCard();
+  // addCard(card);
+  const card = new Card({name: cardsName.value, link: linkImage.value}, '#user');
+  const cardElement = card.generateCard();
+  addCard(cardElement);
   formEditCards.reset()
   closePopup(popupCardsEdit);
   editCardFormValidator._clearField();
 });
 
-// //Фугкция добавления новой карточки
+// // //Фугкция добавления новой карточки
 // function handleCardFormSubmit(event){
 //   event.preventDefault();
-
+//   const card = new Card( , '#user')
+//   formEditCards.reset();
+//   closePopup(popupCardsEdit);
+//   editCardFormValidator._clearField();
 // }
 
 closedIconPopupImage.addEventListener("click", function () {
@@ -187,9 +201,3 @@ profileFormValidator.enableValidation();
 
 const editCardFormValidator = new FormValidator(popupCardsEdit, config);
 editCardFormValidator.enableValidation();
-
-const createCard = () => {
-  const card = new Card();
-  return card.createCard();
-}
-
