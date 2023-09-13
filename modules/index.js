@@ -109,7 +109,8 @@ const cardsContainer = document.querySelector('.elements');
 //PopupCards
 const popupCardsEdit = document.querySelector('#editCardsPopup');//Попап редактирования карточек
 const popupCardsClosedIcon = document.querySelector('#closedIconPopupCards');//Кнопка "Закрыть попап"
-
+const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле 
+const linkImage = document.querySelector('#fieldLinkPopupCards');//Второе поле
 const closedIconPopupImage = document.querySelector('#closedIconPopupImage');
 
 //Функция добавления карточки на страницу
@@ -121,8 +122,7 @@ function addCard(card) {
 const formEditCards = document.querySelector('#cardsEdit')
 formEditCards.addEventListener('submit', function (event) {
   event.preventDefault(); 
-  const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле 
-  const linkImage = document.querySelector('#fieldLinkPopupCards');//Второе поле
+  
   const cardElement = createCard({name: cardsName.value, link: linkImage.value})
   addCard(cardElement);
   formEditCards.reset()
@@ -159,8 +159,7 @@ function handleEscape (evt) {
 // Спринт 7
 //Загрузка карточек
 initialCards.forEach((function (item) {
-  const createCard  = new Card(item, '#user');
-  const cardElement = createCard.generateCard();
+  const cardElement = createCard(item)
   addCard(cardElement);
 }));
 
