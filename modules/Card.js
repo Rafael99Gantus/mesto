@@ -22,7 +22,6 @@ export class Card {
     this._trashIcon = this._element.querySelector('.elements__trash');
     this._imageCard = this._element.querySelector('.elements__image');
     this._nameCard = this._element.querySelector('.elements__name');
-    this._button = document.querySelector('.popup__button')
     this._setEventListeners();
 
     this._nameCard.textContent = this._name;
@@ -44,10 +43,6 @@ export class Card {
     this._imageCard.addEventListener('click', () => {
       this._handleImageClick();
     });
-
-    // this._button.addEventListener('click', () => {
-    //   this._handleCardFormSubmit();
-    // });
   }
 // Лайк
   _handleLike() {
@@ -66,25 +61,4 @@ export class Card {
     popupTitle.textContent = elementsName.textContent;
     popupImage.alt = elementsName.textContent;
   }
-// //Функция добавления новой карточки
-//   _handleCardFormSubmit(){
-//     const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле 
-//     const linkImage = document.querySelector('#fieldLinkPopupCards');//Второе поле
-//     _createCard({name: cardsName.value, link: linkImage.value});
-//     formEditCards.reset();
-//     closePopup(popupCardsEdit);
-//     editCardFormValidator._clearField();
-//   }
-
-//   _createCard(item){
-//     const card = document.querySelector(this._templateSelector).content.querySelector('.elements__element').cloneNode(true);
-//     imageCard = card.querySelector('.elements__image');
-//     nameCard = card.querySelector('.elements__name');
-
-//     imageCard.src = item.link;
-//     imageCard.alt = item.link;
-//     nameCard.textContent = item.name;
-//     return card;
-//   }
 }
-
