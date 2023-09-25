@@ -1,5 +1,5 @@
-import {Card} from './Card.js';
-import {FormValidator} from './FormValidator.js';
+import {Card} from './components/Card.js';
+import {FormValidator} from './components/FormValidator.js';
 
 //Спринт 4
 
@@ -170,3 +170,18 @@ profileFormValidator.enableValidation();
 
 const editCardFormValidator = new FormValidator(popupCardsEdit, config);
 editCardFormValidator.enableValidation();
+
+
+// Спринт 8
+
+const createCard = new Section ({ data: initialCards, renderer: (item) => {
+  const card = new Card (item, '#user');
+  const cardElement = card.generateCard();
+  createCard.addItem(cardElement);
+}} , cardsContainer);
+
+function handleCardClick(name, link) {
+  //устанавливаем ссылку
+  //устанавливаем подпись картинке
+  //открываем попап универсальной функцией, которая навешивает обработчик Escape внутри себя
+}
