@@ -1,5 +1,5 @@
 // Спринт 7
-import {openPopup} from './index.js';
+import {openPopup} from '../index.js';
 const popupImage = document.querySelector('.popup__image');
 const popupTitle = document.querySelector('.popup__titleImage');
 

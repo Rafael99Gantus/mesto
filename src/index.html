@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1">
 	<meta charset="UTF-8">
 	<title> mesto </title>
-	<link href="pages/index.css" rel="stylesheet" type="text/css" />
+	<!-- <link href="src/pages/index.css" rel="stylesheet" type="text/css" /> -->
 </head>
 
 <body class="root">
@@ -16,7 +16,7 @@
 		<main>
 			<section class="profile">
 				<div class="profile__wrapper">
-					<img class="profile__avatar" src="images/avatar.png" alt="аватар">
+					<img class="profile__avatar" src=  "<%=require('./images/avatar.png')%> " alt="аватар">
 					<div class="profile__info">
 						<div class="profile__block">
 							<h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -93,9 +93,9 @@
 		</article>
 	</template>
 
-	<script src="modules/index.js" type="module"></script>
-	<script src="modules/FormValidator.js" type="module"></script>
-	<script src="modules/Card.js" type="module"></script>
+	<!-- <script src="src/index.js" type="module"></script>
+	<script src="src/components/FormValidator.js" type="module"></script>
+	<script src="src/components/Card.js" type="module"></script> -->
 </body>
 
 </html>
