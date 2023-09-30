@@ -1,108 +1,12 @@
 import './pages/index.css';
+import { initialCards } from './utils/constants.js';
 import {Card} from './components/Card.js';
 import {FormValidator} from './components/FormValidator.js';
-// import Section from './components/Section.js';
-// import {PopupWithImage} from './components/PopupWithImage.js';
-// import {Popup} from './components/Popup.js';
-
-class Section{
-  constructor({data, renderer}, containerSelector){
-    this._renderedItems = data;
-    this._container = document.querySelector(containerSelector);
-    this._renderer = renderer;
-  }
-
-  addItem(element){
-    this._container.append(element);
-  }
-  
-  renderItems() {
-    this._renderedItems.forEach(item => {
-      this._renderer(item);
-    });
-  }
-}
-
-class Popup{
-  constructor(popupSelector){
-    this._popupSelector = document.getElementById(popupSelector);
-  }
-
-  open(){
-    this._popupSelector.classList.add('popup_opened');
-    document.addEventListener('keydown', () => {
-      this._handleEscClose();
-    });
-  }
-
-  close(){
-    this._popupSelector.classList.remove('popup_opened');
-    document.removeEventListener('keydown', () => {
-      this._handleEscClose();
-    });
-  }
-
-  _handleEscClose(evt){ // Закрытие нажатием на Оверлей
-    if (evt.key === 'Escape') {
-      close(document.querySelector('.popup_opened'));
-    };
-  }
-
-  _closePopupByOverlay(evt) { // Закрытие нажатием на Escape
-    if (evt.currentTarget === evt.target) {
-      close(evt.currentTarget)
-    }
-  }
-
-  setEventListeners(){
-    closedIconPopupImage.addEventListener("click", () => {
-      close();
-    });
-    popupCardsClosedIcon.addEventListener("click", () => {
-      close();
-    });
-    this._popupSelector.addEventListener('mousedown', (evt) => {
-      if (evt.currentTarget === evt.target) {
-        close(evt.currentTarget)
-      }
-    })
-  }
-}
-//Спринт 4
-const arkhyz = new URL('./images/arkhyz.jpg', import.meta.url);
-const chelyabinskOblast = new URL('./images/chelyabinsk-oblast.jpg', import.meta.url);
-const ivanovo = new URL('./images/ivanovo.jpg', import.meta.url);
-const kamchatka = new URL('./images/kamchatka.jpg', import.meta.url);
-const kholmogorskyRayon = new URL('./images/kholmogorsky-rayon.jpg', import.meta.url);
-const baikal = new URL('./images/baikal.jpg', import.meta.url);
+import Section from './components/Section.js';
+import PopupWithImage from './components/PopupWithImage.js';
+import Popup from './components/Popup.js';
 
 //Переменные
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: arkhyz
-  },
-  {
-    name: 'Челябинская область',
-    link: chelyabinskOblast
-  },
-  {
-    name: 'Иваново',
-    link: ivanovo
-  },
-  {
-    name: 'Камчатка',
-    link: kamchatka
-  },
-  {
-    name: 'Холмогорский район',
-    link: kholmogorskyRayon
-  },
-  {
-    name: 'Байкал',
-    link: baikal
-  }
-];
 
 const config = {
   formSelector: '.popup__form',
@@ -126,13 +30,15 @@ const formProfile = document.forms["fullname"];// Form
 const fullName = document.querySelector('#fieldNamePopupProfile');//Первое поле 
 const work = document.querySelector('#fieldWorkPopupProfile');//Второе поле
 
-export function openPopup(popup) {
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
   const classPopup = new Popup(popup);
   classPopup.open();
-  // popup.classList.add('popup_opened');
-  // document.addEventListener('keydown', handleEscape );
-  // Слушатель закрытия попапа кликом на оверлей
-  popup.addEventListener("click", closePopupByOverlay);
+  
+//   // document.addEventListener('keydown', handleEscape );
+//   // Слушатель закрытия попапа кликом на оверлей
+//   popup.addEventListener("click", closePopupByOverlay);
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -184,14 +90,9 @@ const cardsContainer = document.querySelector('.elements');
 //PopupCards
 const popupCardsEdit = document.querySelector('#editCardsPopup');//Попап редактирования карточек
 const popupCardsClosedIcon = document.querySelector('#closedIconPopupCards');//Кнопка "Закрыть попап"
-const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле 
+const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле imagePopuppopupImage
 const linkImage = document.querySelector('#fieldLinkPopupCards');//Второе поле
 const closedIconPopupImage = document.querySelector('#closedIconPopupImage');
-
-//Функция добавления карточки на страницу
-function addCard(card) {
-  cardsContainer.prepend(card);
-}
 
 //Добавление карточки
 const formEditCards = document.querySelector('#cardsEdit')
@@ -204,12 +105,6 @@ formEditCards.addEventListener('submit', function (event) {
   closePopup(popupCardsEdit);
   editCardFormValidator.disableButton();
 });
-
-//Функция добавления новой карточки
-function createCard(item) {
-  const card = new Card(item, '#user');
-  return card.generateCard();
-}
 
 closedIconPopupImage.addEventListener("click", function () {
   closePopup(imagePopup);
@@ -231,19 +126,27 @@ function handleEscape (evt) {
   };
 };
 
-// const createCard = new Section ({ data: initialCards, renderer: (item) => {
-//   const card = new Card (item, '#user');
-//   const cardElement = card.generateCard();
-//   createCard.addItem(cardElement);
-// }} , cardsContainer);
 
-// Спринт 7
+
+//Функция добавления новой карточки
+function createCard(item) {
+  const card = new Card(item, '#user', handleOpenPopup);
+  return card.generateCard();
+}
+
+//Функция добавления карточки на страницу
+// function addCard(card) {
+//   cardsContainer.prepend(card);
+// }
+
+const classSection = new Section ({ data: initialCards, renderer: (item) =>{
+  const card = new Card(item, '#user');
+  return card.generateCard();
+}, handleOpenPopup} , cardsContainer);
+
 //Загрузка карточек
-initialCards.forEach((function () {
-  const cardList = new Section ({ data: initialCards, renderer: createCard} , cardsContainer);
-  cardList.renderItems();
-  // const cardElement = createCard(item)
-  // addCard(cardElement);
+initialCards.forEach((() => {
+  classSection.renderItems()
 }));
 
 
@@ -269,3 +172,10 @@ editCardFormValidator.enableValidation();
   
 // }
 
+
+
+const classOpenPopupImage = new PopupWithImage('.popup_photo')
+
+  function handleOpenPopup(link, name) {
+    classOpenPopupImage.open(link, name);
+  }

@@ -1,29 +1,43 @@
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
+const arkhyz = new URL('../images/arkhyz.jpg', import.meta.url);
+const chelyabinskOblast = new URL('../images/chelyabinsk-oblast.jpg', import.meta.url);
+const ivanovo = new URL('../images/ivanovo.jpg', import.meta.url);
+const kamchatka = new URL('../images/kamchatka.jpg', import.meta.url);
+const kholmogorskyRayon = new URL('../images/kholmogorsky-rayon.jpg', import.meta.url);
+const baikal = new URL('../images/baikal.jpg', import.meta.url);
+// import arkhyz from './images/arkhyz.jpg';
+// import chelyabinskOblast from './images/chelyabinsk-oblast.jpg';
+// import ivanovo from './images/ivanovo.jpg';
+// import kamchatka from './images/kamchatka.jpg';
+// import kholmogorskyRayon from './images/kholmogorsky-rayon.jpg';
+// import baikal from './images/baikal.jpg';
+
+
+export const initialCards = [
+  {
+    name: 'Архыз',
+    link: arkhyz
+  },
+  {
+    name: 'Челябинская область',
+    link: chelyabinskOblast
+  },
+  {
+    name: 'Иваново',
+    link: ivanovo
+  },
+  {
+    name: 'Камчатка',
+    link: kamchatka
+  },
+  {
+    name: 'Холмогорский район',
+    link: kholmogorskyRayon
+  },
+  {
+    name: 'Байкал',
+    link: baikal
+  }
+];
 
   //Profile
 const profileName = document.querySelector('.profile__name');
@@ -50,3 +64,56 @@ const popupCardsClosedIcon = document.querySelector('#closedIconPopupCards');//�
 const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле 
 const linkImage = document.querySelector('#fieldLinkPopupCards');//Второе поле
 const closedIconPopupImage = document.querySelector('#closedIconPopupImage');
+
+// const initialCards = [
+//   {
+//     name: 'Архыз',
+//     link: `${arkhyz}`
+//   },
+//   {
+//     name: 'Челябинская область',
+//     link: `${chelyabinskOblast}`
+//   },
+//   {
+//     name: 'Иваново',
+//     link: `${ivanovo}`
+//   },
+//   {
+//     name: 'Камчатка',
+//     link: `${kamchatka}`
+//   },
+//   {
+//     name: 'Холмогорский район',
+//     link: `${kholmogorskyRayon}`
+//   },
+//   {
+//     name: 'Байкал',
+//     link: `${baikal}`
+//   }
+// ];
+// const initialCards = [
+//   {
+//     name: 'Архыз',
+//     link: `./images/arkhyz.jpg`
+//   },
+//   {
+//     name: 'Челябинская область',
+//     link: `./images/chelyabinsk-oblast.jpg`
+//   },
+//   {
+//     name: 'Иваново',
+//     link: `./images/ivanovo.jpg`
+//   },
+//   {
+//     name: 'Камчатка',
+//     link: `./images/kamchatka.jpg`
+//   },
+//   {
+//     name: 'Холмогорский район',
+//     link: `./images/kholmogorsky-rayon.jpg`
+//   },
+//   {
+//     name: 'Байкал',
+//     link: `./images/baikal.jpg`
+//   }
+// ];

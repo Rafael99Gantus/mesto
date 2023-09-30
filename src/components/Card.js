@@ -1,14 +1,9 @@
-// Спринт 7
-import {openPopup} from '../index.js';
-const popupImage = document.querySelector('.popup__image');
-const popupTitle = document.querySelector('.popup__titleImage');
-
-
-export class Card {
-  constructor(data, templateSelector) {
+export class Card{
+  constructor(data, templateSelector, handleOpenPopup) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleOpenPopup = handleOpenPopup;
   }
 
   _getTemplate() {
@@ -22,6 +17,8 @@ export class Card {
     this._trashIcon = this._element.querySelector('.elements__trash');
     this._imageCard = this._element.querySelector('.elements__image');
     this._nameCard = this._element.querySelector('.elements__name');
+    this._popupImage = document.querySelector('.popup__image');
+    this._popupTitle = document.querySelector('.popup__titleImage')
     this._setEventListeners();
 
     this._nameCard.textContent = this._name;
@@ -41,8 +38,10 @@ export class Card {
     });
 
     this._imageCard.addEventListener('click', () => {
-      this._handleImageClick();
+      this._handleOpenPopup(this._name, this._link);
     });
+
+
   }
 // Лайк
   _handleLike() {
@@ -54,11 +53,12 @@ export class Card {
   }
 //Открытие попапа изображения на cardImage
   _handleImageClick() {
-    openPopup(imagePopup);
-    popupImage.src = this._imageCard.src
+    imagePopup.classList.add('popup_opened');
+
+    this._popupImage.src = this._imageCard.src;
     const elementsName = this._nameCard;
 
-    popupTitle.textContent = elementsName.textContent;
-    popupImage.alt = elementsName.textContent;
+    this._popupTitle.textContent = elementsName.textContent;
+    this._popupImage.alt = elementsName.textContent;
   }
 }

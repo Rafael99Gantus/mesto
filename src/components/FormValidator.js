@@ -52,17 +52,17 @@ export class FormValidator{
   // Блокировка кнопки сабмит
   
 
-_toggleButtonState(submitButton, inputList) {
-  if (this._hasInvalidInput(inputList)) {
-    this.disableButton(submitButton);
+_toggleButtonState() {
+  if (this._hasInvalidInput()) {
+    this.disableButton();
   }
   else {
-    this._enableButton(submitButton);
+    this._enableButton();
   }
 }
 
-_hasInvalidInput (inputList){
-  return inputList.some((inputElement) => {
+_hasInvalidInput (){
+  return this._inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   })
 };
