@@ -26,6 +26,7 @@ const profileActivity = document.querySelector('.profile__activity');
 const popupProfileOpenIcon = document.querySelector('#openIconPopupProfile');//Кнопка "Открыть попап"
 
 //PopupProfile
+const popupCardsEdit = '#editCardsPopup';//Попап редактирования карточек
 const popupProfile = '#editProfilePopup';// ID Попапa изменения профиля
 const popupProfileClosedIcon = document.querySelector('#closedIconPopupProfile');// ID Кнопка "Закрыть попап"
 const formProfile = document.forms["fullname"];// Form
@@ -48,6 +49,11 @@ editCardFormValidator.enableValidation();
 const classOpenPopupImage = new PopupWithImage('.popup_photo')
 
 const popupWithForm = new PopupWithForm (popupProfile, handleProfileFormSubmit)
+
+//Загрузка карточек
+initialCards.forEach((() => {
+  classSection.renderItems()
+}));
 
 function openPopup(popup) {
   const classPopup = new Popup(popup);
@@ -107,7 +113,7 @@ const cardsContainer = document.querySelector('.elements');
 
 
 //PopupCards
-const popupCardsEdit = '#editCardsPopup';//Попап редактирования карточек
+
 const popupCardsClosedIcon = document.querySelector('#closedIconPopupCards');//Кнопка "Закрыть попап"
 const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле imagePopuppopupImage
 const linkImage = document.querySelector('#fieldLinkPopupCards');//Второе поле
@@ -147,11 +153,6 @@ function handleEscape (evt) {
     closePopup(document.querySelector('.popup_opened'));
   };
 };
-
-//Загрузка карточек
-initialCards.forEach((() => {
-  classSection.renderItems()
-}));
 
 // Открытие попапа изображения
 
