@@ -4,6 +4,8 @@ import {Card} from './components/Card.js';
 import {FormValidator} from './components/FormValidator.js';
 import Section from './components/Section.js';
 import PopupWithImage from './components/PopupWithImage.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import UserInfo from './components/UserInfo.js';
 import Popup from './components/Popup.js';
 
 //Переменные
@@ -24,27 +26,42 @@ const profileActivity = document.querySelector('.profile__activity');
 const popupProfileOpenIcon = document.querySelector('#openIconPopupProfile');//Кнопка "Открыть попап"
 
 //PopupProfile
-const popupProfile = document.querySelector('#editProfilePopup');// Попап изменения профиля
-const popupProfileClosedIcon = document.querySelector('#closedIconPopupProfile');//Кнопка "Закрыть попап"
+const popupProfile = '#editProfilePopup';// ID Попапa изменения профиля
+const popupProfileClosedIcon = document.querySelector('#closedIconPopupProfile');// ID Кнопка "Закрыть попап"
 const formProfile = document.forms["fullname"];// Form
 const fullName = document.querySelector('#fieldNamePopupProfile');//Первое поле 
 const work = document.querySelector('#fieldWorkPopupProfile');//Второе поле
 
+const userInfo = new UserInfo (fullName.value, work.value);
+
+const classSection = new Section ({ data: initialCards, renderer: (item) =>{
+  const card = new Card(item, '#user');
+  return card.generateCard();
+}, handleOpenPopup} , cardsContainer);
+
+const profileFormValidator = new FormValidator(popupProfile, config);
+profileFormValidator.enableValidation();
+
+const editCardFormValidator = new FormValidator(popupCardsEdit, config);
+editCardFormValidator.enableValidation();
+
+const classOpenPopupImage = new PopupWithImage('.popup_photo')
+
+const popupWithForm = new PopupWithForm (popupProfile, handleProfileFormSubmit)
 
 function openPopup(popup) {
-  popup.classList.add('popup_opened');
   const classPopup = new Popup(popup);
   classPopup.open();
-  
-//   // document.addEventListener('keydown', handleEscape );
-//   // Слушатель закрытия попапа кликом на оверлей
-//   popup.addEventListener("click", closePopupByOverlay);
+  // document.addEventListener('keydown', handleEscape );
+  // // Слушатель закрытия попапа кликом на оверлей
+  // popup.addEventListener("click", closePopupByOverlay);
 }
 function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleEscape );
-  // Слушатель закрытия попапа кликом на оверлей
-  popup.removeEventListener("click", closePopupByOverlay);
+  const classPopup = new Popup(popup);
+  classPopup.close();
+  // document.removeEventListener('keydown', handleEscape );
+  // // Слушатель закрытия попапа кликом на оверлей
+  // popup.removeEventListener("click", closePopupByOverlay);
 }
 
 function closePopupByOverlay(evt) {
@@ -53,7 +70,6 @@ function closePopupByOverlay(evt) {
   }
 }
 // Перенос полей
-
 function handleProfileFormSubmit (event) {
   event.preventDefault();
   const nameValue = fullName.value;
@@ -66,9 +82,12 @@ function handleProfileFormSubmit (event) {
 
 // Вызовы
 popupProfileOpenIcon.addEventListener("click", function () {
-  fullName.value = profileName.textContent;
-  work.value = profileActivity.textContent;
+  // fullName.value = profileName.textContent;
+  // work.value = profileActivity.textContent;
   openPopup(popupProfile);
+  const getUserInfo = userInfo.getUserInfo();
+  getUserInfo.name = profileName.textContent;
+  getUserInfo.work = profileActivity.textContent;
 });
 popupProfileClosedIcon.addEventListener("click", function () {
   closePopup(popupProfile);
@@ -88,7 +107,7 @@ const cardsContainer = document.querySelector('.elements');
 
 
 //PopupCards
-const popupCardsEdit = document.querySelector('#editCardsPopup');//Попап редактирования карточек
+const popupCardsEdit = '#editCardsPopup';//Попап редактирования карточек
 const popupCardsClosedIcon = document.querySelector('#closedIconPopupCards');//Кнопка "Закрыть попап"
 const cardsName = document.querySelector('#fieldNamePopupCards');//Первое поле imagePopuppopupImage
 const linkImage = document.querySelector('#fieldLinkPopupCards');//Второе поле
@@ -98,8 +117,11 @@ const closedIconPopupImage = document.querySelector('#closedIconPopupImage');
 const formEditCards = document.querySelector('#cardsEdit')
 formEditCards.addEventListener('submit', function (event) {
   event.preventDefault(); 
-  createCard.renderItems();
-  // const cardElement = createCard({name: cardsName.value, link: linkImage.value})
+  const cardElement = new Section ({ data: {name: cardsName.value, link: linkImage.value}, renderer: (item) =>{
+    const card = new Card(item, '#user');
+    return card.generateCard();
+  }, handleOpenPopup} , cardsContainer);
+  cardElement.renderItems();
   // addCard(cardElement);
   formEditCards.reset()
   closePopup(popupCardsEdit);
@@ -126,56 +148,13 @@ function handleEscape (evt) {
   };
 };
 
-
-
-//Функция добавления новой карточки
-function createCard(item) {
-  const card = new Card(item, '#user', handleOpenPopup);
-  return card.generateCard();
-}
-
-//Функция добавления карточки на страницу
-// function addCard(card) {
-//   cardsContainer.prepend(card);
-// }
-
-const classSection = new Section ({ data: initialCards, renderer: (item) =>{
-  const card = new Card(item, '#user');
-  return card.generateCard();
-}, handleOpenPopup} , cardsContainer);
-
 //Загрузка карточек
 initialCards.forEach((() => {
   classSection.renderItems()
 }));
 
+// Открытие попапа изображения
 
-
-const profileFormValidator = new FormValidator(popupProfile, config);
-profileFormValidator.enableValidation();
-
-const editCardFormValidator = new FormValidator(popupCardsEdit, config);
-editCardFormValidator.enableValidation();
-
-
-// Спринт 8
-
-
-
-// function handleCardClick(name, link) {
-//   //устанавливаем ссылку
-//   //устанавливаем подпись картинке
-//   //открываем попап универсальной функцией, которая навешивает обработчик Escape внутри себя
-// }
-
-// function handleOpenPopup(){
-  
-// }
-
-
-
-const classOpenPopupImage = new PopupWithImage('.popup_photo')
-
-  function handleOpenPopup(link, name) {
-    classOpenPopupImage.open(link, name);
-  }
+function handleOpenPopup(name, link) {
+  classOpenPopupImage.open(name, link);
+}
