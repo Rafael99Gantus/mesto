@@ -33,6 +33,9 @@ const formProfile = document.forms["fullname"];// Form
 const fullName = document.querySelector('#fieldNamePopupProfile');//Первое поле 
 const work = document.querySelector('#fieldWorkPopupProfile');//Второе поле
 
+//Elements
+const cardsContainer = document.querySelector('.elements');
+
 const userInfo = new UserInfo (fullName.value, work.value);
 
 const classSection = new Section ({ data: initialCards, renderer: (item) =>{
@@ -46,7 +49,7 @@ profileFormValidator.enableValidation();
 const editCardFormValidator = new FormValidator(popupCardsEdit, config);
 editCardFormValidator.enableValidation();
 
-const classOpenPopupImage = new PopupWithImage('.popup_photo')
+const classOpenPopupImage = new PopupWithImage('#imagePopup')
 
 const popupWithForm = new PopupWithForm (popupProfile, handleProfileFormSubmit)
 
@@ -100,16 +103,11 @@ popupProfileClosedIcon.addEventListener("click", function () {
 });
 formProfile.addEventListener("submit", handleProfileFormSubmit);
 
-
-
-//Спринт 5
-
 //Переменные
 //Profile
 const popupCardsOpenIcon = document.querySelector('#openIconPopupCards');//Кнопка "Открыть попап"
 
-//Elements
-const cardsContainer = document.querySelector('.elements');
+
 
 
 //PopupCards
@@ -144,15 +142,6 @@ popupCardsOpenIcon.addEventListener("click", function () {
 popupCardsClosedIcon.addEventListener("click", function () {
   closePopup(popupCardsEdit);
 });
-
-
-//Спринт 6
-// Функция закрытия попапов на esc
-function handleEscape (evt) {
-  if (evt.key === 'Escape') {
-    closePopup(document.querySelector('.popup_opened'));
-  };
-};
 
 // Открытие попапа изображения
 
