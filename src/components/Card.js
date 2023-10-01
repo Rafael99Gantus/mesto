@@ -51,14 +51,14 @@ export class Card{
  _handleTrashButton() {
   this._element.remove();
   }
-//Открытие попапа изображения на cardImage
-  _handleImageClick() {
-    imagePopup.classList.add('popup_opened');
+// //Открытие попапа изображения на cardImage
+//   _handleImageClick() {
+//     imagePopup.classList.add('popup_opened');
 
-    this._popupImage.src = this._imageCard.src;
-    const elementsName = this._nameCard;
+//     this._popupImage.src = this._imageCard.src;
+//     const elementsName = this._nameCard;
 
-    this._popupTitle.textContent = elementsName.textContent;
-    this._popupImage.alt = elementsName.textContent;
-  }
+//     this._popupTitle.textContent = elementsName.textContent;
+//     this._popupImage.alt = elementsName.textContent;
+//   }
 }

@@ -4,13 +4,6 @@ const ivanovo = new URL('../images/ivanovo.jpg', import.meta.url);
 const kamchatka = new URL('../images/kamchatka.jpg', import.meta.url);
 const kholmogorskyRayon = new URL('../images/kholmogorsky-rayon.jpg', import.meta.url);
 const baikal = new URL('../images/baikal.jpg', import.meta.url);
-// import arkhyz from './images/arkhyz.jpg';
-// import chelyabinskOblast from './images/chelyabinsk-oblast.jpg';
-// import ivanovo from './images/ivanovo.jpg';
-// import kamchatka from './images/kamchatka.jpg';
-// import kholmogorskyRayon from './images/kholmogorsky-rayon.jpg';
-// import baikal from './images/baikal.jpg';
-
 
 export const initialCards = [
   {
