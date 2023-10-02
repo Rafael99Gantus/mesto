@@ -12,28 +12,22 @@ export default class Popup{
 
   close(){
     this._popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', this._handleEscClose());
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 
   _handleEscClose(evt){ // Закрытие нажатием на Escape
     if (evt.key === 'Escape') {
-      close();
+      this._close();
     };
   }
 
-  // _closePopupByOverlay(evt) { // Закрытие нажатием на Оверлей
-  //   if (evt.currentTarget === evt.target) {
-  //     close()
-  //   }
-  // }
-
   setEventListeners(){
     this._popupClosed.addEventListener("click", () => {
-      close();
+      this._close();
     });
     this._popup.addEventListener('mousedown', (evt) => {
       if (evt.currentTarget === evt.target) {
-        close()
+        this._close()
       }
     })
   }
