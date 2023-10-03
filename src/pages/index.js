@@ -43,7 +43,7 @@ initialCards.forEach(((item) => {
 
 function handleProfileFormSubmit(formValues) {
   userInfo.setUserInfo({ name: formValues.fullname, work: formValues.activity });
-  popupProfile.close();
+  popupFormProfile.close();
 }
 
 popupProfileOpenIcon.addEventListener("click", function () {
@@ -51,9 +51,6 @@ popupProfileOpenIcon.addEventListener("click", function () {
   const getUserInfo = userInfo.getUserInfo();
   profileNameInput.value = getUserInfo.name;
   profileJobInput.value = getUserInfo.work;
-});
-popupProfileClosedIcon.addEventListener("click", function () {
-  popupFormProfile.close();
 });
 
 popupCardsOpenIcon.addEventListener("click", function () {

@@ -17,17 +17,17 @@ export default class Popup{
 
   _handleEscClose(evt){ // Закрытие нажатием на Escape
     if (evt.key === 'Escape') {
-      this._close();
+      this.close();
     };
   }
 
   setEventListeners(){
     this._popupClosed.addEventListener("click", () => {
-      this._close();
+      this.close();
     });
     this._popup.addEventListener('mousedown', (evt) => {
       if (evt.currentTarget === evt.target) {
-        this._close()
+        this.close()
       }
     })
   }
