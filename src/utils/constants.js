@@ -1,5 +1,3 @@
-// import userInfoFromServObject from '../pages/index.js';
-
 const arkhyz = new URL('../images/arkhyz.jpg', import.meta.url);
 const chelyabinskOblast = new URL('../images/chelyabinsk-oblast.jpg', import.meta.url);
 const ivanovo = new URL('../images/ivanovo.jpg', import.meta.url);
