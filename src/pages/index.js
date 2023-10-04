@@ -1,12 +1,60 @@
+// Токен: 201e26a5-d782-4c58-9b61-1aee30a7887d
+// Идентификатор группы: cohort-76
 import './index.css';
-import { initialCards, config, profileNameInput, profileJobInput, popupProfileOpenIcon, popupCardsEdit, popupProfile, popupProfileClosedIcon, popupCardsOpenIcon, elForInfo, cardsContainer } from '../utils/constants.js';
+import {
+  initialCards, config, profileNameInput, profileJobInput,
+  popupProfileOpenIcon, popupCardsEdit, popupProfile, popupProfileClosedIcon, popupCardsOpenIcon,
+  elForInfo, cardsContainer, profileName, profileWork, profileImg
+} from '../utils/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-alert('Спасибо)')
+
+
+//________________________________________________________________Загрузка данных ПРОФИЛЯ_______________________________________________________________________________
+fetch('https://nomoreparties.co/v1/cohort-76/users/me', {
+  headers: {
+    authorization: '201e26a5-d782-4c58-9b61-1aee30a7887d'
+  }
+})
+  .then((res) => {
+    if (res.ok) {
+      return res.json()
+    }
+  })
+  .then((res) => {
+    profileName.textContent = res.name;
+    profileWork.textContent = res.about;
+    profileImg.src = res.avatar;
+  });
+//______________________________________________________________________________________________________________________________________________________________________________________
+//______________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+//________________________________________________________________Загрузка данных КАРТОЧЕК_______________________________________________________________________________
+fetch('https://mesto.nomoreparties.co/v1/cohort-76/cards', {
+  headers: {
+    authorization: '201e26a5-d782-4c58-9b61-1aee30a7887d'
+  }
+})
+  .then((res) => {
+    if (res.ok) {
+      return res.json()
+    }
+  })
+  .then((res) => {
+    res.forEach(((item) => {
+      createCard(item);
+    }));
+  });
+//______________________________________________________________________________________________________________________________________________________________________________________
+//______________________________________________________________________________________________________________________________________________________________________________________
+
+
 const userInfo = new UserInfo(elForInfo);
 
 const section = new Section({
@@ -30,22 +78,19 @@ const popupCard = new PopupWithForm('#editCardsPopup', formValues => {
   popupCard.close();
 })
 
+// Функция создания карточки
 function createCard(item) {
   const card = new Card(item, '#user', handleOpenPopup);
   const cardEl = card.generateCard();
   section.addItem(cardEl);
 }
 
-//Загрузка карточек
-initialCards.forEach(((item) => {
-  createCard(item);
-}));
-
 function handleProfileFormSubmit(formValues) {
   userInfo.setUserInfo({ name: formValues.fullname, work: formValues.activity });
   popupFormProfile.close();
 }
 
+//Открытие POPUP PROFILE
 popupProfileOpenIcon.addEventListener("click", function () {
   popupFormProfile.open();
   const getUserInfo = userInfo.getUserInfo();
@@ -53,13 +98,13 @@ popupProfileOpenIcon.addEventListener("click", function () {
   profileJobInput.value = getUserInfo.work;
 });
 
+//Открытие POPUP CARD
 popupCardsOpenIcon.addEventListener("click", function () {
   popupCard.open();
   editCardFormValidator.disableButton();
 });
 
-// Открытие попапа изображения
-
+// Открытие POPUP IMG
 function handleOpenPopup(name, link) {
   popupFullImage.open(name, link);
 }

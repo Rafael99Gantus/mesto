@@ -1,3 +1,5 @@
+// import userInfoFromServObject from '../pages/index.js';
+
 const arkhyz = new URL('../images/arkhyz.jpg', import.meta.url);
 const chelyabinskOblast = new URL('../images/chelyabinsk-oblast.jpg', import.meta.url);
 const ivanovo = new URL('../images/ivanovo.jpg', import.meta.url);
@@ -55,3 +57,6 @@ export const popupProfile = '#editProfilePopup';// ID Попапa изменен
 export const popupProfileClosedIcon = document.querySelector('#closedIconPopupProfile');// ID Кнопка "Закрыть попап"
 export const popupCardsOpenIcon = document.querySelector('#openIconPopupCards');//Кнопка "Открыть попап"
 export const cardsContainer = '.elements';
+export const profileName = document.querySelector('.profile__name');
+export const profileWork = document.querySelector('.profile__activity');
+export const profileImg = document.querySelector('.profile__avatar');
