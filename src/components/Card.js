@@ -47,8 +47,13 @@ export class Card{
   _handleLike() {
     this._likeIcon.classList.toggle('elements__heart_active');
   }
+
+//Добавление +1 к количеству лайков
+  _counterLike(){
+    
+  }
 //Удаление карточки
- _handleTrashButton() {
+  _handleTrashButton() {
   this._element.remove();
   }
 }

@@ -4,7 +4,7 @@ import './index.css';
 import {
   initialCards, config, profileNameInput, profileJobInput,
   popupProfileOpenIcon, popupCardsEdit, popupProfile, popupProfileClosedIcon, popupCardsOpenIcon,
-  elForInfo, cardsContainer, profileName, profileWork, profileImg
+  elForInfo, cardsContainer, profileName, profileWork, profileImg, numberLikes
 } from '../utils/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -21,6 +21,12 @@ const section = new Section({
   }, handleOpenPopup
 }, cardsContainer);
 
+const a = new Section({
+  data: initialCards, renderer: (item) => {
+    createNewCard(item)
+  }, handleOpenPopup
+}, cardsContainer);
+
 const profileFormValidator = new FormValidator(popupProfile, config);
 profileFormValidator.enableValidation();
 
@@ -32,7 +38,7 @@ const popupFullImage = new PopupWithImage('#imagePopup');
 const popupFormProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit);
 
 const popupCard = new PopupWithForm('#editCardsPopup', formValues => {
-  section.addItem(section.renderer(formValues));
+  a.renderer(formValues);
   popupCard.close();
 })
 
@@ -63,7 +69,7 @@ fetch('https://nomoreparties.co/v1/cohort-76/users/me', {
 
 
 
-//________________________________________________________________Загрузка данных КАРТОЧЕК_______________________________________________________________________________
+//________________________________________________________________Загрузка карточек с сервера КАРТОЧЕК_______________________________________________________________________________
 fetch('https://mesto.nomoreparties.co/v1/cohort-76/cards', {
   headers: {
     authorization: '201e26a5-d782-4c58-9b61-1aee30a7887d'
@@ -78,6 +84,9 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-76/cards', {
     res.forEach(((item) => {
       createCard(item);
     }));
+  })
+  .then(() => {
+    console.log('Загрузка данных КАРТОЧЕК')
   })
   .catch((err)=>{
     console.log(`Может не стоит ? Это ${err}`)
@@ -106,8 +115,8 @@ function saveInfoInServ(info){
     return res.json()
   }
 })
-.then((res) => {
-  console.log(res)
+.then(() => {
+  console.log('ФУНКЦИЯ сохранения данных ПРОФИЛЯ НА СЕРВЕР')
 })
 .catch((err)=>{
   console.log(`Лови ${err}`)
@@ -121,7 +130,7 @@ function saveInfoInServ(info){
 //________________________________________________________________ФУНКЦИЯ добавления новой КАРТОЧКИ НА СЕРВЕР_______________________________________________________________________________
 function createCardInServ(newCard){
   fetch('https://mesto.nomoreparties.co/v1/cohort-76/cards', {
-  method: 'PATCH',
+  method: 'POST',
   headers: {
     authorization: '201e26a5-d782-4c58-9b61-1aee30a7887d',
     'Content-Type': 'application/json'
@@ -131,13 +140,16 @@ function createCardInServ(newCard){
     about: newCard.work
   })
 })
-.then((res) => {
-  if (res.ok) {
-    return res.json()
-  }
-})
+// .then((res) => {
+//   if (res.ok) {
+//     return res.json()
+//   }
+// })
 .then((res)=>{
   console.log(res)
+  console.log(res.name)
+  // const card = new Card(item, '#user', handleOpenPopup);
+  // numberLikes.textContent = res.likes.length
 })
 .catch((err)=>{
   console.log(`You are wellcome ${err}`)
@@ -151,6 +163,12 @@ function createCard(item) {
   const card = new Card(item, '#user', handleOpenPopup);
   const cardEl = card.generateCard();
   section.addItem(cardEl);
+}
+
+function createNewCard(item) {
+  const card = new Card(item, '#user', handleOpenPopup);
+  const cardEl = card.generateCard();
+  a.addItem(cardEl);
   createCardInServ(item)
 }
 
