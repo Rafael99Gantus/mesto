@@ -58,4 +58,6 @@ export const cardsContainer = '.elements';
 export const profileName = document.querySelector('.profile__name');
 export const profileWork = document.querySelector('.profile__activity');
 export const profileImg = document.querySelector('.profile__avatar');
-export const numberLikes = document.querySelector('#first-number')
+export const numberLikes = document.querySelector('#first-number');
+export const popupAnswer = document.querySelector('#answerPopup')
+export const trashIcon = document.querySelector('.elements__trash');
