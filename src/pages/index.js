@@ -131,7 +131,7 @@ function saveInfoInServ(info){
 //Функция создания карточки
 function createCard(item) {
   // const numberlike = api.numberLikes();
-  const card = new Card(item, cardsContainer, handleOpenPopup, {
+  const card = new Card(item, '#user', handleOpenPopup, {
     handelDeleteCard: (id) => {
       api.deleteCard(id)
       .then(() => {
@@ -181,9 +181,9 @@ popupFormProfile.setEventListeners();
 popupCard.setEventListeners();
 popupFullImage.setEventListeners();
 popupFormAnswer.setEventListeners();
-// api.getAllCards()
-// .then((data) => {
-//   data.forEach((todoData) => {
-//     createCard(todoData);
-//   });
-// });
+api.getAllCards()
+.then((data) => {
+  data.forEach((todoData) => {
+    createCard(todoData);
+  });
+});

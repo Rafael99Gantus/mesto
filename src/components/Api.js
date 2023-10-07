@@ -16,7 +16,7 @@ export class Api {
     }
 
     getAllCards() {
-        return this._getRequest(`${url}/cards`, {
+        return this._getRequest(`${this._url}/cards`, {
             method: 'GET',
             headers: this._headers
         })
@@ -39,7 +39,7 @@ export class Api {
     }
 
     createCard(data) {
-        return this._getRequest(`${url}/cards`, {
+        return this._getRequest(`${this._url}/cards`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify(data)
@@ -52,7 +52,7 @@ export class Api {
     }
 
     numberLikes(data) {
-        return this._getRequest(`${url}/cards`, {
+        return this._getRequest(`${this._url}/cards`, {
             headers: this._headers
         })
             // .then((res)=>{
@@ -65,7 +65,7 @@ export class Api {
     }
 
     deleteCard(id) {
-        return this._getRequest(`${url}/cards/${id}`, {
+        return this._getRequest(`${this._url}/cards/${id}`, {
             method: 'DELETE',
             headers: this._headers
         })

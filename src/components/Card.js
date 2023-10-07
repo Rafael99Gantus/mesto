@@ -22,7 +22,7 @@ export class Card{
     this._trashPopup = document.querySelector('#answerPopup');
     this._imageCard = this._element.querySelector('.elements__image');
     this._nameCard = this._element.querySelector('.elements__name');
-    this._popupImage = document.querySelector('.popup__image');
+    // this._popupImage = document.querySelector('.popup__image');
     this._popupTitle = document.querySelector('.popup__titleImage');
     this._numberLikes = document.querySelector('.elements__number');
     this._avatar = document.querySelector('#editAvatar');
@@ -38,8 +38,8 @@ export class Card{
   }
 
   _setEventListeners() {
-    const deleteCard = this._newCard.querySelector('#buttonAnswer')
-    deleteCard.addEventListener('click', () => {this._handleDelete();});
+    // const deleteCard = this._newCard.querySelector('#buttonAnswer')
+    // deleteCard.addEventListener('click', () => {this._handleDelete();});
 
     this._likeIcon.addEventListener('click', () => {
       this._handleLike();
