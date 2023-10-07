@@ -44,7 +44,8 @@ export const config = {
 
 export const elForInfo = {
   name: '.profile__name', 
-  work: '.profile__activity' 
+  work: '.profile__activity',
+  avatar: '.profile__avatar'
 }
 
 export const apiOptions = {

@@ -1,16 +1,16 @@
 export class Card{
-  constructor(data, container, handleOpenPopup, numberlike) {
+  constructor(data, templateSelector, handleOpenPopup, numberlike) {
     this._name = data.name;
     this._link = data.link;
     this._handleOpenPopup = handleOpenPopup;
     this._numberlike = numberlike;
-    this._id = data._id;
-    this._handleDeleteCard = handleDeleteCard;
-    this._container = document.querySelector(container);
+    // this._id = data._id;
+    // this._handleDeleteCard = handleDeleteCard;
+    this._templateSelector = templateSelector;
   }
 
   _getTemplate() {
-    const card = document.querySelector(this._container).content.querySelector('.elements__element').cloneNode(true);
+    const card = document.querySelector(this._templateSelector).content.querySelector('.elements__element').cloneNode(true);
     return card;
   }
 

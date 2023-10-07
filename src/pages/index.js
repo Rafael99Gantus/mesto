@@ -16,13 +16,6 @@ import {Api} from '../components/Api.js';
 
 const api = new Api(apiOptions)
 
-api.getAllCards()
-// .then((data) => {
-//   data.forEach((todoData) => {
-//     createCard(todoData);
-//   });
-// });
-
 const userInfo = new UserInfo(elForInfo);
 
 const section = new Section({
@@ -185,3 +178,9 @@ popupFormProfile.setEventListeners();
 popupCard.setEventListeners();
 popupFullImage.setEventListeners();
 popupFormAnswer.setEventListeners();
+api.getAllCards()
+.then((data) => {
+  data.forEach((todoData) => {
+    createCard(todoData);
+  });
+});

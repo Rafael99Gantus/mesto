@@ -2,6 +2,7 @@ export default class UserInfo{
     constructor(elForInfo){
         this._name = document.querySelector(elForInfo.name);
         this._work = document.querySelector(elForInfo.work);
+        this._avatar = document.querySelector(elForInfo.avatar);
     }
 
     getUserInfo(){ // Нужен при открытии формы
@@ -11,9 +12,11 @@ export default class UserInfo{
         }
     }
 
-    setUserInfo({name, work}) {
+    setUserInfo({name, work, avatar, _id}) {
         this._name.textContent = name;
         this._work.textContent = work;
+        this._avatar.src = avatar;
+        this.userId = _id;
     }
 
     
