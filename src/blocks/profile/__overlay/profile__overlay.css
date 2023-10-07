@@ -1,0 +1,12 @@
+.profile__overlay{
+    width: 120px;
+    height: 120px;
+    background-repeat: no-repeat;
+    border-radius: 60px;
+    margin-right: 30px;
+    background: url('../../../images/editBig.svg') no-repeat center;
+}
+
+.profile__overlay:hover{
+    cursor: pointer;
+}

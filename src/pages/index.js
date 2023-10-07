@@ -2,7 +2,7 @@
 // Идентификатор группы: cohort-76
 import './index.css';
 import {
-  initialCards, config, profileNameInput, profileJobInput, apiOptions,
+  initialCards, config, profileNameInput, profileJobInput, apiOptions, avatarIcon, avatarPopup, buttonPopup,
   popupProfileOpenIcon, popupCardsEdit, popupProfile, popupProfileClosedIcon, popupCardsOpenIcon,
   elForInfo, cardsContainer, profileName, profileWork, profileImg, numberLikes, popupAnswer, trashIcon
 } from '../utils/constants.js';
@@ -35,6 +35,8 @@ const popupFullImage = new PopupWithImage('#imagePopup');
 const popupFormProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit);
 
 const popupFormAnswer = new PopupWithForm('#answerPopup', handleProfileFormSubmit);
+
+const popupFormAvatar = new PopupWithForm('#editAvatar', handleProfileFormSubmit);
 
 const popupCard = new PopupWithForm('#editCardsPopup', formValues => {
   section.renderer(formValues);
@@ -160,14 +162,15 @@ popupProfileOpenIcon.addEventListener("click", function () {
   profileJobInput.value = getUserInfo.work;
 });
 
+avatarIcon.addEventListener('click', () => {
+  popupFormAvatar.open();
+});
+
 //Открытие POPUP CARD
 popupCardsOpenIcon.addEventListener("click", function () {
   popupCard.open();
   editCardFormValidator.disableButton();
 });
-
-// Открытие POPUPANSWER
-
 
 // Открытие POPUP IMG
 function handleOpenPopup(name, link) {
@@ -178,9 +181,9 @@ popupFormProfile.setEventListeners();
 popupCard.setEventListeners();
 popupFullImage.setEventListeners();
 popupFormAnswer.setEventListeners();
-api.getAllCards()
-.then((data) => {
-  data.forEach((todoData) => {
-    createCard(todoData);
-  });
-});
+// api.getAllCards()
+// .then((data) => {
+//   data.forEach((todoData) => {
+//     createCard(todoData);
+//   });
+// });

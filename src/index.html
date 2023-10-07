@@ -16,7 +16,9 @@
 		<main>
 			<section class="profile">
 				<div class="profile__wrapper">
-					<img class="profile__avatar" src=  "<%=require('./images/avatar.png')%>" alt="аватар">
+					<div class="profile__overlay">
+						<img class="profile__avatar" src=  "<%=require('./images/avatar.png')%>" alt="аватар">
+					</div>
 					<div class="profile__info">
 						<div class="profile__block">
 							<h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -86,6 +88,21 @@
 			<button id='closedIconPopupAnswer' class="popup__closed" type="button"></button>
 			<h2 class="popup__title">Вы уверены?</h2>
 			<button type="submit" class="popup__button" id='buttonAnswer'>Yes</button>
+		</div>
+
+	</div>
+
+	<div class="popup" id="editAvatar">
+
+		<div class="popup__container">
+			<button id='closedIconPopupCards' class="popup__closed" type="button"></button>
+			<h2 class="popup__title">Обновить аватар</h2>
+			<form class="popup__form" name="editAvatar" id="editAvatar">
+				<input id='fieldLinkPopupAvatar' class="popup__field" type="url" placeholder="Ссылка на картинку"
+					name="link" required>
+				<span class="fieldLinkPopupCards-error popup__input-error"></span>
+				<button type="submit" class="popup__button popup__button_disabled" id='buttonSaveCards'>Сохранить</button>
+			</form>
 		</div>
 
 	</div>

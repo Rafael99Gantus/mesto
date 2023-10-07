@@ -70,3 +70,5 @@ export const profileImg = document.querySelector('.profile__avatar');
 export const numberLikes = document.querySelector('#first-number');
 export const popupAnswer = document.querySelector('#answerPopup')
 export const trashIcon = document.querySelector('.elements__trash');
+export const avatarIcon = document.querySelector('.profile__avatar');
+export const avatarPopup = document.querySelector('#editAvatar')

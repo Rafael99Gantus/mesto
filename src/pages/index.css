@@ -19,6 +19,7 @@
 @import url(../blocks/profile/__activity/profile__activity.css);
 @import url(../blocks/profile/__rectangle/profile__rectangle.css);
 @import url(../blocks/profile/__vector/profile__vector.css);
+@import url(../blocks/profile/__overlay/profile__overlay.css);
 
 /*popup*/
 @import url(../blocks/popup/popup.css);

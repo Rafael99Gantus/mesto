@@ -25,6 +25,8 @@ export class Card{
     this._popupImage = document.querySelector('.popup__image');
     this._popupTitle = document.querySelector('.popup__titleImage');
     this._numberLikes = document.querySelector('.elements__number');
+    this._avatar = document.querySelector('#editAvatar');
+    this._avatarEdit = document.querySelector('.profile__overlay');
     this._setEventListeners();
 
     
@@ -50,7 +52,6 @@ export class Card{
     this._imageCard.addEventListener('click', () => {
       this._handleOpenPopup(this._name, this._link);
     });
-
   }
 // Лайк
   _handleLike() {
