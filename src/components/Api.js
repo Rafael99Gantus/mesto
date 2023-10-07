@@ -51,18 +51,18 @@ export class Api {
             })
     }
 
-    numberLikes(data) {
-        return this._getRequest(`${this._url}/cards`, {
-            headers: this._headers
-        })
-            // .then((res)=>{
-            //     // data.textContent = Object.keys(res.likes).length
-            //     console.log(res.likes)
-            //   })
-            .catch((err) => {
-                console.log(`You are wellcome ${err}`)
-            })
-    }
+    // numberLikes(data) {
+    //     return this._getRequest(`${this._url}/cards`, {
+    //         headers: this._headers
+    //     })
+    //         // .then((res)=>{
+    //         //     // data.textContent = Object.keys(res.likes).length
+    //         //     console.log(res.likes)
+    //         //   })
+    //         .catch((err) => {
+    //             console.log(`You are wellcome ${err}`)
+    //         })
+    // }
 
     deleteCard(id) {
         return this._getRequest(`${this._url}/cards/${id}`, {

@@ -1,9 +1,10 @@
 export class Card{
-  constructor(data, templateSelector, handleOpenPopup, numberlike) {
+  constructor(data, templateSelector, handleOpenPopup) {
     this._name = data.name;
     this._link = data.link;
+    this._likes = data.likes.length;
     this._handleOpenPopup = handleOpenPopup;
-    this._numberlike = numberlike;
+    // this._numberlike = numberlike;
     // this._id = data._id;
     // this._handleDeleteCard = handleDeleteCard;
     this._templateSelector = templateSelector;
@@ -24,7 +25,7 @@ export class Card{
     this._nameCard = this._element.querySelector('.elements__name');
     // this._popupImage = document.querySelector('.popup__image');
     this._popupTitle = document.querySelector('.popup__titleImage');
-    this._numberLikes = document.querySelector('.elements__number');
+    this._numberLikes = this._element.querySelector('.elements__number');
     this._avatar = document.querySelector('#editAvatar');
     this._avatarEdit = document.querySelector('.profile__overlay');
     this._setEventListeners();
@@ -34,6 +35,7 @@ export class Card{
     const cardImage = this._imageCard;
     cardImage.src = this._link;
     cardImage.alt = this._name;
+    this._numberLikes.textContent = this._likes;
     return this._element;
   }
 
@@ -56,7 +58,6 @@ export class Card{
 // Лайк
   _handleLike() {
     this._likeIcon.classList.toggle('elements__heart_active');
-    // this._numberlike(this._numberLikes);
   }
 
 //Добавление +1 к количеству лайков
