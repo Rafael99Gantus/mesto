@@ -13,13 +13,10 @@ export class Api {
 
             throw new Error('Что-то пошло не так...')
         })
-        .catch((error) => {
-            console.log(error);
-        });
     }
 
     getAllCards() {
-        return this._getRequest(`https://mesto.nomoreparties.co/v1/cohort-76/cards`, {
+        return this._getRequest(`${url}/cards`, {
             method: 'GET',
             headers: this._headers
         })
@@ -42,12 +39,9 @@ export class Api {
     }
 
     createCard(data) {
-        fetch('https://mesto.nomoreparties.co/v1/cohort-76/cards', {
+        return this._getRequest(`${url}/cards`, {
             method: 'POST',
-            headers: {
-                authorization: '201e26a5-d782-4c58-9b61-1aee30a7887d',
-                'Content-Type': 'application/json'
-            },
+            headers: this._headers,
             body: JSON.stringify(data)
         })
             .then((res) => {
@@ -55,22 +49,12 @@ export class Api {
                     return res.json()
                 }
             })
-            .catch((err) => {
-                console.log(`You are wellcome ${err}`)
-            })
     }
 
     numberLikes(data) {
-        fetch('https://mesto.nomoreparties.co/v1/cohort-76/cards', {
-            headers: {
-                authorization: '201e26a5-d782-4c58-9b61-1aee30a7887d'
-            }
+        return this._getRequest(`${url}/cards`, {
+            headers: this._headers
         })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json()
-                }
-            })
             // .then((res)=>{
             //     // data.textContent = Object.keys(res.likes).length
             //     console.log(res.likes)
@@ -81,25 +65,9 @@ export class Api {
     }
 
     deleteCard(id) {
-        fetch(`https://mesto.nomoreparties.co/v1/cohort-76/cards/${id}`, {
+        return this._getRequest(`${url}/cards/${id}`, {
             method: 'DELETE',
-            headers: {
-                authorization: '201e26a5-d782-4c58-9b61-1aee30a7887d'
-            }
+            headers: this._headers
         })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json()
-                }
-            })
-            // .then((res)=>{
-            //     console.log(res)
-            //   })
-            .then(() => {
-                console.log('Удалилось')
-            })
-            .catch((err) => {
-                console.log(`Может не стоит ? Это ${err}`)
-            });
     }
 }

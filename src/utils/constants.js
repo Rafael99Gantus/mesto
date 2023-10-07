@@ -47,6 +47,14 @@ export const elForInfo = {
   work: '.profile__activity' 
 }
 
+export const apiOptions = {
+  url: "https://mesto.nomoreparties.co/v1/cohort-76",
+  headers: {
+    authorization: '201e26a5-d782-4c58-9b61-1aee30a7887d',
+    "Content-Type": "application/json"
+  }
+};
+
 export const profileNameInput = document.querySelector('#fieldNamePopupProfile');
 export const profileJobInput = document.querySelector('#fieldWorkPopupProfile');
 export const popupProfileOpenIcon = document.querySelector('#openIconPopupProfile');//Кнопка "Открыть попап"

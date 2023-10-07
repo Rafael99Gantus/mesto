@@ -2,7 +2,7 @@
 // Идентификатор группы: cohort-76
 import './index.css';
 import {
-  initialCards, config, profileNameInput, profileJobInput,
+  initialCards, config, profileNameInput, profileJobInput, apiOptions,
   popupProfileOpenIcon, popupCardsEdit, popupProfile, popupProfileClosedIcon, popupCardsOpenIcon,
   elForInfo, cardsContainer, profileName, profileWork, profileImg, numberLikes, popupAnswer, trashIcon
 } from '../utils/constants.js';
@@ -14,32 +14,20 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import {Api} from '../components/Api.js';
 
-const apiOptions = {
-  url: "https://mesto.nomoreparties.co/v1/cohort-76/",
-  headers: {
-    "Content-Type": "application/json"
-  }
-};
-
 const api = new Api(apiOptions)
 
-api.getAllCards().then((data) => {
-  data.forEach((todoData) => {
-    createCard(todoData);
-  });
-});
+api.getAllCards()
+// .then((data) => {
+//   data.forEach((todoData) => {
+//     createCard(todoData);
+//   });
+// });
 
 const userInfo = new UserInfo(elForInfo);
 
 const section = new Section({
   data: initialCards, renderer: (item) => {
     createCard(item)
-  }, handleOpenPopup
-}, cardsContainer);
-
-const sectionForNew = new Section({
-  data: initialCards, renderer: (item) => {
-    createNewCard(item)
   }, handleOpenPopup
 }, cardsContainer);
 
@@ -56,7 +44,7 @@ const popupFormProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit
 const popupFormAnswer = new PopupWithForm('#answerPopup', handleProfileFormSubmit);
 
 const popupCard = new PopupWithForm('#editCardsPopup', formValues => {
-  sectionForNew.renderer(formValues);
+  section.renderer(formValues);
   popupCard.close();
 })
 
@@ -87,30 +75,30 @@ fetch('https://nomoreparties.co/v1/cohort-76/users/me', {
 
 
 //________________________________________________________________ФУНКЦИЯ сохранения данных ПРОФИЛЯ НА СЕРВЕР_______________________________________________________________________________
-function saveInfoInServ(info){
-  fetch('https://mesto.nomoreparties.co/v1/cohort-76/users/me', {
-  method: 'PATCH',
-  headers: {
-    authorization: '201e26a5-d782-4c58-9b61-1aee30a7887d',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    name: info.name,
-    about: info.work
-  })
-})
-.then((res) => {
-  if (res.ok) {
-    return res.json()
-  }
-})
-.then(() => {
-  console.log('ФУНКЦИЯ сохранения данных ПРОФИЛЯ НА СЕРВЕР')
-})
-.catch((err)=>{
-  console.log(`Лови ${err}`)
-})
-}
+// function saveInfoInServ(info){
+//   fetch('https://mesto.nomoreparties.co/v1/cohort-76/users/me', {
+//   method: 'PATCH',
+//   headers: {
+//     authorization: '201e26a5-d782-4c58-9b61-1aee30a7887d',
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify({
+//     name: info.name,
+//     about: info.work
+//   })
+// })
+// .then((res) => {
+//   if (res.ok) {
+//     return res.json()
+//   }
+// })
+// .then(() => {
+//   console.log('ФУНКЦИЯ сохранения данных ПРОФИЛЯ НА СЕРВЕР')
+// })
+// .catch((err)=>{
+//   console.log(`Лови ${err}`)
+// })
+// }
 //______________________________________________________________________________________________________________________________________________________________________________________
 //______________________________________________________________________________________________________________________________________________________________________________________
 
@@ -148,22 +136,7 @@ function saveInfoInServ(info){
 //Функция создания карточки
 function createCard(item) {
   // const numberlike = api.numberLikes();
-  const card = new Card(item, handleOpenPopup, {
-    handelDeleteCard: (id) => {
-      api.deleteCard(id)
-      .then(() => {
-        card.delete();
-      })
-    }
-  });
-  const cardEl = card.generateCard();
-  section.addItem(cardEl);
-}
-
-// Функция для создания новой карточки на сервере
-function createNewCard(item) {
-  // const numberlike = api.numberLikes(numberLikes);
-  const card = new Card(item, handleOpenPopup, {
+  const card = new Card(item, cardsContainer, handleOpenPopup, {
     handelDeleteCard: (id) => {
       api.deleteCard(id)
       .then(() => {
