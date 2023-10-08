@@ -38,10 +38,23 @@ const popupFormAnswer = new PopupWithForm('#answerPopup', handleAvatarForSubmit)
 
 const popupFormAvatar = new PopupWithForm('#editAvatar', handleAvatarForSubmit);
 
-const popupCard = new PopupWithForm('#editCardsPopup', formValues => {
-  section.renderer(formValues);
-  popupCard.close();
-})
+// const popupCard = new PopupWithForm('#editCardsPopup', formValues => {
+//   section.renderer(formValues);
+//   popupCard.close();
+// })
+
+const popupCard = new PopupWithForm('#editCardsPopup', handleSubmitAddTodoForm)
+//____________________________________________________________________________________________________________________________________________________________________________
+const handleSubmitAddTodoForm = (event) => {
+  event.preventDefault();
+
+  api.createCardInServ({ name: input.value })
+  .then((data) => {
+    createCard(data);
+  })
+
+  input.value = "";
+};
 
 //Функция создания карточки
 function createCard(item) {
@@ -56,22 +69,19 @@ function createCard(item) {
   });
   const cardEl = card.generateCard();
   section.addItem(cardEl);
-  api.createCard(item);
+  api.createCardInServ(item);
 }
-
-// function deleteCard (item){
-//   const card = new Card(item, handleOpenPopup);
-// }
 
 function handleProfileFormSubmit(formValues) {
   userInfo.setUserInfo({ name: formValues.fullname, work: formValues.activity });
   api.saveInfoInServ({ name: formValues.fullname, work: formValues.activity })
   popupFormProfile.close();
 }
-//____________________________________________________________________________________________________________________________________________________________________________
+
 function handleAvatarForSubmit(item){
   api.saveAvatarInServ({avatar: item.link});
   popupFormAvatar.close();
+  profileImg.src = item.link;
 }
 
 //Открытие POPUP PROFILE

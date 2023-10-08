@@ -2,7 +2,7 @@ export class Card{
   constructor(data, templateSelector, handleOpenPopup, handleDeleteCard) {
     this._name = data.name;
     this._link = data.link;
-    // this._likes = data.likes;
+    this._likes = data.likes.length;
     this._handleOpenPopup = handleOpenPopup;
     // this._numberlike = numberlike;
     this._id = data._id;
@@ -15,9 +15,9 @@ export class Card{
     return card;
   }
 
-  // _handleDelete(){
-  //   this._handleDeleteCard(this._id)
-  //   }
+  _handleDelete(){
+    this._handleDeleteCard(this._id)
+    }
 
   generateCard() {
     this._element = this._getTemplate();
@@ -32,7 +32,6 @@ export class Card{
     this._numberLikes = this._element.querySelector('.elements__number');
     this._avatar = document.querySelector('#editAvatar');
     this._avatarEdit = document.querySelector('.profile__overlay');
-    // this._deleteCard = this._element.querySelector('#buttonAnswer')
     this._setEventListeners();
 
     
@@ -40,11 +39,14 @@ export class Card{
     const cardImage = this._imageCard;
     cardImage.src = this._link;
     cardImage.alt = this._name;
-    // this._numberLikes.textContent = this._likes;
+    this._numberLikes.textContent = this._likes;
     return this._element;
   }
 
   _setEventListeners() {
+    deleteCard = this._element.querySelector('#buttonAnswer')
+    deleteCard.addEventListener('click', () => {this._handleDelete();});
+
     this._likeIcon.addEventListener('click', () => {
       this._handleLike();
     });
@@ -56,7 +58,6 @@ export class Card{
     this._imageCard.addEventListener('click', () => {
       this._handleOpenPopup(this._name, this._link);
     });
-    // this._deleteCard.addEventListener('click', () => {this._handleDelete();});
   }
 // Лайк
   _handleLike() {

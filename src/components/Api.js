@@ -22,7 +22,7 @@ export class Api {
         })
     }
 
-    createCard(data) {
+    createCardInServ(data) {
         return this._getRequest(`${this._url}/cards`, {
             method: 'POST',
             headers: this._headers,
@@ -56,7 +56,7 @@ export class Api {
     }
 
     saveAvatarInServ(info){
-        return this._getRequest (`${this._url}/users/me`, {
+        return this._getRequest (`${this._url}/users/me/avatar`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({ 
