@@ -73,3 +73,4 @@ export const trashIcon = document.querySelector('.elements__trash');
 export const avatarIcon = document.querySelector('.profile__avatar');
 export const avatarPopup = document.querySelector('#editAvatar')
 export const buttonPopup = document.querySelector('.popup__button')
+export const templateUser = document.querySelector('.elements__element')

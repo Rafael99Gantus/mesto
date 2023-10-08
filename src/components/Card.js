@@ -48,6 +48,10 @@ export class Card{
       this._handleLike();
     });
 
+    this._trashIcon.addEventListener('click', () => {
+      this._handleTrashButton();
+    });
+
     this._imageCard.addEventListener('click', () => {
       this._handleOpenPopup(this._name, this._link);
     });
@@ -55,6 +59,11 @@ export class Card{
 // Лайк
   _handleLike() {
     this._likeIcon.classList.toggle('elements__heart_active');
+  }
+
+//Открытие попапа ANSWER
+  _handleTrashButton() {
+    this._trashPopup.classList.add('popup_opened');
   }
 
   delete () {

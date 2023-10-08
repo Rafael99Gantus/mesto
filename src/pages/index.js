@@ -3,7 +3,7 @@
 import './index.css';
 import {
   initialCards, config, profileNameInput, profileJobInput, apiOptions, avatarIcon, avatarPopup, buttonPopup,
-  popupProfileOpenIcon, popupCardsEdit, popupProfile, popupProfileClosedIcon, popupCardsOpenIcon,
+  popupProfileOpenIcon, popupCardsEdit, popupProfile, popupProfileClosedIcon, popupCardsOpenIcon, templateUser,
   elForInfo, cardsContainer, profileName, profileWork, profileImg, numberLikes, popupAnswer, trashIcon
 } from '../utils/constants.js';
 import { Card } from '../components/Card.js';
@@ -13,7 +13,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import { Api } from '../components/Api.js';
-import PopupWithDelete from '../components/UserInfo.js';
+import PopupWithDelete from '../components/PopupWithDelete.js';
 
 const api = new Api(apiOptions)
 
@@ -35,26 +35,26 @@ const popupFullImage = new PopupWithImage('#imagePopup');
 
 const popupFormProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit);
 
-const popupFormAnswer = new PopupWithDelete('#answerPopup', handleSubmitAddTodoForm);
+const popupFormAnswer = new PopupWithDelete('#answerPopup', {handleDeleteCard: (el)=>{
+  popupFormAnswer.close();
+  el.deleteEl();
+
+}});
 
 const popupFormAvatar = new PopupWithForm('#editAvatar', handleAvatarForSubmit);
 
 const popupCard = new PopupWithForm('#editCardsPopup',
-  // formValues => {
-  // section.renderer(formValues);
-  // popupCard.close();
-  (data) => {
+  data => {
     console.log(data)
 
     popupCard.setLoader();
     api.createCardInServ(data)
-
       .then((data) => {
         createCard(data, '#user', handleOpenPopup);
         popupCard.close();
       })
       .catch((err) => {
-        console.log(`Ошибка ${err}`);
+        console.log(`Упс${err}`);
       })
       .finally(() => {
         popupCard.removeLoader();
@@ -63,7 +63,7 @@ const popupCard = new PopupWithForm('#editCardsPopup',
 
 // const popupCard = new PopupWithForm('#editCardsPopup', handleSubmitAddTodoForm)
 //____________________________________________________________________________________________________________________________________________________________________________
-const handleSubmitAddTodoForm = (event) => {
+const handleDeleteFormSubmit = (event) => {
   event.preventDefault();
 
   api.createCardInServ({ name: input.value })
@@ -77,7 +77,7 @@ const handleSubmitAddTodoForm = (event) => {
 //Функция создания карточки
 function createCard(item) {
   // const numberlike = api.numberLikes();
-  const card = new Card(item, '#guest', handleOpenPopup, {
+  const card = new Card(item, '#user', handleOpenPopup, {
     handelDeleteCard: (id) => {
       api.deleteCard(id)
         .then(() => {
@@ -134,7 +134,7 @@ function handleOpenPopup(name, link) {
 popupFormProfile.setEventListeners();
 popupCard.setEventListeners();
 popupFullImage.setEventListeners();
-// popupFormAnswer.setEventListeners();
+popupFormAnswer.setEventListeners();
 popupFormAvatar.setEventListeners();
 
 Promise.all([api.getAllCards(), api.getInfo()])
