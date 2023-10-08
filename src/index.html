@@ -87,7 +87,9 @@
 		<div class="popup__container">
 			<button id='closedIconPopupAnswer' class="popup__closed" type="button"></button>
 			<h2 class="popup__title">Вы уверены?</h2>
-			<button type="submit" class="popup__button" id='buttonAnswer'>Да</button>
+			<form class="popup__form" name="delete" id="editAvatarForm">
+				<button type="submit" class="popup__button" id='buttonAnswer'>Да</button>
+			</form>
 		</div>
 
 	</div>
@@ -101,7 +103,7 @@
 				<input id='fieldLinkPopupAvatar' class="popup__field" type="url" placeholder="Ссылка на картинку"
 					name="link" required>
 				<span class="fieldLinkPopupCards-error popup__input-error"></span>
-				<button type="submit" class="popup__button popup__button_disabled" id='buttonSaveAvatar'>Сохранить</button>
+				<button type="submit" class="popup__button" id='buttonSaveAvatar'>Сохранить</button>
 			</form>
 		</div>
 

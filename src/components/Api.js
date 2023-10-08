@@ -20,22 +20,6 @@ export class Api {
             method: 'GET',
             headers: this._headers
         })
-            // .then((res) => {
-            //     if (res.ok) {
-            //         return res.json()
-            //     }
-            // })
-            // // .then((res) => {
-            // //     res.forEach(((item) => {
-            // //         this._fanction(item);
-            // //     }));
-            // // })
-            // .then(() => {
-            //     console.log('Загрузка данных КАРТОЧЕК')
-            // })
-            // .catch((err) => {
-            //     console.log(`Может не стоит ? Это ${err}`)
-            // });
     }
 
     createCard(data) {
@@ -44,30 +28,40 @@ export class Api {
             headers: this._headers,
             body: JSON.stringify(data)
         })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json()
-                }
-            })
     }
-
-    // numberLikes(data) {
-    //     return this._getRequest(`${this._url}/cards`, {
-    //         headers: this._headers
-    //     })
-    //         // .then((res)=>{
-    //         //     // data.textContent = Object.keys(res.likes).length
-    //         //     console.log(res.likes)
-    //         //   })
-    //         .catch((err) => {
-    //             console.log(`You are wellcome ${err}`)
-    //         })
-    // }
 
     deleteCard(id) {
         return this._getRequest(`${this._url}/cards/${id}`, {
             method: 'DELETE',
             headers: this._headers
         })
+    }
+
+    getInfo () {
+        return this._getRequest (`${this._url}/users/me`, {
+            method: 'GET',
+            headers: this._headers
+        })
+    }
+
+    saveInfoInServ(info){
+        return this._getRequest (`${this._url}/users/me`, {
+        method: 'PATCH',
+        headers: this._headers,
+        body: JSON.stringify({ 
+            name: info.name, 
+            about: info.work 
+          })
+      })
+    }
+
+    saveAvatarInServ(info){
+        return this._getRequest (`${this._url}/users/me`, {
+        method: 'PATCH',
+        headers: this._headers,
+        body: JSON.stringify({ 
+            avatar: info.avatar
+          })
+      })
     }
 }

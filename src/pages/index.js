@@ -13,6 +13,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import {Api} from '../components/Api.js';
+import PopupWithAvatar from '../components/UserInfo.js';
 
 const api = new Api(apiOptions)
 
@@ -34,99 +35,14 @@ const popupFullImage = new PopupWithImage('#imagePopup');
 
 const popupFormProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit);
 
-const popupFormAnswer = new PopupWithForm('#answerPopup', handleProfileFormSubmit);
+const popupFormAnswer = new PopupWithForm('#answerPopup', handleAvatarForSubmit);
 
-const popupFormAvatar = new PopupWithForm('#editAvatar', handleProfileFormSubmit);
+const popupFormAvatar = new PopupWithForm('#editAvatar', handleAvatarForSubmit);
 
 const popupCard = new PopupWithForm('#editCardsPopup', formValues => {
   section.renderer(formValues);
   popupCard.close();
 })
-
-
-
-
-//________________________________________________________________Загрузка данных ПРОФИЛЯ_______________________________________________________________________________
-fetch('https://nomoreparties.co/v1/cohort-76/users/me', {
-  headers: {
-    authorization: '201e26a5-d782-4c58-9b61-1aee30a7887d'
-  }
-})
-  .then((res) => {
-    if (res.ok) {
-      return res.json()
-    }
-  })
-  .then((res) => {
-    profileName.textContent = res.name;
-    profileWork.textContent = res.about;
-    profileImg.src = res.avatar;
-  })
-  .catch((err)=>{
-    console.log(`Обломись, это ${err}`)
-  });
-//______________________________________________________________________________________________________________________________________________________________________________________
-//______________________________________________________________________________________________________________________________________________________________________________________
-
-
-//________________________________________________________________ФУНКЦИЯ сохранения данных ПРОФИЛЯ НА СЕРВЕР_______________________________________________________________________________
-// function saveInfoInServ(info){
-//   fetch('https://mesto.nomoreparties.co/v1/cohort-76/users/me', {
-//   method: 'PATCH',
-//   headers: {
-//     authorization: '201e26a5-d782-4c58-9b61-1aee30a7887d',
-//     'Content-Type': 'application/json'
-//   },
-//   body: JSON.stringify({
-//     name: info.name,
-//     about: info.work
-//   })
-// })
-// .then((res) => {
-//   if (res.ok) {
-//     return res.json()
-//   }
-// })
-// .then(() => {
-//   console.log('ФУНКЦИЯ сохранения данных ПРОФИЛЯ НА СЕРВЕР')
-// })
-// .catch((err)=>{
-//   console.log(`Лови ${err}`)
-// })
-// }
-//______________________________________________________________________________________________________________________________________________________________________________________
-//______________________________________________________________________________________________________________________________________________________________________________________
-
-
-//________________________________________________________________ФУНКЦИЯ сохранения данных ПРОФИЛЯ НА СЕРВЕР_______________________________________________________________________________
-function saveInfoInServ(info){
-  fetch('https://mesto.nomoreparties.co/v1/cohort-76/users/me', {
-  method: 'PATCH',
-  headers: {
-    authorization: '201e26a5-d782-4c58-9b61-1aee30a7887d',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    name: info.name,
-    about: info.work
-  })
-})
-.then((res) => {
-  if (res.ok) {
-    return res.json()
-  }
-})
-.then(() => {
-  console.log('ФУНКЦИЯ сохранения данных ПРОФИЛЯ НА СЕРВЕР')
-})
-.catch((err)=>{
-  console.log(`Лови ${err}`)
-})
-}
-//______________________________________________________________________________________________________________________________________________________________________________________
-//______________________________________________________________________________________________________________________________________________________________________________________
-
-
 
 //Функция создания карточки
 function createCard(item) {
@@ -150,8 +66,12 @@ function createCard(item) {
 
 function handleProfileFormSubmit(formValues) {
   userInfo.setUserInfo({ name: formValues.fullname, work: formValues.activity });
-  saveInfoInServ({ name: formValues.fullname, work: formValues.activity })
+  api.saveInfoInServ({ name: formValues.fullname, work: formValues.activity })
   popupFormProfile.close();
+}
+//____________________________________________________________________________________________________________________________________________________________________________
+function handleAvatarForSubmit(item){
+  api.saveAvatarInServ({avatar: item.link})
 }
 
 //Открытие POPUP PROFILE
@@ -162,14 +82,15 @@ popupProfileOpenIcon.addEventListener("click", function () {
   profileJobInput.value = getUserInfo.work;
 });
 
-avatarIcon.addEventListener('click', () => {
-  popupFormAvatar.open();
-});
-
 //Открытие POPUP CARD
 popupCardsOpenIcon.addEventListener("click", function () {
   popupCard.open();
   editCardFormValidator.disableButton();
+});
+
+// Открытие POPUP AVATAR
+avatarIcon.addEventListener("click", function () {
+  popupFormAvatar.open();
 });
 
 // Открытие POPUP IMG
@@ -181,9 +102,21 @@ popupFormProfile.setEventListeners();
 popupCard.setEventListeners();
 popupFullImage.setEventListeners();
 popupFormAnswer.setEventListeners();
-api.getAllCards()
-.then((data) => {
-  data.forEach((todoData) => {
-    createCard(todoData);
+popupFormAvatar.setEventListeners();
+
+Promise.all([api.getAllCards(), api.getInfo()])
+  .then(([items, item]) => {
+      section.renderItems(items);
+      userInfo.setUserInfo(item);
+      profileName.textContent = item.name;
+      profileWork.textContent = item.about;
+      profileImg.src = item.avatar;
+  })
+  .catch((err) => {
+      console.log(err);
   });
-});
+
+
+
+// deleteCard = this._element.querySelector('#buttonAnswer');
+// deleteCard.addEventListener('click', () => {this._handleDelete();});
