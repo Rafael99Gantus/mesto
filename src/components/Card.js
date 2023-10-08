@@ -15,9 +15,7 @@ export class Card{
     return card;
   }
 
-  _handleDelete(){
-    this._handleDeleteCard(this._id)
-    }
+  
 
   generateCard() {
     this._element = this._getTemplate();
@@ -32,6 +30,7 @@ export class Card{
     this._numberLikes = this._element.querySelector('.elements__number');
     this._avatar = document.querySelector('#editAvatar');
     this._avatarEdit = document.querySelector('.profile__overlay');
+    this._deleteCard = this._element.querySelector('#buttonAnswer')
     this._setEventListeners();
 
     
@@ -44,15 +43,9 @@ export class Card{
   }
 
   _setEventListeners() {
-    deleteCard = this._element.querySelector('#buttonAnswer')
-    deleteCard.addEventListener('click', () => {this._handleDelete();});
 
     this._likeIcon.addEventListener('click', () => {
       this._handleLike();
-    });
-
-    this._trashIcon.addEventListener('click', () => {
-      this._handleTrashButton();
     });
 
     this._imageCard.addEventListener('click', () => {
@@ -62,11 +55,6 @@ export class Card{
 // Лайк
   _handleLike() {
     this._likeIcon.classList.toggle('elements__heart_active');
-  }
-
-//Открытие попапа ANSWER
-  _handleTrashButton() {
-    this._trashPopup.classList.add('popup_opened');
   }
 
   delete () {
