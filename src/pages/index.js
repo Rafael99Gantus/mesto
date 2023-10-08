@@ -36,9 +36,9 @@ const popupFullImage = new PopupWithImage('#imagePopup');
 const popupFormProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit);
 
 const popupFormAnswer = new PopupWithDelete('#answerPopup', {handleDeleteCard: (el)=>{
-  popupFormAnswer.close();
   api.deleteCard(el);
-  console.log(el)
+  console.log(el);
+  popupFormAnswer.close();
 }});
 
 const popupFormAvatar = new PopupWithForm('#editAvatar', handleAvatarForSubmit);
@@ -88,7 +88,7 @@ function createCard(item) {
   const card = new Card(item, '#user', handleOpenPopup);
   const cardEl = card.generateCard();
   section.addItem(cardEl);
-  api.createCardInServ(item);
+  // api.createCardInServ(item);
 }
 
 function handleProfileFormSubmit(formValues) {
