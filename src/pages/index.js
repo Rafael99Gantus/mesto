@@ -37,8 +37,8 @@ const popupFormProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit
 
 const popupFormAnswer = new PopupWithDelete('#answerPopup', {handleDeleteCard: (el)=>{
   popupFormAnswer.close();
-  el.deleteEl();
-
+  api.deleteCard(el);
+  console.log(el)
 }});
 
 const popupFormAvatar = new PopupWithForm('#editAvatar', handleAvatarForSubmit);
@@ -63,28 +63,29 @@ const popupCard = new PopupWithForm('#editCardsPopup',
 
 // const popupCard = new PopupWithForm('#editCardsPopup', handleSubmitAddTodoForm)
 //____________________________________________________________________________________________________________________________________________________________________________
-const handleDeleteFormSubmit = (event) => {
-  event.preventDefault();
+// const handleDeleteFormSubmit = (event) => {
+//   event.preventDefault();
 
-  api.createCardInServ({ name: input.value })
-    .then((data) => {
-      createCard(data);
-    })
+//   api.createCardInServ({ name: input.value })
+//     .then((data) => {
+//       createCard(data);
+//     })
 
-  input.value = "";
-};
+//   input.value = "";
+// };
+
+// , {
+//   handelDeleteCard: (id) => {
+//     api.deleteCard(id)
+//       .then(() => {
+//         card.delete();
+//       })
+//   }
 
 //Функция создания карточки
 function createCard(item) {
   // const numberlike = api.numberLikes();
-  const card = new Card(item, '#user', handleOpenPopup, {
-    handelDeleteCard: (id) => {
-      api.deleteCard(id)
-        .then(() => {
-          card.delete();
-        })
-    }
-  });
+  const card = new Card(item, '#user', handleOpenPopup);
   const cardEl = card.generateCard();
   section.addItem(cardEl);
   api.createCardInServ(item);
