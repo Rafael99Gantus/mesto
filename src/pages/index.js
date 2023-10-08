@@ -13,7 +13,6 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import {Api} from '../components/Api.js';
-import PopupWithAvatar from '../components/UserInfo.js';
 
 const api = new Api(apiOptions)
 
@@ -71,7 +70,8 @@ function handleProfileFormSubmit(formValues) {
 }
 //____________________________________________________________________________________________________________________________________________________________________________
 function handleAvatarForSubmit(item){
-  api.saveAvatarInServ({avatar: item.link})
+  api.saveAvatarInServ({avatar: item.link});
+  popupFormAvatar.close();
 }
 
 //Открытие POPUP PROFILE
