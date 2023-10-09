@@ -64,4 +64,18 @@ export class Api {
           })
       })
     }
+
+    Like(id) {
+        return fetch(`${this._url}/cards/${id}/likes `,{
+            method: 'PUT',
+            headers: this._headers
+        })
+    }
+
+    removeLike(id) {
+        return fetch(`${this._url}/cards/${id}/likes `,{
+            method: 'DELETE',
+            headers: this._headers
+        })
+    }
 }
