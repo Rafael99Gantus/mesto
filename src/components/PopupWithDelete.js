@@ -7,21 +7,28 @@ export default class PopupWithDelete extends Popup{
         this._handleDeleteCard = handleDeleteCard;
     }
 
-    close(){
-        super.close();
-    }
-
     open(el){
         super.open();
         this._el = el;
     }
 
     _setEventListeners(){
+        this._trashIcon = document.querySelector('.elements__trash')
         super.setEventListeners();
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
             this._handleDeleteCard(this._el);
-            this.close()
+            // this.close()
         })
+
+        // this._trashIcon.addEventListener('click', () => {
+        //     this._handleTrashButton();
+        // });
+
     }
+
+//     //Открытие попапа ANSWER
+//   _handleTrashButton() {
+//     this._popup.classList.add('popup_opened');
+//   }
 }

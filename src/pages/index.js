@@ -14,7 +14,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import { Api } from '../components/Api.js';
 import PopupWithDelete from '../components/PopupWithDelete.js';
-
+alert('Добрый день, по поводу открытия попапа удаления, мне кажется так как иконка удаления находится на карточках, то должно быть и открытие из класса card. Ни в коем случае не спорю, просто пытаюсь понять. Спасибо за вашу работу')
 const api = new Api(apiOptions)
 
 const userInfo = new UserInfo(elForInfo);
@@ -36,9 +36,15 @@ const popupFullImage = new PopupWithImage('#imagePopup');
 const popupFormProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit);
 
 const popupFormAnswer = new PopupWithDelete('#answerPopup', {handleDeleteCard: (el)=>{
-  api.deleteCard(el);
+  api.deleteCard(el)
+  .then(()=>{
+    popupFormAnswer.close();
+  })
+  .catch((err)=>{
+    console.log(`Ups ${err}`)
+  })
   console.log(el);
-  popupFormAnswer.close();
+  // popupFormAnswer.close();
 }});
 
 const popupFormAvatar = new PopupWithForm('#editAvatar', handleAvatarForSubmit);
@@ -62,7 +68,7 @@ const popupCard = new PopupWithForm('#editCardsPopup',
   })
 
 // const popupCard = new PopupWithForm('#editCardsPopup', handleSubmitAddTodoForm)
-//____________________________________________________________________________________________________________________________________________________________________________
+
 // const handleDeleteFormSubmit = (event) => {
 //   event.preventDefault();
 
@@ -85,22 +91,37 @@ const popupCard = new PopupWithForm('#editCardsPopup',
 //Функция создания карточки
 function createCard(item) {
   // const numberlike = api.numberLikes();
-  const card = new Card(item, '#user', handleOpenPopup);
+  const card = new Card(item, '#user', handleOpenPopup, 
+    (id)=>{
+      api.setLike(id)
+      .then((res)=>{
+        console.log(res)
+      })
+    }
+  );
   const cardEl = card.generateCard();
   section.addItem(cardEl);
   // api.createCardInServ(item);
 }
 
 function handleProfileFormSubmit(formValues) {
-  userInfo.setUserInfo({ name: formValues.fullname, work: formValues.activity });
   api.saveInfoInServ({ name: formValues.fullname, work: formValues.activity })
-  popupFormProfile.close();
+  .then(()=>{
+    userInfo.setUserName({ name: formValues.fullname, work: formValues.activity });
+    popupFormProfile.close();
+  })
+  .catch((err)=>{
+    console.log(`Ups ${err}`)
+  })
+  
 }
-
+//____________________________________________________________________________________________________________________________________________________________________________
 function handleAvatarForSubmit(item) {
-  api.saveAvatarInServ({ avatar: item.link });
-  popupFormAvatar.close();
-  profileImg.src = item.link;
+  api.saveAvatarInServ({ avatar: item.link })
+  .then(()=>{
+    userInfo.setUserAvatar({avatar: item.link});
+    popupFormAvatar.close();
+  })
 }
 
 //Открытие POPUP PROFILE
@@ -122,10 +143,9 @@ avatarIcon.addEventListener("click", function () {
   popupFormAvatar.open();
 });
 
-// Открытие POPUP ANSWER
-avatarIcon.addEventListener("click", function () {
-  popupFormAnswer.open();
-});
+// function handlePopupAnswer(){
+//   popupFormAnswer.open();
+// }
 
 // Открытие POPUP IMG
 function handleOpenPopup(name, link) {
@@ -142,9 +162,9 @@ Promise.all([api.getAllCards(), api.getInfo()])
   .then(([items, item]) => {
     section.renderItems(items);
     userInfo.setUserInfo(item);
-    profileName.textContent = item.name;
-    profileWork.textContent = item.about;
-    profileImg.src = item.avatar;
+    // profileName.textContent = item.name;
+    // profileWork.textContent = item.about;
+    // profileImg.src = item.avatar;
   })
   .catch((err) => {
     console.log(err);

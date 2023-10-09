@@ -1,12 +1,13 @@
 export class Card{
-  constructor(data, templateSelector, handleOpenPopup, handleDeleteCard) {
+  constructor(data, templateSelector, handleOpenPopup, setLike) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes.length;
     this._handleOpenPopup = handleOpenPopup;
+    this._setLike = setLike;
     // this._numberlike = numberlike;
     this._id = data._id;
-    this._handleDeleteCard = handleDeleteCard;
+    // this._handleDeleteCard = handleDeleteCard;
     this._templateSelector = templateSelector;
   }
 
@@ -58,7 +59,14 @@ export class Card{
   }
 // Лайк
   _handleLike() {
+    this._setLike(this._id)
     this._likeIcon.classList.toggle('elements__heart_active');
+    if(this._numberLikes.textContent === this._likes){
+      this._likeIcon.classList.add('elements__heart_active')
+    }else{
+      this._numberLikes.textContent = this._likes + 1
+    }
+    
   }
 
 //Открытие попапа ANSWER

@@ -65,15 +65,15 @@ export class Api {
       })
     }
 
-    Like(id) {
-        return fetch(`${this._url}/cards/${id}/likes `,{
+    setLike(id) {
+        return this._getRequest (`${this._url}/cards/${id}/likes `,{
             method: 'PUT',
             headers: this._headers
         })
     }
 
     removeLike(id) {
-        return fetch(`${this._url}/cards/${id}/likes `,{
+        return this._getRequest (`${this._url}/cards/${id}/likes `,{
             method: 'DELETE',
             headers: this._headers
         })
