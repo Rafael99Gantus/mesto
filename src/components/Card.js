@@ -6,8 +6,8 @@ export class Card{
     this._handleOpenPopup = handleOpenPopup;
     this._setLike = setLike;
     this._deleteLike = deleteLike;
-    this._userId=userId;
     this._owner = data.owner;
+    this._userId = userId;
     this._id = data._id;
     this._handleOpenTrashPopup = handleOpenTrashPopup;
     this._templateSelector = templateSelector;
@@ -35,7 +35,7 @@ export class Card{
     this._numberLikes = this._element.querySelector('.elements__number');
     this._avatar = document.querySelector('#editAvatar');
     this._avatarEdit = document.querySelector('.profile__overlay');
-    this._deleteCard = this._element.querySelector('#buttonAnswer')
+    this._deleteCard = this._element.querySelector('#buttonAnswer') 
     this._setEventListeners();
 
     
@@ -44,12 +44,12 @@ export class Card{
     cardImage.src = this._link;
     cardImage.alt = this._name;
     this._numberLikes.textContent = this._likes.length;
-    // this._likes.forEach(like=>{
-    //   if(like._id===this._userId){
-    //     this._likeIcon.classList.add('elements__heart_active')
-    //   }
-    // })
-    this._userId();
+    // this._idForUser = this._getUserId;
+    this._likes.forEach(like=>{
+      if(like._id === this._userId){
+        this._likeIcon.classList.add('elements__heart_active')
+      }
+    })
 
     // const icon = this._element.querySelector('.elements__trash');
     //     if (this._owner._id !== this._userId) {
@@ -94,14 +94,13 @@ export class Card{
 
 }
 
-a(userID){
-  this._userID = userID;
-  this._likes.forEach(like=>{
-    if(like._id===this._userID){
-      this._likeIcon.classList.add('elements__heart_active')
-    }
-  })
-}
+// a(userID){
+//   this._likes.forEach(like=>{
+//     if(like._id===userID){
+//       this._likeIcon.classList.add('elements__heart_active')
+//     }
+//   })
+// }
 
   delete () {
     this._element.remove();

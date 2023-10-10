@@ -47,17 +47,17 @@ const popupFormAnswer = new PopupWithDelete('#answerPopup', {
       })
   }
 },
-//   {
-//     getAllCardsId: () => {
-//       api.getAllCardsId()
-//         .then((res) => {
-//           console.log(`Ups ${res}`)
-//         })
-//         .catch((err) => {
-//           console.log(`Ups ${err}`)
-//         })
-//     }
-//   },
+  //   {
+  //     getAllCardsId: () => {
+  //       api.getAllCardsId()
+  //         .then((res) => {
+  //           console.log(`Ups ${res}`)
+  //         })
+  //         .catch((err) => {
+  //           console.log(`Ups ${err}`)
+  //         })
+  //     }
+  //   },
   // { handleDeleteCard: ()=>{
   //   Promise.all([api.deleteCard(), api.getAllCardsId()])
   //     .then(([items, item]) => {
@@ -68,7 +68,7 @@ const popupFormAnswer = new PopupWithDelete('#answerPopup', {
   //       console.log(err);
   //     })
   // }
-    
+
 );
 
 const popupFormAvatar = new PopupWithForm('#editAvatar', handleAvatarForSubmit);
@@ -91,7 +91,7 @@ const popupCard = new PopupWithForm('#editCardsPopup',
       })
   })
 
-
+let id = null;
 //Функция создания карточки
 function createCard(item) {
   const card = new Card(item, '#user', handleOpenPopup,
@@ -119,9 +119,17 @@ function createCard(item) {
             console.log(err)
           })
       }
-    },() => {
-      card.a(card._id)
-    },
+    }, 
+  //   {
+  //     getUserId: () => {
+  //       api.getInfo()
+  //         .then((res) => {
+  //           card.a(res._id)
+  //         })
+  //     }
+  // }
+  id
+  ,
     () => {
       popupFormAnswer.set(card)
     }
@@ -197,8 +205,9 @@ popupFormAvatar.setEventListeners();
 
 Promise.all([api.getAllCards(), api.getInfo()])
   .then(([items, item]) => {
-    section.renderItems(items);
     userInfo.setUserInfo(item);
+    id = item._id;
+    section.renderItems(items);
   })
   .catch((err) => {
     console.log(err);
