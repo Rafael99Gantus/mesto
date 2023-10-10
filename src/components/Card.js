@@ -1,10 +1,12 @@
 export class Card{
-  constructor(data, templateSelector, handleOpenPopup, setLike) {
+  constructor(data, templateSelector, handleOpenPopup, {setLike}, {deleteLike}, userId) {
     this._name = data.name;
     this._link = data.link;
-    this._likes = data.likes.length;
+    this._likes = data.likes;
     this._handleOpenPopup = handleOpenPopup;
     this._setLike = setLike;
+    this._deleteLike = deleteLike;
+    this._userId=userId;
     // this._numberlike = numberlike;
     this._id = data._id;
     // this._handleDeleteCard = handleDeleteCard;
@@ -32,6 +34,7 @@ export class Card{
     this._avatar = document.querySelector('#editAvatar');
     this._avatarEdit = document.querySelector('.profile__overlay');
     this._deleteCard = this._element.querySelector('#buttonAnswer')
+    // this.numberLike(this._data);
     this._setEventListeners();
 
     
@@ -39,14 +42,23 @@ export class Card{
     const cardImage = this._imageCard;
     cardImage.src = this._link;
     cardImage.alt = this._name;
-    this._numberLikes.textContent = this._likes;
+    this._numberLikes.textContent = this._likes.length;
+    this._likes.forEach(like=>{
+      if(like._id===this._userId){
+        this._likeIcon.classList.add('elements__heart_active')
+      }
+    })
     return this._element;
   }
 
   _setEventListeners() {
 
     this._likeIcon.addEventListener('click', () => {
-      this._handleLike();
+      if(this._likeIcon.classList.contains('elements__heart_active')){
+        this._deleteLike()
+      }else{
+        this._setLike(this._id) 
+      }
     });
 
     this._trashIcon.addEventListener('click', () => {
@@ -58,16 +70,21 @@ export class Card{
     });
   }
 // Лайк
-  _handleLike() {
-    this._setLike(this._id)
-    this._likeIcon.classList.toggle('elements__heart_active');
-    if(this._numberLikes.textContent === this._likes){
-      this._likeIcon.classList.add('elements__heart_active')
-    }else{
-      this._numberLikes.textContent = this._likes + 1
-    }
-    
-  }
+  handleLike() {
+    const likeIcon = this._element.querySelector('#first-heart');
+    likeIcon.classList.add('elements__heart_active');
+  };
+
+  delLike() {
+    const likeIcon = this._element.querySelector('#first-heart');
+    likeIcon.classList.remove('elements__heart_active');
+  };
+
+  numberLike(data) {
+    this._likes = data.likes
+    this._numberLikes.textContent = this._likes.length;
+
+}
 
 //Открытие попапа ANSWER
   _handleTrashButton() {
@@ -77,4 +94,6 @@ export class Card{
   delete () {
     this._element.remove();
   }
+
+
 }

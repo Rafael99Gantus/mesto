@@ -4,7 +4,7 @@ import './index.css';
 import {
   initialCards, config, profileNameInput, profileJobInput, apiOptions, avatarIcon, avatarPopup, buttonPopup,
   popupProfileOpenIcon, popupCardsEdit, popupProfile, popupProfileClosedIcon, popupCardsOpenIcon, templateUser,
-  elForInfo, cardsContainer, profileName, profileWork, profileImg, numberLikes, popupAnswer, trashIcon
+  elForInfo, cardsContainer, profileName, profileWork, profileImg, numberLikes, popupAnswer, trashIcon, like
 } from '../utils/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -14,7 +14,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import { Api } from '../components/Api.js';
 import PopupWithDelete from '../components/PopupWithDelete.js';
-alert('Добрый день, по поводу открытия попапа удаления, мне кажется так как иконка удаления находится на карточках, то должно быть и открытие из класса card. Ни в коем случае не спорю, просто пытаюсь понять. Спасибо за вашу работу')
+
 const api = new Api(apiOptions)
 
 const userInfo = new UserInfo(elForInfo);
@@ -92,12 +92,22 @@ const popupCard = new PopupWithForm('#editCardsPopup',
 function createCard(item) {
   // const numberlike = api.numberLikes();
   const card = new Card(item, '#user', handleOpenPopup, 
-    (id)=>{
+  {setLike: (id)=>{
       api.setLike(id)
       .then((res)=>{
-        console.log(res)
+        card.handleLike();
+        card.numberLike(res)
       })
-    }
+    }},
+
+    {deleteLike: ()=>{
+      api.removeLike(id)
+      .then(()=>{
+        card.delLike();
+        card.numberLikes(data)
+      })
+    }},
+    userInfo.userId
   );
   const cardEl = card.generateCard();
   section.addItem(cardEl);

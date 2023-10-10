@@ -74,3 +74,4 @@ export const avatarIcon = document.querySelector('.profile__avatar');
 export const avatarPopup = document.querySelector('#editAvatar')
 export const buttonPopup = document.querySelector('.popup__button')
 export const templateUser = document.querySelector('.elements__element')
+export const like = document.querySelector('.elements__heart')
