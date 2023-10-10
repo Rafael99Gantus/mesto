@@ -7,11 +7,6 @@ export default class PopupWithDelete extends Popup{
         this._handleDeleteCard = handleDeleteCard;
     }
 
-    open(el){
-        super.open();
-        this._el = el;
-    }
-
     _setEventListeners(){
         this._trashIcon = document.querySelector('.elements__trash')
         super.setEventListeners();

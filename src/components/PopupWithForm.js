@@ -36,6 +36,10 @@ export default class PopupWithForm extends Popup {
     }
 
     removeLoader() {
-        this._button.textContent = this._buttonText;
+        this._button.textContent = 'Сохранить';
+    }
+
+    removeLoaderEditCard() {
+        this._button.textContent = 'Создать';
     }
 }

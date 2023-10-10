@@ -1,5 +1,5 @@
 export class Card{
-  constructor(data, templateSelector, handleOpenPopup, {setLike}, {deleteLike}, userId) {
+  constructor(data, templateSelector, handleOpenPopup, {setLike}, {deleteLike}, userId, handleOpenTrashPopup) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
@@ -7,14 +7,18 @@ export class Card{
     this._setLike = setLike;
     this._deleteLike = deleteLike;
     this._userId=userId;
+    this._owner = data.owner;
     // this._numberlike = numberlike;
     this._id = data._id;
-    // this._handleDeleteCard = handleDeleteCard;
+    this._handleOpenTrashPopup = handleOpenTrashPopup;
     this._templateSelector = templateSelector;
   }
 
   _getTemplate() {
     const card = document.querySelector(this._templateSelector).content.querySelector('.elements__element').cloneNode(true);
+
+    
+
     return card;
   }
 
@@ -48,6 +52,11 @@ export class Card{
         this._likeIcon.classList.add('elements__heart_active')
       }
     })
+
+    // const icon = this._element.querySelector('.elements__trash');
+    //     if (this._owner._id !== this._userId) {
+    //       icon.style.display = 'none';
+    //     }
     return this._element;
   }
 
@@ -61,8 +70,9 @@ export class Card{
       }
     });
 
-    this._trashIcon.addEventListener('click', () => {
-      this._handleTrashButton();
+    const icon = this._element.querySelector('.elements__trash');
+    icon.addEventListener('click', () => {
+      this._handleOpenTrashPopup();
     });
 
     this._imageCard.addEventListener('click', () => {
@@ -85,11 +95,6 @@ export class Card{
     this._numberLikes.textContent = this._likes.length;
 
 }
-
-//Открытие попапа ANSWER
-  _handleTrashButton() {
-    this._trashPopup.classList.add('popup_opened');
-  }
 
   delete () {
     this._element.remove();
