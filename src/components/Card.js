@@ -55,7 +55,7 @@ export class Card{
 
     this._likeIcon.addEventListener('click', () => {
       if(this._likeIcon.classList.contains('elements__heart_active')){
-        this._deleteLike()
+        this._deleteLike(this._id)
       }else{
         this._setLike(this._id) 
       }

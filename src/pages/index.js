@@ -100,11 +100,11 @@ function createCard(item) {
       })
     }},
 
-    {deleteLike: ()=>{
+    {deleteLike: (id)=>{
       api.removeLike(id)
-      .then(()=>{
+      .then((res)=>{
         card.delLike();
-        card.numberLikes(data)
+        card.numberLike(res)
       })
     }},
     userInfo.userId
