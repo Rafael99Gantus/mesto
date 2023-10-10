@@ -51,10 +51,10 @@ export class Card{
       }
     })
 
-    // const icon = this._element.querySelector('.elements__trash');
-    //     if (this._owner._id !== this._userId) {
-    //       icon.style.display = 'none';
-    //     }
+    const icon = this._element.querySelector('.elements__trash');
+        if (this._owner._id !== this._userId) {
+          icon.style.display = 'none';
+        }
     return this._element;
   }
 
