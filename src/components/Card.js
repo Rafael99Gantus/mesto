@@ -8,7 +8,6 @@ export class Card{
     this._deleteLike = deleteLike;
     this._userId=userId;
     this._owner = data.owner;
-    // this._numberlike = numberlike;
     this._id = data._id;
     this._handleOpenTrashPopup = handleOpenTrashPopup;
     this._templateSelector = templateSelector;
@@ -32,13 +31,11 @@ export class Card{
     this._trashPopup = document.querySelector('#answerPopup');
     this._imageCard = this._element.querySelector('.elements__image');
     this._nameCard = this._element.querySelector('.elements__name');
-    // this._popupImage = document.querySelector('.popup__image');
     this._popupTitle = document.querySelector('.popup__titleImage');
     this._numberLikes = this._element.querySelector('.elements__number');
     this._avatar = document.querySelector('#editAvatar');
     this._avatarEdit = document.querySelector('.profile__overlay');
     this._deleteCard = this._element.querySelector('#buttonAnswer')
-    // this.numberLike(this._data);
     this._setEventListeners();
 
     
