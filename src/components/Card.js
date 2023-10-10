@@ -44,11 +44,12 @@ export class Card{
     cardImage.src = this._link;
     cardImage.alt = this._name;
     this._numberLikes.textContent = this._likes.length;
-    this._likes.forEach(like=>{
-      if(like._id===this._userId){
-        this._likeIcon.classList.add('elements__heart_active')
-      }
-    })
+    // this._likes.forEach(like=>{
+    //   if(like._id===this._userId){
+    //     this._likeIcon.classList.add('elements__heart_active')
+    //   }
+    // })
+    this._userId();
 
     // const icon = this._element.querySelector('.elements__trash');
     //     if (this._owner._id !== this._userId) {
@@ -67,8 +68,8 @@ export class Card{
       }
     });
 
-    const icon = this._element.querySelector('.elements__trash');
-    icon.addEventListener('click', () => {
+    // const icon = this._element.querySelector('.elements__trash');
+    this._trashIcon.addEventListener('click', () => {
       this._handleOpenTrashPopup();
     });
 
@@ -78,19 +79,28 @@ export class Card{
   }
 // Лайк
   handleLike() {
-    const likeIcon = this._element.querySelector('#first-heart');
-    likeIcon.classList.add('elements__heart_active');
+    // const likeIcon = this._element.querySelector('#first-heart');
+    this._likeIcon.classList.add('elements__heart_active');
   };
 
   delLike() {
-    const likeIcon = this._element.querySelector('#first-heart');
-    likeIcon.classList.remove('elements__heart_active');
+    // const likeIcon = this._element.querySelector('#first-heart');
+    this._likeIcon.classList.remove('elements__heart_active');
   };
 
   numberLike(data) {
     this._likes = data.likes
     this._numberLikes.textContent = this._likes.length;
 
+}
+
+a(userID){
+  this._userID = userID;
+  this._likes.forEach(like=>{
+    if(like._id===this._userID){
+      this._likeIcon.classList.add('elements__heart_active')
+    }
+  })
 }
 
   delete () {

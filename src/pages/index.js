@@ -1,6 +1,8 @@
 import './index.css';
-import {initialCards, config, profileNameInput, profileJobInput, apiOptions, avatarIcon,
-  popupProfileOpenIcon, popupCardsEdit, popupProfile, popupCardsOpenIcon,elForInfo, cardsContainer} from '../utils/constants.js';
+import {
+  initialCards, config, profileNameInput, profileJobInput, apiOptions, avatarIcon,
+  popupProfileOpenIcon, popupCardsEdit, popupProfile, popupCardsOpenIcon, elForInfo, cardsContainer
+} from '../utils/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -34,18 +36,40 @@ const popupFullImage = new PopupWithImage('#imagePopup');
 const popupFormProfile = new PopupWithForm(popupProfile, handleProfileFormSubmit);
 
 const popupFormAnswer = new PopupWithDelete('#answerPopup', {
-  handleDeleteCard: (el) => {
-    api.deleteCard(el._id)
+  handleDeleteCard: (card) => {
+    api.deleteCard(card._id)
       .then(() => {
         popupFormAnswer.close();
-        el.delete();
+        card.delete();
       })
       .catch((err) => {
         console.log(`Ups ${err}`)
       })
-    console.log(el);
   }
-});
+},
+//   {
+//     getAllCardsId: () => {
+//       api.getAllCardsId()
+//         .then((res) => {
+//           console.log(`Ups ${res}`)
+//         })
+//         .catch((err) => {
+//           console.log(`Ups ${err}`)
+//         })
+//     }
+//   },
+  // { handleDeleteCard: ()=>{
+  //   Promise.all([api.deleteCard(), api.getAllCardsId()])
+  //     .then(([items, item]) => {
+  //       console.log(items);
+  //       console.log(item);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+  // }
+    
+);
 
 const popupFormAvatar = new PopupWithForm('#editAvatar', handleAvatarForSubmit);
 
@@ -95,17 +119,20 @@ function createCard(item) {
             console.log(err)
           })
       }
+    },() => {
+      card.a(card._id)
     },
-    userInfo.userId,
-    handleOpenTrashPopup
+    () => {
+      popupFormAnswer.set(card)
+    }
   );
   const cardEl = card.generateCard();
   section.addItem(cardEl);
 }
 
-function handleOpenTrashPopup() {
-  popupFormAnswer.open()
-}
+// function handleOpenTrashPopup(card) {
+//   popupFormAnswer.set(card)
+// }
 
 function handleProfileFormSubmit(formValues) {
   popupFormProfile.setLoader();
@@ -165,7 +192,7 @@ function handleOpenPopup(name, link) {
 popupFormProfile.setEventListeners();
 popupCard.setEventListeners();
 popupFullImage.setEventListeners();
-popupFormAnswer.setEventListeners();
+popupFormAnswer._setEventListeners();
 popupFormAvatar.setEventListeners();
 
 Promise.all([api.getAllCards(), api.getInfo()])

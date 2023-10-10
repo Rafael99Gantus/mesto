@@ -22,6 +22,13 @@ export class Api {
         })
     }
 
+    getAllCardsId() {
+        return this._getRequest(`${this._url}/cards/_id`, {
+            method: 'GET',
+            headers: this._headers
+        })
+    }
+
     createCardInServ(data) {
         return this._getRequest(`${this._url}/cards`, {
             method: 'POST',
